@@ -62,12 +62,12 @@ const Header = () => {
             business with Our complete source code & post-purchase services.
           </p>
           <div className="flex gap-5 py-5">
-            <Image src={googlePlay} width={150}></Image>
-            <Image src={appStore} width={150}></Image>
+            <Image src={googlePlay} width={150} alt="headerImg"></Image>
+            <Image src={appStore} width={150} alt="headerImg"></Image>
           </div>
         </motion.div>
         <motion.div initial="initial" animate="animate" variants={fadeOut}>
-          <Image src={img5} width={400}></Image>
+          <Image src={img5} width={400} alt="headerImg"></Image>
         </motion.div>
       </section>
     </div>

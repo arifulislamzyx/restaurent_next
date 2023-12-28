@@ -19,7 +19,12 @@ const Footer = () => {
   return (
     <footer className="flex justify-around p-10 h-72  bg-gradient-to-r from-orange-500 to-violet-700 animate-slideBackground ">
       <div>
-        <Image src={foodKing} width={150} height={100}></Image>
+        <Image
+          src={foodKing}
+          width={150}
+          height={100}
+          alt="foodKingProfile"
+        ></Image>
         <div className="mt-3 text-white">
           <p> Subscribe to our newsletter to get latest updates</p>
           <div className="relative w-72 mt-2">
@@ -51,8 +56,8 @@ const Footer = () => {
       <div className="text-white">
         <h4 className="text-2xl font-bold">Download Our Apps</h4>
         <div className="flex gap-3 mt-5 ">
-          <Image src={google} width={100} height={100}></Image>
-          <Image src={appstore} width={100} height={100}></Image>
+          <Image src={google} width={100} height={100} alt="gooleP"></Image>
+          <Image src={appstore} width={100} height={100} alt="appleS"></Image>
         </div>
         <div>
           <div className="flex items-center gap-2 mt-3 mb-3">

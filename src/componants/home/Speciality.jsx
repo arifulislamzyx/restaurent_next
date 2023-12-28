@@ -17,7 +17,7 @@ const Speciality = () => {
     <div>
       <div className="bg-gradient-to-r from-orange-600 to-orange-500 w-5/6 h-52 my-7 mx-auto rounded-xl flex justify-evenly text-center px-6">
         <div className="flex items-center">
-          <Image src={author}></Image>
+          <Image src={author} alt="author"></Image>
           <p className="text-white">
             <span className="text-lg font-bold">Elite Author</span> <br />
             On Food Industry
@@ -25,7 +25,7 @@ const Speciality = () => {
           <hr className="w-32 rotate-90" />
         </div>
         <div ref={ref} className="flex items-center">
-          <Image src={productSold}></Image>
+          <Image src={productSold} alt="productSoled"></Image>
           <p className="text-white">
             <span className="text-lg font-bold">
               {inView ? (
@@ -43,7 +43,7 @@ const Speciality = () => {
           <hr className="w-32 rotate-90" />
         </div>
         <div ref={ref} className="flex items-center">
-          <Image src={ratings}></Image>
+          <Image src={ratings} alt="ratings"></Image>
           <p className="text-white">
             <span className="text-lg font-bold">
               {inView ? (
@@ -65,7 +65,7 @@ const Speciality = () => {
           <hr className="w-32 rotate-90" />
         </div>
         <div className="flex items-center">
-          <Image src={freeUpdates}></Image>
+          <Image src={freeUpdates} alt="freeUpdates"></Image>
           <p className="text-white">
             <span className="text-lg font-bold"> Free Update</span>
             <br />

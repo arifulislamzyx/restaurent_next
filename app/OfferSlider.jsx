@@ -24,7 +24,7 @@ const OfferSlider = () => {
       <Slider {...settings}>
         {slider.map((sliderImage, index) => (
           <div key={index}>
-            <Image className="rounded-lg" src={sliderImage} />
+            <Image className="rounded-lg" src={sliderImage} alt="offerImage" />
           </div>
         ))}
       </Slider>

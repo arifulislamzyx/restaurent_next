@@ -89,7 +89,7 @@ const HowWeWork = () => {
               <path
                 d="M1 56V11C1 5.47715 5.47715 1 11 1H493C498.523 1 503 5.47715 503 11V65.5"
                 stroke="#E55D28"
-                stroke-dasharray="6 6"
+                strokeDasharray="6 6"
               ></path>
             </svg>
             <div className="absolute -left-1">
@@ -107,7 +107,7 @@ const HowWeWork = () => {
                   r="6"
                   fill="#FF5722"
                   stroke="white"
-                  stroke-width="2"
+                  strokeWidth="2"
                 ></circle>
               </svg>
             </div>
@@ -138,7 +138,7 @@ const HowWeWork = () => {
               <path
                 d="M193 1H392C397.523 1 402 5.47715 402 11V168C402 173.523 397.523 178 392 178H0"
                 stroke="#E55D28"
-                stroke-dasharray="6 6"
+                strokeDasharray="6 6"
               ></path>
             </svg>
             <div className="absolute right-[400px] bottom-8">
@@ -168,7 +168,7 @@ const HowWeWork = () => {
               <path
                 d="M1 0V97C1 102.523 5.47715 107 11 107H220.5"
                 stroke="#E55D28"
-                stroke-dasharray="6 6"
+                strokeDasharray="6 6"
               ></path>
             </svg>
             <div className="absolute -top-3 -left-1 rotate-90">

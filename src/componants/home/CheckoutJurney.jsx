@@ -35,7 +35,7 @@ const CheckoutJurney = () => {
         initial="hidden"
         whileInView={"show"}
       >
-        <Image src={foodC} width={300} height={500}></Image>
+        <Image src={foodC} width={300} height={500} alt="cekoutImage"></Image>
       </motion.div>
     </section>
   );

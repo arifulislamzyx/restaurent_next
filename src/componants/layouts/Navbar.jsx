@@ -58,7 +58,7 @@ export default function NavigationMenuDemo() {
   return (
     <nav className="container flex justify-between pt-5 shadow-2xl">
       <div>
-        <Image src={foodKing} width={150} height={100}></Image>
+        <Image src={foodKing} width={150} height={100} alt="foobking"></Image>
       </div>
       <div className="flex items-center">
         <div>
@@ -74,7 +74,12 @@ export default function NavigationMenuDemo() {
                           className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                           href="/"
                         >
-                          <Image src={foodKing} width={50} height={50}></Image>
+                          <Image
+                            src={foodKing}
+                            width={50}
+                            height={50}
+                            alt="foodking"
+                          ></Image>
                           <div className="mb-2 mt-4 text-lg font-medium">
                             FoodKing
                           </div>
