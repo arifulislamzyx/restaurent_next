@@ -1,13 +1,3 @@
-import mongoose from "mongoose";
+const { username, password } = process.env;
 
-const Connection = async () => {
-  try {
-    const cnn = await mongoose.connect(process.env.MONGODB_URI);
-    console.log("dbConnected", cnn);
-    return cnn;
-  } catch (error) {
-    console.log("dbConnection Failed=>", error);
-  }
-};
-
-export default Connection;
+export const connectionDb = `mongodb+srv://${username}:${password}@cluster0.1m3fl9p.mongodb.net/restaurent?retryWrites=true&w=majority`;
