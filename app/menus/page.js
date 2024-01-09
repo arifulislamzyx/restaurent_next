@@ -51,9 +51,9 @@ const page = () => {
               </div>
               <div className="flex justify-between px-3">
                 <p className="font-bold">${items.price}</p>
-                <p className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1">
+                <button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1">
                   <IoBagAdd></IoBagAdd>Add
-                </p>
+                </button>
               </div>
             </div>
           </div>

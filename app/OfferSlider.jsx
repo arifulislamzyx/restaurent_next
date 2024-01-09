@@ -20,7 +20,7 @@ const OfferSlider = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto ">
+    <div className="max-w-5xl mx-5 md:mx-auto lg:mx-auto">
       <Slider {...settings}>
         {slider.map((sliderImage, index) => (
           <div key={index}>

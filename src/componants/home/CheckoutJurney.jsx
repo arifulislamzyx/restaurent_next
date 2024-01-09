@@ -8,12 +8,12 @@ import { fadeIn } from "@/animation/varients";
 
 const CheckoutJurney = () => {
   return (
-    <section className="flex justify-center items-center mx-auto my-5 bg-gradient-to-b from-orange-400 to-orange-600 w-5/6 rounded-2xl">
+    <section className="flex-row mx-8 p-4 md:flex md:justify-center md:items-center md:mx-auto w-5/6  my-5 bg-gradient-to-b from-orange-400 to-orange-600 rounded-2xl">
       <motion.div
         variants={fadeIn("down")}
         initial="hidden"
         whileInView={"show"}
-        className="w-1/2"
+        className="w-full md:w-1/2 lg:w-1/2"
       >
         <h3 className="text-2xl font-bold mb-5">
           Ensure the Perfect Checkout Journey for Your Customers
@@ -25,7 +25,7 @@ const CheckoutJurney = () => {
         </p>
         <Button
           size="lg"
-          className="rounded-full transition hover:transform hover:-translate-y-1 mt-5"
+          className="rounded-full mb-4 transition hover:transform hover:-translate-y-1 mt-5"
         >
           Explore
         </Button>

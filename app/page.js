@@ -8,7 +8,7 @@ import PopularProducts from "@/componants/home/PopularProducts";
 
 export default function Home() {
   return (
-    <>
+    <div>
       <Header></Header>
       <MenuItems></MenuItems>
       <HowWeWork></HowWeWork>
@@ -16,6 +16,6 @@ export default function Home() {
       <OfferSliders></OfferSliders>
       <PopularProducts></PopularProducts>
       <CheckoutJurney></CheckoutJurney>
-    </>
+    </div>
   );
 }

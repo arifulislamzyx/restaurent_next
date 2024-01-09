@@ -8,7 +8,7 @@ import { fadeIn } from "@/animation/varients";
 const HowWeWork = () => {
   return (
     <section>
-      <div className="text-center my-20 px-40">
+      <div className="text-center my-20 px-5 md:px-40 lg:md:px-40">
         <motion.div
           variants={fadeIn("down", 0.2)}
           initial="hidden"
@@ -28,7 +28,7 @@ const HowWeWork = () => {
             variants={fadeIn("right", 0.2)}
             initial="hidden"
             whileInView={"show"}
-            className="bg-gradient-to-r from-orange-400 to-orange-600 hover:bg-gradient-to-r hover:from-orange-600 hover:to-orange-300  p-4 rounded-full mr-1"
+            className="bg-gradient-to-r from-orange-400 to-orange-600 hover:bg-gradient-to-r hover:from-orange-600 hover:to-orange-300  p-4 rounded-full mr-1 mb-4"
           >
             Order Accepted by Restaurant
           </motion.button>
@@ -46,7 +46,7 @@ const HowWeWork = () => {
         variants={fadeIn("up", 0.2)}
         initial="hidden"
         whileInView={"show"}
-        className="mr-10"
+        className="w-full mb-16 mr-10"
       >
         <div className="relative">
           <Image

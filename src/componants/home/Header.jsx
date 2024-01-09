@@ -6,7 +6,6 @@ import img2 from "../../../public/HeaderBanner/banner2.png";
 import img3 from "../../../public/HeaderBanner/banner3.png";
 import img4 from "../../../public/HeaderBanner/banner4.svg";
 import img5 from "../../../public/HeaderBanner/banner12.png";
-import img6 from "../../../public/HeaderBanner/banner23.webp";
 import googlePlay from "../../../public/HomePageImg/googlePlay.png";
 import appStore from "../../../public/HomePageImg/AppStore.png";
 import { motion } from "framer-motion";
@@ -43,25 +42,25 @@ const Header = () => {
   };
   return (
     <div>
-      <section className="bg-white flex justify-center items-center mx-auto py-5">
+      <section className="bg-white grid grid-cols-1 items-center  resize-x md:grid md:grid-cols-2 md:justify-center lg:flex lg:justify-center lg:mx-auto py-5">
         <motion.div
           initial="initial"
           animate="animate"
           variants={fadeIn}
-          className="w-1/2"
+          className="w-full text-center mb-4 md:text-left lg:text-left md:w-1/2 lg:w-1/2"
         >
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-3xl font-bold mb-4">
             Multi Restaurant{" "}
             <span className="text-orange-600">
-              Food Ordering & Delivery Solution
-            </span>{" "}
+              Food Ordering & Delivery Solution{" "}
+            </span>
             with Source Code
           </h2>
-          <p>
+          <p className="">
             Build your very own multi restaurant online food ordering & delivery
             business with Our complete source code & post-purchase services.
           </p>
-          <div className="flex gap-5 py-5">
+          <div className="flex gap-5 py-5 ml-4 md:ml-0 lg:ml-0">
             <Image src={googlePlay} width={150} alt="headerImg"></Image>
             <Image src={appStore} width={150} alt="headerImg"></Image>
           </div>
