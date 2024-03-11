@@ -15,7 +15,7 @@ const MenuItems: React.FC = () => {
   // const dispatch = useDispatch();
   // const menuData = useSelector((data) => data);
   // console.log("redux data", menuData);
-  const { menuItems, loading, error } = UseMenus();
+  const { menuItems } = UseMenus();
   console.log("PRODUCT IS HERE", menuItems);
 
   const [textLength, setTextLength] = useState(40);
@@ -54,39 +54,36 @@ const MenuItems: React.FC = () => {
         animate="show"
         className="grid grid-cols-2 gap-3 px-4 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mx-4 md:px-14 lg:px-24 mt-5"
       >
-        {menuItems
-          .slice(0, showAll ? menuItems.length : 8)
-          .map((items: any) => (
-            <motion.div
-              variants={showSlideProduct}
-              key={items._id}
-              className="max-w-[450px] rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all "
-            >
-              <Image
-                alt={items.name}
-                width={300}
-                height={150}
-                src={items.image}
-                className="rounded-t-xl transition duration-700 ease-in-out transform hover:scale-105"
-              ></Image>
-              <div className="py-5">
-                <div className="px-3">
-                  <h4 className="text-sm font-bold md:text-base lg:text-lg mb-2">
-                    {items.name}
-                  </h4>
-                  <p className="mb-2">
-                    {truncateText(items.recipe, textLength)}
-                  </p>
-                </div>
-                <div className="flex justify-between px-3">
-                  <p className="font-bold">${items.price}</p>
-                  <button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1">
-                    <IoBagAdd></IoBagAdd>Add
-                  </button>
-                </div>
+        {/* .slice(0, showAll ? menuItems.length : 8) */}
+        {menuItems.map((items: any) => (
+          <motion.div
+            variants={showSlideProduct}
+            key={items._id}
+            className="max-w-[450px] rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all "
+          >
+            <Image
+              alt={items.name}
+              width={300}
+              height={150}
+              src={items.image}
+              className="rounded-t-xl transition duration-700 ease-in-out transform hover:scale-105"
+            ></Image>
+            <div className="py-5">
+              <div className="px-3">
+                <h4 className="text-sm font-bold md:text-base lg:text-lg mb-2">
+                  {items.name}
+                </h4>
+                <p className="mb-2">{truncateText(items.recipe, textLength)}</p>
               </div>
-            </motion.div>
-          ))}
+              <div className="flex justify-between px-3">
+                <p className="font-bold">${items.price}</p>
+                <button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1">
+                  <IoBagAdd></IoBagAdd>Add
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </motion.div>
       {menuItems.length > 8 && (
         <div className="text-center">

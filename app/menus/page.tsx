@@ -9,9 +9,13 @@ import { MenuItem } from "@/types/menuItems";
 
 const Page = () => {
   const { menuItems } = useMenus();
+
   const textLength = 40;
   const [showAll, setShowAll] = useState(false);
-  // console.log("here is menu items", menuItems);
+  console.log("here is menu items", menuItems);
+
+  // type MenuItesX = typeof menuItems;
+  // console.log("Boom Boom", MenuItesX);
 
   const truncateText = (text: String, maxLength: number) => {
     if (text.length <= maxLength) {
@@ -31,7 +35,8 @@ const Page = () => {
       </h2>
 
       <div className="grid grid-cols-2 gap-3 px-4 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mx-4 md:px-14 lg:px-16 mt-5">
-        {menuItems.slice(0, showAll ? menuItems.length : 8).map((items) => (
+        {/* slice(0, showAll ? menuItems.length : 8). */}
+        {menuItems.map((items) => (
           <div
             key={items._id}
             className="w-300 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all max-w-[450px]"

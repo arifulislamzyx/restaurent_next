@@ -6,8 +6,8 @@ import Footer from "../src/componants/layouts/Footer";
 // import { Provider } from "react-redux";
 // import { store } from "@/redux/store";
 import { Metadata } from "@/types/metadata";
-import { useApollo } from "@/libs/useApollo";
-import { ApolloProvider } from "@apollo/client";
+// import { useApollo } from "@/libs/useApollo";
+// import { ApolloProvider } from "@apollo/client";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,18 +21,18 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const apolloClient = useApollo();
+  // const apolloClient = useApollo();
   return (
-    <ApolloProvider client={apolloClient}>
-      <html lang="en">
-        <body className={inter.className}>
-          <Navbar />
-          {/* <Provider store={store}> */}
-          {children}
-          {/* </Provider> */}
-          <Footer />
-        </body>
-      </html>
-    </ApolloProvider>
+    // <ApolloProvider client={apolloClient}>
+    <html lang="en">
+      <body className={inter.className}>
+        <Navbar />
+        {/* <Provider store={store}> */}
+        {children}
+        {/* </Provider> */}
+        <Footer />
+      </body>
+    </html>
+    // </ApolloProvider>
   );
 }

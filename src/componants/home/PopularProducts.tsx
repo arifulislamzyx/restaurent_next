@@ -30,7 +30,8 @@ const PopularProducts: React.FC = () => {
           Most Popular Product
         </h2>
         <div className="grid grid-cols-1 mx-auto items-center gap-3 px-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8  md:px-14 lg:px-24 mt-5">
-          {menuItems.slice(0, showAll ? menuItems.length : 6).map((items) => (
+          {/* .slice(0, showAll ? menuItems.length : 6). */}
+          {menuItems.map((items) => (
             <div key={items._id} className="flex gap-2">
               <Image
                 src={items.image}
