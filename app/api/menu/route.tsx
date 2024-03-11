@@ -62,15 +62,10 @@ import Menu from "../../../models/menu.schema";
 import mongoose from "mongoose";
 import connectionDb from "@/libs/db.connection";
 
-export const GET = async (req, res) => {
-  try {
-    await mongoose.connect(connectionDb);
-    const menuItems = await Menu.find();
-    console.log({ menuItems });
+export const GET = async (request: Request) => {
+  await mongoose.connect(connectionDb);
+  const menuItems = await Menu.find();
+  console.log(menuItems);
 
-    return Response.json(menuItems);
-  } catch (error) {
-    console.log("Error", error);
-    res.status(500).json({ error: "Internal Error" });
-  }
+  return Response.json(menuItems);
 };
