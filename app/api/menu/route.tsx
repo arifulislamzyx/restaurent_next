@@ -66,7 +66,7 @@ export const GET = async (req, res) => {
   try {
     await mongoose.connect(connectionDb);
     const menuItems = await Menu.find();
-    console.log(menuItems);
+    console.log({ menuItems });
 
     return Response.json(menuItems);
   } catch (error) {
