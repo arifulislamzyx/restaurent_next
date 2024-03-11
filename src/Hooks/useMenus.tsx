@@ -37,7 +37,7 @@ const useMenus = () => {
   const [menuItems, setMenuItems] = useState("");
 
   useEffect(() => {
-    fetch("/api/menu")
+    fetch("api/menu")
       .then((res) => res.json())
       .then((data) => setMenuItems(data));
   }, []);

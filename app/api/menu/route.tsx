@@ -61,7 +61,6 @@
 import Menu from "../../../models/menu.schema";
 import mongoose from "mongoose";
 import connectionDb from "@/libs/db.connection";
-// import { NextResponse } from "next/server";
 
 export const GET = async (req, res) => {
   try {
