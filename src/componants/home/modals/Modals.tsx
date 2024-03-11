@@ -1,9 +1,10 @@
 import useMenus from "@/Hooks/useMenus";
 import Image from "next/image";
 import React from "react";
-import ModalsX from "../../../../app/menus/[singleMenu]/page";
+import ModalsX from "../../layouts/singleMenu/page";
+import { ModalsProps } from "@/types/types";
 
-const Modals = ({ isVisible, onClose, menus }) => {
+const Modals: React.FC<ModalsProps> = ({ isVisible, onClose, menus }) => {
   console.log(menus);
   //   const { image, name, recipe } = menuItems;
 

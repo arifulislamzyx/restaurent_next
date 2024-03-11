@@ -1,20 +1,19 @@
 "use client";
 import useMenus from "@/Hooks/useMenus";
 import React, { Fragment, useEffect, useState } from "react";
-import PopularProductCard from "./utils/PopularProductCard";
 import { IoBagAdd } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import Modals from "./modals/Modals";
 
-const PopularProducts = () => {
+const PopularProducts: React.FC = () => {
   const { menuItems } = useMenus();
   const [showAll, setShowAll] = useState(false);
   const [showProductModal, setShowProductModal] = useState(false);
   const [textLength, setTextLength] = useState(40);
 
-  const truncateText = (text, maxLength) => {
+  const truncateText = (text: string, maxLength: number) => {
     if (text.length <= maxLength) {
       return text;
     }
@@ -69,10 +68,10 @@ const PopularProducts = () => {
           </div>
         )}
       </div>
-      <Modals
+      {/* <Modals
         isVisible={showProductModal}
         onClose={() => setShowProductModal(false)}
-      ></Modals>
+      ></Modals> */}
     </Fragment>
   );
 };

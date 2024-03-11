@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const OfferSlider = () => {
+const OfferSlider: React.FC = () => {
   const slider = [img1, img2, img3];
   const settings = {
     dots: false,

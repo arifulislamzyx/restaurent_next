@@ -6,11 +6,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/animation/varients";
 
-const CheckoutJurney = () => {
+const CheckoutJurney: React.FC = () => {
   return (
     <section className="flex-row mx-8 p-4 md:flex md:justify-center md:items-center md:mx-auto w-5/6  my-5 bg-gradient-to-b from-orange-400 to-orange-600 rounded-2xl">
       <motion.div
-        variants={fadeIn("down")}
+        variants={fadeIn("down", 0.2)}
         initial="hidden"
         whileInView={"show"}
         className="w-full md:w-1/2 lg:w-1/2"
@@ -23,15 +23,15 @@ const CheckoutJurney = () => {
           complete transactions during checkout. The checkout process is simple
           and minimized with multiple payment options.
         </p>
-        <Button
-          size="lg"
+        <button
+          // size="lg"
           className="rounded-full mb-4 transition hover:transform hover:-translate-y-1 mt-5"
         >
           Explore
-        </Button>
+        </button>
       </motion.div>
       <motion.div
-        variants={fadeIn("left")}
+        variants={fadeIn("left", 0.2)}
         initial="hidden"
         whileInView={"show"}
       >

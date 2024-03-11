@@ -3,7 +3,6 @@ import * as React from "react";
 import Link from "next/link";
 import foodKing from "../../../public/foodKing.png";
 import { useState } from "react";
-
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -17,8 +16,9 @@ import {
 import Image from "next/image";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
+import { Component } from "@/types/types";
 
-const components = [
+const components: Component[] = [
   {
     title: "Alert Dialog",
     href: "/docs/primitives/alert-dialog",
@@ -56,12 +56,12 @@ const components = [
   },
 ];
 
-export default function NavigationMenuDemo() {
+const NavigationMenuDemo: React.FC = () => {
   const [openMenu, setOpenMenu] = useState("false");
 
-  const menuStatus = () => {
-    setOpenMenu(!openMenu);
-  };
+  // const menuStatus = () => {
+  //   setOpenMenu(!openMenu);
+  // };
   return (
     <nav>
       <div
@@ -77,7 +77,7 @@ export default function NavigationMenuDemo() {
           ></Image>
         </div>
         <div className=" hidden md:flex md:items-center">
-          <div>
+          {/* <div>
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -149,7 +149,7 @@ export default function NavigationMenuDemo() {
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
-          </div>
+          </div> */}
           <div className="flex gap-4">
             <Link
               href="/login"
@@ -169,7 +169,7 @@ export default function NavigationMenuDemo() {
       {/* //responsive menu */}
       <button
         className="p-2 absolute top-2 right-1  focus:outline-none md:hidden lg:hidden"
-        onClick={menuStatus}
+        // onClick={menuStatus}
       >
         {openMenu ? (
           <RxCross1></RxCross1>
@@ -197,29 +197,31 @@ export default function NavigationMenuDemo() {
       )}
     </nav>
   );
-}
+};
 
-const ListItem = React.forwardRef(
-  ({ className, title, children, ...props }, ref) => {
-    return (
-      <li>
-        <NavigationMenuLink asChild>
-          <a
-            ref={ref}
-            className={cn(
-              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-              className
-            )}
-            {...props}
-          >
-            <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-              {children}
-            </p>
-          </a>
-        </NavigationMenuLink>
-      </li>
-    );
-  }
-);
-ListItem.displayName = "ListItem";
+// const ListItem = React.forwardRef(
+//   ({ className, title, children, ...props }, ref) => {
+//     return (
+//       <li>
+//         <NavigationMenuLink asChild>
+//           <a
+//             ref={ref}
+//             className={cn(
+//               "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+//               className
+//             )}
+//             {...props}
+//           >
+//             <div className="text-sm font-medium leading-none">{title}</div>
+//             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+//               {children}
+//             </p>
+//           </a>
+//         </NavigationMenuLink>
+//       </li>
+//     );
+//   }
+// );
+// ListItem.displayName = "ListItem";
+
+export default NavigationMenuDemo;

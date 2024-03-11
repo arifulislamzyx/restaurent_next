@@ -1,4 +1,4 @@
-export const fadeIn = (direction, delay) => {
+export const fadeIn = (direction: string, delay: number) => {
   return {
     hidden: {
       y: direction === "up" ? 80 : direction === "down" ? -80 : 0,
@@ -17,4 +17,28 @@ export const fadeIn = (direction, delay) => {
       },
     },
   };
+};
+
+export const productAnm = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+export const showSlideProduct = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+    },
+  },
 };

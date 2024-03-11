@@ -5,15 +5,16 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { IoBagAdd } from "react-icons/io5";
 import OfferSlider from "../OfferSlider";
+import { MenuItem } from "@/types/menuItems";
 
-const page = () => {
+const Page = () => {
   const { menuItems } = useMenus();
   const textLength = 40;
   const [showAll, setShowAll] = useState(false);
   // console.log("here is menu items", menuItems);
 
-  const truncateText = (text, maxLength) => {
-    if (text.legth <= maxLength) {
+  const truncateText = (text: String, maxLength: number) => {
+    if (text.length <= maxLength) {
       return text;
     }
     return `${text.slice(0, maxLength)}...`;
@@ -32,7 +33,7 @@ const page = () => {
       <div className="grid grid-cols-2 gap-3 px-4 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mx-4 md:px-14 lg:px-16 mt-5">
         {menuItems.slice(0, showAll ? menuItems.length : 8).map((items) => (
           <div
-            key={menuItems._id}
+            key={items._id}
             className="w-300 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all max-w-[450px]"
           >
             <Image
@@ -61,17 +62,17 @@ const page = () => {
       </div>
       {menuItems.length > 8 && (
         <div className="text-center">
-          <Button
+          <button
             onClick={() => setShowAll(!showAll)}
-            variant="contained"
+            // variant="contained"
             className="bg-blue-600 m-4 sm:ml text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-blue-600"
           >
             {showAll ? "Show Less" : "Show More.."}
-          </Button>
+          </button>
         </div>
       )}
     </div>
   );
 };
 
-export default page;
+export default Page;

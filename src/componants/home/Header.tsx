@@ -10,7 +10,7 @@ import googlePlay from "../../../public/HomePageImg/googlePlay.png";
 import appStore from "../../../public/HomePageImg/AppStore.png";
 import { motion } from "framer-motion";
 
-const Header = () => {
+const Header: React.FC = () => {
   const fadeIn = {
     initial: {
       opacity: 0,

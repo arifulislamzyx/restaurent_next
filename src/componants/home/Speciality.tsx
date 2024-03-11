@@ -9,7 +9,7 @@ import CountUp from "react-countup";
 import { FaStar } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
 
-const Speciality = () => {
+const Speciality: React.FC = () => {
   const { ref, inView } = useInView({
     threshold: 0.5,
   });

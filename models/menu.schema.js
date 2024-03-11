@@ -17,6 +17,7 @@ import mongoose from "mongoose";
 var Schema = mongoose.Schema;
 
 var product = new Schema({
+  _id: String,
   name: String,
   recipe: String,
   category: String,
@@ -26,6 +27,6 @@ var product = new Schema({
 
 mongoose.models = {};
 
-var User = mongoose.model("Menu", product);
+var Menu = mongoose.model("Menu", product);
 
-export default User;
+export default Menu;

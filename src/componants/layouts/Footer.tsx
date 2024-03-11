@@ -15,7 +15,7 @@ import Link from "next/link";
 import google from "../../../public/HomePageImg/googlePlay.png";
 import appstore from "../../../public/HomePageImg/AppStore.png";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="py-4 bg-gradient-to-r from-orange-500 to-violet-700 animate-slideBackground ">
       <div className="flex-row ml-8 items-center md:flex  md:justify-around md:h-72 lg:flex lg:justify-around ">
@@ -34,9 +34,9 @@ const Footer = () => {
                 type="text"
                 placeholder="Your Email Address"
               />
-              <Button className="absolute nset-y-0 right-1 bg-violet-800 hover:bg-black  mt-1">
+              <button className="absolute nset-y-0 right-1 bg-violet-800 hover:bg-black  mt-1">
                 Subscribe
-              </Button>
+              </button>
             </div>
           </div>
           <div className="flex gap-5 text-violet-900 mt-4 mb-2 ">

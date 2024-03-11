@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, easeInOut } from "framer-motion";
 import { fadeIn } from "@/animation/varients";
 
-const HowWeWork = () => {
+const HowWeWork: React.FC = () => {
   return (
     <section>
       <div className="text-center my-20 px-5 md:px-40 lg:md:px-40">
