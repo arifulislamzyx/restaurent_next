@@ -16,7 +16,7 @@ const MenuItems: React.FC = () => {
   // const menuData = useSelector((data) => data);
   // console.log("redux data", menuData);
   const { menuItems } = UseMenus();
-  console.log("PRODUCT IS HERE", menuItems.menuItems);
+  console.log("PRODUCT IS HERE", menuItems);
 
   const [textLength, setTextLength] = useState(40);
   const [showAll, setShowAll] = useState(false);

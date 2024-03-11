@@ -34,8 +34,9 @@
 import { useEffect, useState } from "react";
 
 const useMenus = () => {
-  const [menuItems, setMenuItems] = useState("");
+  const [menuItem, setMenuItems] = useState("");
 
+  const menuItems = menuItem;
   useEffect(() => {
     fetch("api/menu")
       .then((res) => res.json())
