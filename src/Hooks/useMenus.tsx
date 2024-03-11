@@ -31,7 +31,7 @@
 // export default UseMenus;
 
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useMenus = () => {
   const [menuItems, setMenuItems] = useState("");

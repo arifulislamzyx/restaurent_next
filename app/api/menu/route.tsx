@@ -59,9 +59,9 @@
 // export default apolloServer.createHandler({ path: "/api/menu" });
 
 import Menu from "../../../models/menu.schema";
-import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import connectionDb from "@/libs/db.connection";
+// import { NextResponse } from "next/server";
 
 export const GET = async (req, res) => {
   try {
@@ -69,7 +69,7 @@ export const GET = async (req, res) => {
     const menuItems = await Menu.find();
     console.log(menuItems);
 
-    return NextResponse.json(menuItems);
+    return Response.json(menuItems);
   } catch (error) {
     console.log("Error", error);
     res.status(500).json({ error: "Internal Error" });
