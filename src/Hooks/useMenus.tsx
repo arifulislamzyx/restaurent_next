@@ -34,7 +34,7 @@
 import { useEffect, useState } from "react";
 
 const useMenus = () => {
-  const [menuItem, setMenuItems] = useState("");
+  const [menuItem, setMenuItems] = useState([]);
 
   const menuItems = menuItem;
   useEffect(() => {

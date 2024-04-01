@@ -8,8 +8,12 @@ import { motion } from "framer-motion";
 import { productAnm } from "@/animation/varients";
 import { showSlideProduct } from "@/animation/varients";
 import UseMenus from "@/Hooks/useMenus";
+import { MenuItem } from "@/types/menuItems";
+import CardSkeleton from "../Skeleton/CardSkeleton";
 // import { useDispatch, useSelector } from "react-redux";
 // import { data } from "autoprefixer";
+
+type menuItems = object[];
 
 const MenuItems: React.FC = () => {
   // const dispatch = useDispatch();
@@ -41,7 +45,22 @@ const MenuItems: React.FC = () => {
   }, []);
 
   if (!Array.isArray(menuItems)) {
-    return <div>No product Load</div>;
+    return (
+      <div className="grid grid-cols-2 gap-3 px-4 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mx-4 md:px-14 lg:px-24 mt-5">
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+      </div>
+    );
   }
   return (
     <div>
@@ -55,42 +74,47 @@ const MenuItems: React.FC = () => {
         className="grid grid-cols-2 gap-3 px-4 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mx-4 md:px-14 lg:px-24 mt-5"
       >
         {/* .slice(0, showAll ? menuItems.length : 8) */}
-        {menuItems.map((items: any) => (
-          <motion.div
-            variants={showSlideProduct}
-            key={items._id}
-            className="max-w-[450px] rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all "
-          >
-            <Image
-              alt={items.name}
-              width={300}
-              height={150}
-              src={items.image}
-              className="rounded-t-xl transition duration-700 ease-in-out transform hover:scale-105"
-            ></Image>
-            <div className="py-5">
-              <div className="px-3">
-                <h4 className="text-sm font-bold md:text-base lg:text-lg mb-2">
-                  {items.name}
-                </h4>
-                <p className="mb-2">{truncateText(items.recipe, textLength)}</p>
+        {menuItems
+          .slice(0, showAll ? menuItems.length : 8)
+          .map((items: MenuItem) => (
+            <motion.div
+              variants={showSlideProduct}
+              initial={"hidden"}
+              whileInView={"show"}
+              key={items._id}
+              className="max-w-[450px] rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all "
+            >
+              <Image
+                alt={items.name}
+                width={300}
+                height={150}
+                src={items.image}
+                className="rounded-t-xl items-center transition duration-700 ease-in-out transform hover:scale-105"
+              ></Image>
+              <div className="py-5">
+                <div className="px-3">
+                  <h4 className="text-sm font-bold md:text-base lg:text-lg mb-2">
+                    {items.name}
+                  </h4>
+                  <p className="mb-2">
+                    {truncateText(items.recipe, textLength)}
+                  </p>
+                </div>
+                <div className="flex justify-between px-3">
+                  <p className="font-bold">${items.price}</p>
+                  <button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1">
+                    <IoBagAdd></IoBagAdd>Add
+                  </button>
+                </div>
               </div>
-              <div className="flex justify-between px-3">
-                <p className="font-bold">${items.price}</p>
-                <button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1">
-                  <IoBagAdd></IoBagAdd>Add
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
       </motion.div>
       {menuItems.length > 8 && (
         <div className="text-center">
           <button
             onClick={() => setShowAll(!showAll)}
-            // variant="contained"
-            className="bg-blue-600 m-4 sm:ml text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-blue-600"
+            className="bg-blue-600 m-4 sm:ml p-2 rounded-xl text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-blue-600"
           >
             {showAll ? "Show Less" : "Show More.."}
           </button>
