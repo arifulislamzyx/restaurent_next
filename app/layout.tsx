@@ -3,11 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../src/componants/layouts/Navbar";
 import Footer from "../src/componants/layouts/Footer";
-// import { Provider } from "react-redux";
-// import { store } from "@/redux/store";
 import { Metadata } from "@/types/metadata";
-// import { useApollo } from "@/libs/useApollo";
-// import { ApolloProvider } from "@apollo/client";
+import { Provider } from "react-redux";
+import store from "@/Redux/Store/Store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,9 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        {/* <Provider store={store}> */}
-        {children}
-        {/* </Provider> */}
+        <Provider store={store}>{children}</Provider>
         <Footer />
       </body>
     </html>

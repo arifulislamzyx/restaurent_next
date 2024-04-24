@@ -1,51 +1,40 @@
-// "use client";
-// import useMenus from "@/Hooks/useMenus";
+// import React from "react";
+// import {motion} from "framer-motion"
 // import Image from "next/image";
-// import React, { useState } from "react";
-// import { IoBagAdd } from "react-icons/io5";
+// import { showSlideProduct } from "@/animation/varients";
 
-// const Card = ({ items }) => {
-//   //   const { menuItems } = useMenus();
-//   //   const { image, name, recipe, price } = items || [];
-//   //   const textLength = 40;
-//   const [show, setShowAll] = useState(false);
-//   console.log("here is menu items", items);
-
-//   //   const truncateText = (text, maxLength) => {
-//   //     if (text.length <= maxLength) {
-//   //       return text;
-//   //     }
-//   //     return `${text.slice(0, maxLength)}...`;
-//   //   };
-
-//   //   if (!Array.isArray(menuItems)) {
-//   //     return <div>No product Load</div>;
-//   //   }
+// const Card = () => {
 //   return (
 //     <div>
-//       <div className="rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all ">
+//       <motion.div
+//         variants={showSlideProduct}
+//         initial={"hidden"}
+//         whileInView={"show"}
+//         key={items._id}
+//         className="max-w-[450px] rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all "
+//       >
 //         <Image
 //           alt={items.name}
+//           width={300}
+//           height={150}
 //           src={items.image}
-//           width={100}
-//           height={100}
-//           className="rounded-t-xl transition duration-700 ease-in-out transform hover:scale-105"
+//           className="rounded-t-xl items-center transition duration-700 ease-in-out transform hover:scale-105"
 //         ></Image>
 //         <div className="py-5">
 //           <div className="px-3">
 //             <h4 className="text-sm font-bold md:text-base lg:text-lg mb-2">
 //               {items.name}
 //             </h4>
-//             {/* <p className="mb-2">{truncateText(recipe, textLength)}</p> */}
+//             <p className="mb-2">{truncateText(items.recipe, textLength)}</p>
 //           </div>
 //           <div className="flex justify-between px-3">
-//             <p>${items.price}</p>
-//             <p className="flex items-center gap-1">
+//             <p className="font-bold">${items.price}</p>
+//             <button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1">
 //               <IoBagAdd></IoBagAdd>Add
-//             </p>
+//             </button>
 //           </div>
 //         </div>
-//       </div>
+//       </motion.div>
 //     </div>
 //   );
 // };

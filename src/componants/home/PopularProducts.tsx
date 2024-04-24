@@ -1,19 +1,29 @@
 "use client";
-import useMenus from "@/Hooks/useMenus";
 import React, { Fragment, useEffect, useState } from "react";
 import { IoBagAdd } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
-import Modals from "./modals/Modals";
 import { MenuItem } from "@/types/menuItems";
-import SkeletonLoader from "../Skeleton/SkeletonLoader";
+import SkeletonLoader from "../utils/Skeleton/SkeletonLoader";
+import { fetchMenu } from "@/Redux/Slice/MenuSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const PopularProducts: React.FC = () => {
-  const { menuItems } = useMenus();
   const [showAll, setShowAll] = useState(false);
   const [showProductModal, setShowProductModal] = useState(false);
   const [textLength, setTextLength] = useState(40);
+
+  const { menu, isLoading, isError, error } = useSelector(
+    (state) => state.menus
+  );
+  const dispatch = useDispatch();
+
+  console.log("Menu Data Redux Page", menu);
+
+  useEffect(() => {
+    dispatch(fetchMenu());
+  }, [dispatch]);
 
   const truncateText = (text: string, maxLength: number) => {
     if (text.length <= maxLength) {
@@ -22,9 +32,11 @@ const PopularProducts: React.FC = () => {
     return `${text.slice(0, maxLength)}...`;
   };
 
-  if (!Array.isArray(menuItems)) {
+  if (!Array.isArray(menu)) {
     return (
       <div>
+        {isLoading && <p>Loading......</p>}
+        {isError && <p>Error: {error}</p>}
         <div className="grid grid-cols-1 mx-auto items-center gap-3 px-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8  md:px-14 lg:px-24 mt-5">
           <SkeletonLoader />
           <SkeletonLoader />
@@ -46,7 +58,7 @@ const PopularProducts: React.FC = () => {
       </h2>
       <div className="grid grid-cols-1 mx-auto items-center gap-3 px-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8  md:px-14 lg:px-24 mt-5">
         {/* .slice(0, showAll ? menuItems.length : 6). */}
-        {menuItems.slice(0, 9).map((items: MenuItem) => (
+        {menu.slice(0, 9).map((items: MenuItem) => (
           <div key={items._id} className="flex gap-2">
             <Image
               src={items.image}
@@ -76,7 +88,7 @@ const PopularProducts: React.FC = () => {
           </div>
         ))}
       </div>
-      {menuItems.length > 6 && (
+      {menu.length > 9 && (
         <div className="absolute right-24 top-0 font-bold text-base ml-20 md:text-xl lg:text-2xl hover:bg-orange-400 hover:rounded-full p-1">
           <Link href={"/menus"}>
             <FaArrowRight></FaArrowRight>
