@@ -6,15 +6,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { productAnm, showSlideProduct } from "@/animation/varients";
 import ProductSkeliton from "./ProductSkeliton";
+import RootSate from "@/Redux/Store/Store";
+
+type RootSate = any;
 
 const MenuCard = () => {
   const [showAll, setShowAll] = useState(false);
   const [textLength, setTextLength] = useState(40);
   const [showAddCartPopup, setShowAddCartPopup] = useState(false);
   const { menu, isLoading, isError, error } = useSelector(
-    (state) => state.menus
+    (state: RootSate) => state.menus
   );
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   useEffect(() => {
     dispatch(fetchMenu());

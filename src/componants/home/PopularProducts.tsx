@@ -8,6 +8,10 @@ import { MenuItem } from "@/types/menuItems";
 import SkeletonLoader from "../utils/Skeleton/SkeletonLoader";
 import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import { useDispatch, useSelector } from "react-redux";
+import RootSate from "@/Redux/Store/Store";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+
+type RootSate = any;
 
 const PopularProducts: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
@@ -15,9 +19,9 @@ const PopularProducts: React.FC = () => {
   const [textLength, setTextLength] = useState(40);
 
   const { menu, isLoading, isError, error } = useSelector(
-    (state) => state.menus
+    (state: RootSate) => state.menus
   );
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   console.log("Menu Data Redux Page", menu);
 

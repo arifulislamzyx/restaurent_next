@@ -1,11 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import MenuReducer from "../Slice/MenuSlice";
-import { MenuItem } from "@/types/menuItems";
 
-const store = configureStore({
-  reducer: {
-    menus: MenuReducer,
-  },
+const RootState = combineReducers({
+  menus: MenuReducer,
 });
 
+const store = configureStore({
+  reducer: RootState,
+});
 export default store;

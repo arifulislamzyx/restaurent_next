@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AsyncThunk, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { MenuItem } from "@/types/menuItems";
 import axios from "axios";
+import { AsyncThunkConfig } from "@reduxjs/toolkit/dist/createAsyncThunk";
 
 interface MenuProps {
   menu: MenuItem[];
@@ -16,7 +17,6 @@ const initialState: MenuProps = {
   error: null,
 };
 
-// Define async thunk to fetch menu items
 export const fetchMenu = createAsyncThunk("menu/fetchMenu", async () => {
   try {
     const response = await axios.get<MenuItem[]>("api/menu");
