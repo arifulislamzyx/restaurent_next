@@ -1,5 +1,6 @@
 "use client";
-import React, { Fragment, useEffect, useState } from "react";
+import * as React from "react";
+import { Fragment, useEffect, useState } from "react";
 import { IoBagAdd } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
@@ -22,8 +23,6 @@ const PopularProducts: React.FC = () => {
     (state: RootSate) => state.menus
   );
   const dispatch = useDispatch<any>();
-
-  console.log("Menu Data Redux Page", menu);
 
   useEffect(() => {
     dispatch(fetchMenu());

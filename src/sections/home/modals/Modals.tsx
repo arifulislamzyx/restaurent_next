@@ -1,7 +1,6 @@
-// import useMenus from "@/Hooks/useMenus";
 // import Image from "next/image";
 // import React from "react";
-// import ModalsX from "../../layouts/singleMenu/page";
+// import ModalsX from "../../../../singleMenu/page";
 // import { ModalsProps } from "@/types/types";
 
 // const Modals: React.FC<ModalsProps> = ({ isVisible, onClose, menus }) => {
@@ -18,7 +17,9 @@
 //         >
 //           X
 //         </button>
-//         <div className="bg-white p-2 rounded">{/* <ModalsX></ModalsX> */}</div>
+//         <div className="z-10 bg-white p-2 rounded">
+//           <h3>Here will show content</h3>
+//         </div>
 //       </div>
 //     </div>
 //   );

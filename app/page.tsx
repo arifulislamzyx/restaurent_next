@@ -1,10 +1,10 @@
-import CheckoutJurney from "@/componants/home/CheckoutJurney";
-import Header from "@/componants/home/Header";
-import HowWeWork from "@/componants/home/HowWeWork";
-import Speciality from "@/componants/home/Speciality";
-import OfferSliders from "./OfferSlider";
-import MenuItems from "@/componants/home/MenuItems";
-import PopularProducts from "@/componants/home/PopularProducts";
+import CheckoutJurney from "@/sections/home/CheckoutJurney";
+import Header from "@/sections/home/Header";
+import HowWeWork from "@/sections/home/HowWeWork";
+import Speciality from "@/sections/home/Speciality";
+import OfferSliders from "../src/sections/home/OfferSlider";
+import MenuItems from "@/sections/home/MenuItems";
+import PopularProducts from "@/sections/home/PopularProducts";
 
 export default function Home() {
   return (

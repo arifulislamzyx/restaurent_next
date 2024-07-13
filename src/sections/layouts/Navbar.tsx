@@ -3,71 +3,24 @@ import * as React from "react";
 import Link from "next/link";
 import foodKing from "../../../public/foodKing.png";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+
 import Image from "next/image";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
 import { Component } from "@/types/types";
+import { UserButton, useAuth } from "@clerk/nextjs";
 
-const components: Component[] = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
-
-const NavigationMenuDemo: React.FC = () => {
+const Navbar: React.FC = () => {
   const [openMenu, setOpenMenu] = useState("false");
 
-  // const menuStatus = () => {
-  //   setOpenMenu(!openMenu);
-  // };
+  const { userId } = useAuth();
+
   return (
     <nav>
       <div
         className={`container md:flex md:justify-between md:pt-5 lg:flex lg:justify-between lg:pt-5`}
       >
-        <div>
+        <Link href={"/"}>
           <Image
             src={foodKing}
             width={150}
@@ -75,7 +28,7 @@ const NavigationMenuDemo: React.FC = () => {
             alt="foobking"
             className="relative"
           ></Image>
-        </div>
+        </Link>
         <div className=" hidden md:flex md:items-center">
           {/* <div>
             <NavigationMenu>
@@ -150,27 +103,28 @@ const NavigationMenuDemo: React.FC = () => {
               </NavigationMenuList>
             </NavigationMenu>
           </div> */}
-          <div className="flex gap-4">
-            <Link
-              href="/login"
-              className="p-2 hover:bg-slate-100 hover:rounded-xl"
-            >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              className="p-2 hover:bg-slate-100 hover:rounded-xl"
-            >
-              SignUp
-            </Link>
-          </div>
+          {userId ? (
+            <UserButton afterSignOutUrl="/" />
+          ) : (
+            <div className="flex gap-4">
+              <Link
+                href="/sign-in"
+                className="p-2 hover:bg-slate-100 hover:rounded-xl"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/sign-up"
+                className="p-2 hover:bg-slate-100 hover:rounded-xl"
+              >
+                Sign Up
+              </Link>
+            </div>
+          )}
         </div>
       </div>
       {/* //responsive menu */}
-      <button
-        className="p-2 absolute top-2 right-1  focus:outline-none md:hidden lg:hidden"
-        // onClick={menuStatus}
-      >
+      <button className="p-2 absolute top-2 right-1  focus:outline-none md:hidden lg:hidden">
         {openMenu ? (
           <RxCross1></RxCross1>
         ) : (
@@ -179,20 +133,24 @@ const NavigationMenuDemo: React.FC = () => {
       </button>
       {openMenu && (
         <div className="md:hidden grid">
-          <div className="grid">
-            <Link
-              href="/login"
-              className="p-2 hover:bg-slate-100 hover:rounded-xl"
-            >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              className="p-2 hover:bg-slate-100 hover:rounded-xl"
-            >
-              SignUp
-            </Link>
-          </div>
+          {userId ? (
+            <UserButton afterSignOutUrl="/" />
+          ) : (
+            <div className="grid">
+              <Link
+                href="/login"
+                className="p-2 hover:bg-slate-100 hover:rounded-xl"
+              >
+                Login
+              </Link>
+              <Link
+                href="/registration"
+                className="p-2 hover:bg-slate-100 hover:rounded-xl"
+              >
+                SignUp
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </nav>
@@ -224,4 +182,4 @@ const NavigationMenuDemo: React.FC = () => {
 // );
 // ListItem.displayName = "ListItem";
 
-export default NavigationMenuDemo;
+export default Navbar;

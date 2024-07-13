@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React from "react";
 import foodKing from "../../../public/foodKing.png";
-import { Button } from "@/components/ui/button";
 import {
   FaFacebook,
   FaInstagram,
@@ -30,20 +29,28 @@ const Footer: React.FC = () => {
             <p> Subscribe to our newsletter to get latest updates</p>
             <div className="relative w-72 mt-2">
               <input
-                className="p-3 rounded-lg w-full"
+                className="p-3 rounded-lg w-full text-black"
                 type="text"
                 placeholder="Your Email Address"
               />
-              <button className="absolute nset-y-0 right-1 bg-violet-800 hover:bg-black  mt-1">
+              <button className="absolute nset-y-0 right-1 bg-violet-800 hover:bg-purple-600 hover:shadow-lg  mt-1 p-2 rounded">
                 Subscribe
               </button>
             </div>
           </div>
           <div className="flex gap-5 text-violet-900 mt-4 mb-2 ">
-            <FaFacebook className="bg-white rounded w-6 h-6 p-1"></FaFacebook>
-            <FaYoutube className="bg-white rounded w-6 h-6 p-1"></FaYoutube>
-            <FaTwitter className="bg-white rounded w-6 h-6 p-1"></FaTwitter>
-            <FaInstagram className="bg-white rounded w-6 h-6 p-1"></FaInstagram>
+            <a href={"https://www.facebook.com"}>
+              <FaFacebook className="bg-white rounded w-6 h-6 p-1 cursor-pointer"></FaFacebook>
+            </a>
+            <a href={"https://www.youtube.com"}>
+              <FaYoutube className="bg-white rounded w-6 h-6 p-1 cursor-pointer"></FaYoutube>
+            </a>
+            <a href={"https://www.twitter.com"}>
+              <FaTwitter className="bg-white rounded w-6 h-6 p-1 cursor-pointer"></FaTwitter>
+            </a>
+            <a href={"https://www.instagram.com"}>
+              <FaInstagram className="bg-white rounded w-6 h-6 p-1 cursor-pointer"></FaInstagram>
+            </a>
           </div>
         </div>
         <div className="text-white ">

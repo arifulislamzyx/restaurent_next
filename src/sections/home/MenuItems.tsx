@@ -1,15 +1,16 @@
 "use client";
-import Image from "next/image";
+
 import React, { useState } from "react";
-import MenuCard from "../utils/MenuCard";
+import FeaturedItems from "./featuredItems";
 
 const MenuItems: React.FC = () => {
   return (
     <div>
-      <h2 className="font-bold text-base ml-8 md:ml-20 lg:ml-28 md:text-xl lg:text-2xl ">
+      <h2 className="font-bold text-base  md:text-xl lg:text-2xl ">
         Featured Items
       </h2>
-      <MenuCard />
+
+      <FeaturedItems initialItemsShow={8} />
     </div>
   );
 };

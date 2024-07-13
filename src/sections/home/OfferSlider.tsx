@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import img1 from "../public/slider/offerSlider1.png";
-import img2 from "../public/slider/offerSlider2.png";
-import img3 from "../public/slider/offerSlider3.png";
+import img1 from "../../../public/slider/offerSlider1.png";
+import img2 from "../../../public/slider/offerSlider2.png";
+import img3 from "../../../public/slider/offerSlider3.png";
 import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
