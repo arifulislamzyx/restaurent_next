@@ -14,7 +14,7 @@ type RootSate = any;
 const Page = () => {
   const [cartData, setCartData] = useState();
   const router = useRouter();
-  const { userId } = useAuth();
+  const { getToken, userId } = useAuth();
   const [showAll, setShowAll] = useState(false);
   const [textLength, setTextLength] = useState(40);
   const { menu, isLoading, isError, error } = useSelector(
@@ -45,17 +45,24 @@ const Page = () => {
     handleResize();
   }, []);
 
-  const handleAddItems = (items) => {
+  const handleAddItems = async (items) => {
     setCartData(items);
     if (userId) {
-      useEffect(() => {
-        axios
-          .post("api/carts", items, {
-            headers: userId,
-          })
-          .then((res) => res)
-          .catch((err) => console.error("Error fetching job:", error));
-      }, []);
+      try {
+        const token = await getToken();
+        const res = await axios.post(
+          "api/carts",
+          { userId, items },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("addCart", res);
+      } catch (error) {
+        console.error("Error adding cart item:", error);
+      }
     } else {
       Swal.fire({
         title: "Please Login to Order Products",
@@ -65,14 +72,6 @@ const Page = () => {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Login Now",
-
-        // }).then((result) => {
-        //   if (result.isConfirmed) {
-        //     router.push({
-        //       pathname: "login",
-        //       query: { from: router.pathname },
-        //     });
-        //   }
       });
     }
   };

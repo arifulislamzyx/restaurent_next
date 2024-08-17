@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["cristianonew.ukrdevs.com"],
+    domains: ["cristianonew.ukrdevs.com", "images.remotePatterns"],
   },
   experimental: {
     esmExternals: "loose",

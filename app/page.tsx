@@ -8,7 +8,7 @@ import PopularProducts from "@/sections/home/PopularProducts";
 
 export default function Home() {
   return (
-    <div>
+    <div className="container">
       <Header></Header>
       <MenuItems></MenuItems>
       <HowWeWork></HowWeWork>

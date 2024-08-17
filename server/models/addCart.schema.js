@@ -13,6 +13,6 @@ var addProduct = new Schema({
 
 mongoose.modals = {};
 
-var Cart = mongoose.model("Cart", addProduct);
+var Cart = mongoose.models.Cart || mongoose.model("Cart", addProduct);
 
 export default Cart;
