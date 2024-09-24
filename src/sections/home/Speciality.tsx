@@ -15,7 +15,7 @@ const Speciality: React.FC = () => {
   });
   return (
     <div>
-      <div className="bg-gradient-to-r from-orange-600 to-orange-500 w-5/6 h-52 my-7 mx-auto rounded-xl grid grid-cols-2 p-4 items-center  md:flex md:justify-evenly md:text-center md:px-6">
+      <div className="bg-gradient-to-r from-orange-600 to-orange-500 max-w-5xl h-52 my-7 mx-auto rounded-xl grid grid-cols-2 p-4 items-center  md:flex md:justify-evenly md:text-center md:px-6">
         <div className="flex items-center">
           <Image src={author} alt="author"></Image>
           <p className="text-white">

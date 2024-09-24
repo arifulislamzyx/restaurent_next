@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import FeaturedItems from "./featuredItems";
+import FeaturedItems from "./FeaturedItems";
 
 const MenuItems: React.FC = () => {
   return (

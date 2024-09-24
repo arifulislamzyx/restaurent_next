@@ -7,6 +7,7 @@ import { Metadata } from "@/types/metadata";
 import { Provider } from "react-redux";
 import store from "@/Redux/Store/Store";
 import { ClerkProvider } from "@clerk/nextjs";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,9 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
+      <Head>
+        <title>Restaurent Next</title>
+      </Head>
       <body className={inter.className}>
         <ClerkProvider>
           <Navbar />

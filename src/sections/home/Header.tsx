@@ -9,6 +9,7 @@ import img5 from "../../../public/HeaderBanner/banner12.png";
 import googlePlay from "../../../public/HomePageImg/googlePlay.png";
 import appStore from "../../../public/HomePageImg/AppStore.png";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   const fadeIn = {
@@ -60,8 +61,12 @@ const Header: React.FC = () => {
           business with Our complete source code & post-purchase services.
         </p>
         <div className="flex gap-5 py-5 ml-4 md:ml-0 lg:ml-0">
-          <Image src={googlePlay} width={150} alt="headerImg"></Image>
-          <Image src={appStore} width={150} alt="headerImg"></Image>
+          <Link href={"https://play.google.com/store/apps"}>
+            <Image src={googlePlay} width={150} alt="headerImg"></Image>
+          </Link>
+          <Link href={"https://www.apple.com/app-store/"}>
+            <Image src={appStore} width={150} alt="headerImg"></Image>
+          </Link>
         </div>
       </motion.div>
       <motion.div initial="initial" animate="animate" variants={fadeOut}>

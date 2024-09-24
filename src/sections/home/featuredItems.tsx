@@ -64,10 +64,10 @@ const FeaturedItems: FC<Props> = ({ initialItemsShow }) => {
         initial="hidden"
         animate="show"
         whileInView={"show"}
-        className="grid grid-cols-2 gap-3 px-4 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mt-5"
+        className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mt-5"
       >
         {menu
-          .slice(0, showAll ? menu.length : initialItemsShow)
+          .slice(0, showAll ? menu.length > 12 : initialItemsShow)
           .map((product) => (
             <ProductCard
               key={product._id}

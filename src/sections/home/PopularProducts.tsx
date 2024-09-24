@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoBagAdd } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
@@ -55,14 +55,19 @@ const PopularProducts: React.FC = () => {
     );
   }
   return (
-    <div className=" relative mt-5 py-5">
-      <h2 className=" font-bold text-base ml-10 md:ml-20 lg:ml-28 md:text-xl lg:text-2xl ">
-        Most Popular Product
+    <div className=" relative mt-5 py-5 max-w-5xl mx-auto">
+      <h2 className="flex">
+        <span className=" font-bold text-base md:text-xl lg:text-2xl ">
+          Most Popular Product
+        </span>
       </h2>
-      <div className="grid grid-cols-1 mx-auto items-center gap-3 px-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8  md:px-14 lg:px-24 mt-5">
+      <div className="grid grid-cols-1 mx-auto items-center gap-3 px-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8  mt-5">
         {/* .slice(0, showAll ? menuItems.length : 6). */}
         {menu.slice(0, 9).map((items: MenuItem) => (
-          <div key={items._id} className="flex gap-2">
+          <div
+            key={items._id}
+            className="flex gap-2 shadow-md hover:shadow-2xl p-1 rounded-2xl"
+          >
             <Image
               src={items.image}
               width={100}
@@ -92,13 +97,12 @@ const PopularProducts: React.FC = () => {
         ))}
       </div>
       {menu.length > 9 && (
-        <div className="absolute right-24 top-0 font-bold text-base ml-20 md:text-xl lg:text-2xl hover:bg-orange-400 hover:rounded-full p-1">
+        <div className="absolute right-0 top-5 font-bold text-base ml-20 md:text-xl lg:text-2xl hover:bg-orange-400 hover:rounded-full p-1">
           <Link href={"/menus"}>
             <FaArrowRight></FaArrowRight>
           </Link>
         </div>
       )}
-
       {/* <Modals
         isVisible={showProductModal}
         onClose={() => setShowProductModal(false)}

@@ -40,7 +40,7 @@ const Menus = ({
           whileInView={"show"}
           className="grid grid-cols-2 gap-3 px-4 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mx-4 md:px-14 lg:px-16 mt-5"
         >
-          {menu.slice(0, showAll ? menu.length : 8).map((items) => (
+          {menu.slice(0, showAll ? menu.length : 12).map((items) => (
             <motion.div
               variants={showSlideProduct}
               initial={"hidden"}
