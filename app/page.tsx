@@ -1,16 +1,19 @@
+"use client";
 import CheckoutJurney from "@/sections/home/CheckoutJurney";
 import Header from "@/sections/home/Header";
 import HowWeWork from "@/sections/home/HowWeWork";
 import Speciality from "@/sections/home/Speciality";
 import OfferSliders from "../src/sections/home/OfferSlider";
-import MenuItems from "@/sections/home/MenuItems";
+import MenuItems from "../app/menus/page";
 import PopularProducts from "@/sections/home/PopularProducts";
+import Menu from "../src/sections/menus/Menus";
+import FeaturedItems from "@/sections/home/FeaturedItems";
 
 export default function Home() {
   return (
     <div className="container">
       <Header></Header>
-      <MenuItems></MenuItems>
+      <MenuItems initialItemsShow={8} showOfferSlider={false}></MenuItems>
       <HowWeWork></HowWeWork>
       <Speciality></Speciality>
       <OfferSliders></OfferSliders>
