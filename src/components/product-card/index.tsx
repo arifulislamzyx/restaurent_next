@@ -56,10 +56,6 @@ const ProductCard: FC<ProductProps> = ({ image, name, price, recipe }) => {
           >
             <IoBagAdd></IoBagAdd>Add
           </button>
-          {/* <Modals
-            isVisible={showModal}
-            onClose={() => setShowModal(false)}
-          ></Modals> */}
         </div>
       </div>
     </motion.div>

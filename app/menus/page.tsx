@@ -121,7 +121,7 @@ const MenuItems = ({ initialItemsShow, showOfferSlider = true }) => {
                   initial={"hidden"}
                   whileInView={"show"}
                   key={items._id}
-                  className="w-300 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all max-w-[450px] overflow-hidden"
+                  className="w-300 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all max-w-3xl overflow-hidden"
                 >
                   <Image
                     width={300}
