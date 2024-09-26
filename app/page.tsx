@@ -10,6 +10,7 @@ import Menu from "../src/sections/menus/Menus";
 import FeaturedItems from "@/sections/home/FeaturedItems";
 // import { MenuItemProps } from "../app/menus/page";
 // initialItemsShow={8} showOfferSlider={false}
+
 export default function Home() {
   return (
     <div className="container">

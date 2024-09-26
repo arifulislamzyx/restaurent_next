@@ -147,7 +147,7 @@ const MenuItems = () => {
                         onClick={() => handleAddItems(items)}
                         className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
                       >
-                        <IoBagAdd /> Add
+                        <IoBagAdd /> ADD
                       </button>
                     </div>
                   </div>
