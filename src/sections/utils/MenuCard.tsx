@@ -43,20 +43,6 @@ const MenuCard = () => {
     handleResize();
   }, []);
 
-  // const handleAddCartPopUp = (menuId) => {
-  //   setShowAddCartPopup(!showAddCartPopup);
-  // };
-
-  // const handleClosePopup = () => {
-  //   setShowAddCartPopup(false);
-  // };
-
-  const handleAddItems = () => {
-    useEffect(() => {
-      axios.post("/api/carts");
-    }, []);
-  };
-
   return (
     <div>
       <div>
@@ -95,7 +81,7 @@ const MenuCard = () => {
               <div className="flex justify-between px-3">
                 <p className="font-bold">${items.price}</p>
                 <button
-                  onClick={handleAddItems}
+                  // onClick={handleAddItems}
                   className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
                 >
                   <IoBagAdd></IoBagAdd>Add

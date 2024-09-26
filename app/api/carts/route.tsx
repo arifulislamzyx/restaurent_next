@@ -2,7 +2,7 @@ import connectionDb from "@/libs/db.connection";
 import mongoose from "mongoose";
 import Cart from "../../../server/models/addCart.schema";
 import { NextResponse } from "next/server";
-import { verifySessionToken } from "@clerk/nextjs/server";
+import { getAuth } from "@clerk/nextjs/server";
 
 export const POST = async (req) => {
   await mongoose.connect(connectionDb);
@@ -14,7 +14,7 @@ export const POST = async (req) => {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     const token = authHeader.split(" ")[1];
-    const session = await verifySessionToken(token);
+    const session = await getAuth(token);
 
     console.log("Bearer", token);
     console.log("userId", userId);

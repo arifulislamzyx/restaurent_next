@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import MenuReducer from "../Slice/MenuSlice";
 
-const RootState = combineReducers({
+export const RootState = combineReducers({
   menus: MenuReducer,
 });
 
