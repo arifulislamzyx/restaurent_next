@@ -40,7 +40,7 @@ const PopularProducts: React.FC = () => {
       <div>
         {isLoading && <p>Loading......</p>}
         {isError && <p>Error: {error}</p>}
-        <div className="grid grid-cols-1 mx-auto items-center gap-3 px-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8  md:px-14 lg:px-24 mt-5">
+        <div className="w-full grid grid-cols-1 mx-auto items-center gap-3 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8   mt-5">
           <SkeletonLoader />
           <SkeletonLoader />
           <SkeletonLoader />

@@ -98,7 +98,7 @@ const MenuItems = () => {
 
   return (
     <div>
-      <div className="mt-5">
+      <div className="mt-5 mx-auto items-center">
         {/* {showOfferSlider && <OfferSlider />} */}
         <h2 className="font-bold text-base md:ml-2 md:text-xl lg:text-2xl mt-5">
           Featured Items
@@ -121,7 +121,7 @@ const MenuItems = () => {
                 <motion.div
                   key={items._id}
                   variants={showSlideProduct}
-                  className="w-300 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all max-w-3xl overflow-hidden"
+                  className="w-full rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all max-w-[300px] overflow-hidden"
                 >
                   <Image
                     width={300}

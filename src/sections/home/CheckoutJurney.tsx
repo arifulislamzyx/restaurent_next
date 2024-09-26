@@ -7,35 +7,37 @@ import { fadeIn } from "@/animation/varients";
 
 const CheckoutJurney: React.FC = () => {
   return (
-    <section className="flex-row mx-8 p-4 md:flex md:justify-center md:items-center md:mx-auto w-5/6  my-5 bg-gradient-to-b from-orange-400 to-orange-600 rounded-2xl">
-      <motion.div
-        variants={fadeIn("down", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        className="w-full md:w-1/2 lg:w-1/2"
-      >
-        <h3 className="text-2xl font-bold mb-5">
-          Ensure the Perfect Checkout Journey for Your Customers
-        </h3>
-        <p>
-          Customers can select food conveniently, customize their orders, and
-          complete transactions during checkout. The checkout process is simple
-          and minimized with multiple payment options.
-        </p>
-        <button
-          // size="lg"
-          className="rounded-full mb-4 transition hover:transform hover:-translate-y-1 mt-5"
+    <section className="w-full md:w-[985px] mx-auto  bg-gradient-to-b from-orange-400 to-orange-600 rounded-2xl">
+      <div className=" flex-row p-4 md:flex md:justify-center md:items-center md:mx-auto  my-5 ">
+        <motion.div
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          className="w-full md:w-1/2 lg:w-1/2"
         >
-          Explore
-        </button>
-      </motion.div>
-      <motion.div
-        variants={fadeIn("left", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-      >
-        <Image src={foodC} width={300} height={500} alt="cekoutImage"></Image>
-      </motion.div>
+          <h3 className="text-2xl font-bold mb-5">
+            Ensure the Perfect Checkout Journey for Your Customers
+          </h3>
+          <p>
+            Customers can select food conveniently, customize their orders, and
+            complete transactions during checkout. The checkout process is
+            simple and minimized with multiple payment options.
+          </p>
+          <button
+            // size="lg"
+            className="rounded-full mb-4 transition hover:transform hover:-translate-y-1 mt-5"
+          >
+            Explore
+          </button>
+        </motion.div>
+        <motion.div
+          variants={fadeIn("left", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+        >
+          <Image src={foodC} width={300} height={500} alt="cekoutImage"></Image>
+        </motion.div>
+      </div>
     </section>
   );
 };

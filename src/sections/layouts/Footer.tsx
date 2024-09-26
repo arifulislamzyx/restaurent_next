@@ -16,7 +16,7 @@ import appstore from "../../../public/HomePageImg/AppStore.png";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="py-4 bg-gradient-to-r from-orange-500 to-violet-700 animate-slideBackground  ">
+    <footer className=" py-4 bg-gradient-to-r from-orange-500 to-violet-700 animate-slideBackground  ">
       <div className="container">
         <div className="flex-row ml-8 items-center md:flex  md:justify-around md:h-72 lg:flex lg:justify-around ">
           <div>
