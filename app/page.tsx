@@ -7,7 +7,6 @@ import OfferSliders from "../src/sections/home/OfferSlider";
 import MenuItems from "../app/menus/page";
 import PopularProducts from "@/sections/home/PopularProducts";
 import Menu from "../src/sections/menus/Menus";
-import FeaturedItems from "@/sections/home/FeaturedItems";
 // import { MenuItemProps } from "../app/menus/page";
 // initialItemsShow={8} showOfferSlider={false}
 
