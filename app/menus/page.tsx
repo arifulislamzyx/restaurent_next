@@ -63,6 +63,8 @@ const MenuItems = () => {
 
   const handleAddItems = async (items: MenuItem) => {
     setCartData(items);
+    console.log("items", items);
+
     if (userId) {
       try {
         const token = await getToken();
@@ -75,6 +77,15 @@ const MenuItems = () => {
             },
           }
         );
+        if (res.status == 200) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your Items is Added",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
         console.log("addCart", res);
       } catch (error) {
         console.error("Error adding cart item:", error);

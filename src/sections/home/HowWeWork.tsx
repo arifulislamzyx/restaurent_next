@@ -7,8 +7,8 @@ import { fadeIn } from "@/animation/varients";
 
 const HowWeWork: React.FC = () => {
   return (
-    <section>
-      <div className="text-center my-20 px-5 md:px-40 lg:md:px-40">
+    <section className="container mx-auto items-center">
+      <div className="text-center items-center my-20 px-5 md:px-40 lg:md:px-40">
         <motion.div
           variants={fadeIn("down", 0.2)}
           initial="hidden"
