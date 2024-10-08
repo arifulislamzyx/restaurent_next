@@ -2,17 +2,17 @@
 import Image from "next/image";
 import React from "react";
 import foodKing from "../../../public/foodKing.png";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaMailBulk,
-  FaMobile,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
 import Link from "next/link";
 import google from "../../../public/HomePageImg/googlePlay.png";
 import appstore from "../../../public/HomePageImg/AppStore.png";
+import {
+  Facebook,
+  Instagram,
+  Mail,
+  Phone,
+  Twitter,
+  Youtube,
+} from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
@@ -41,16 +41,28 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex gap-5 text-violet-900 mt-4 mb-2 ">
               <a href={"https://www.facebook.com"}>
-                <FaFacebook className="bg-white rounded w-6 h-6 p-1 cursor-pointer"></FaFacebook>
+                <Facebook
+                  size={16}
+                  className="bg-white rounded w-6 h-6 p-1 cursor-pointer"
+                ></Facebook>
               </a>
               <a href={"https://www.youtube.com"}>
-                <FaYoutube className="bg-white rounded w-6 h-6 p-1 cursor-pointer"></FaYoutube>
+                <Youtube
+                  size={16}
+                  className="bg-white rounded w-6 h-6 p-1 cursor-pointer"
+                ></Youtube>
               </a>
               <a href={"https://www.twitter.com"}>
-                <FaTwitter className="bg-white rounded w-6 h-6 p-1 cursor-pointer"></FaTwitter>
+                <Twitter
+                  size={16}
+                  className="bg-white rounded w-6 h-6 p-1 cursor-pointer"
+                ></Twitter>
               </a>
               <a href={"https://www.instagram.com"}>
-                <FaInstagram className="bg-white rounded w-6 h-6 p-1 cursor-pointer"></FaInstagram>
+                <Instagram
+                  size={16}
+                  className="bg-white rounded w-6 h-6 p-1 cursor-pointer"
+                ></Instagram>
               </a>
             </div>
           </div>
@@ -75,10 +87,11 @@ const Footer: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-2 mt-3 mb-3">
-                <FaMailBulk></FaMailBulk>info@foodking.net
+                <Mail size={16} />
+                info@foodking.net
               </div>
               <div className="flex items-center gap-2">
-                <FaMobile></FaMobile>+8802984757291
+                <Phone size={16} /> +8802984757291
               </div>
             </div>
           </div>

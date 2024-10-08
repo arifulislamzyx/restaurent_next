@@ -108,7 +108,6 @@ const MenuItems = () => {
   return (
     <div>
       <div className="mt-5 mx-auto items-center">
-        {/* {showOfferSlider && <OfferSlider />} */}
         <h2 className="font-bold text-base md:ml-2 md:text-xl lg:text-2xl mt-5">
           Featured Items
         </h2>
@@ -123,7 +122,6 @@ const MenuItems = () => {
             animate="show"
             className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mt-5"
           >
-            {/* initialItemsShow */}
             {menu
               .slice(0, showAll ? menu.length : 12)
               .map((items: MenuItem) => (

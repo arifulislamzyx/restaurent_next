@@ -3,22 +3,25 @@ import * as React from "react";
 import Link from "next/link";
 import foodKing from "../../../public/foodKing.png";
 import { useState } from "react";
-
 import Image from "next/image";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
-import { Component } from "@/types/types";
 import { UserButton, useAuth } from "@clerk/nextjs";
+import { ArrowRightToLine, UserRoundCog } from "lucide-react";
 
 const Navbar: React.FC = () => {
-  const [openMenu, setOpenMenu] = useState("false");
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const openMobileMenu = () => {
+    setOpenMenu(!openMenu);
+  };
 
   const { userId } = useAuth();
 
   return (
     <nav>
       <div
-        className={`container md:flex md:justify-between md:pt-5 lg:flex lg:justify-between lg:pt-5`}
+        className={`container  md:flex md:justify-between md:pt-5 lg:flex lg:justify-between lg:pt-5`}
       >
         <Link href={"/"}>
           <Image
@@ -30,93 +33,22 @@ const Navbar: React.FC = () => {
           ></Image>
         </Link>
         <div className=" hidden md:flex md:items-center">
-          {/* <div>
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                      <li className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <a
-                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                            href="/"
-                          >
-                            <Image
-                              src={foodKing}
-                              width={50}
-                              height={50}
-                              alt="foodking"
-                            ></Image>
-                            <div className="mb-2 mt-4 text-lg font-medium">
-                              FoodKing
-                            </div>
-                            <p className="text-sm leading-tight text-muted-foreground">
-                              Beautifully designed components built with Radix
-                              UI and Tailwind CSS.
-                            </p>
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                      <ListItem href="/docs" title="Introduction">
-                        Re-usable components built using Radix UI and Tailwind
-                        CSS.
-                      </ListItem>
-                      <ListItem href="/docs/installation" title="Installation">
-                        How to install dependencies and structure your app.
-                      </ListItem>
-                      <ListItem
-                        href="/docs/primitives/typography"
-                        title="Typography"
-                      >
-                        Styles for headings, paragraphs, lists...etc
-                      </ListItem>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                      {components.map((component) => (
-                        <ListItem
-                          key={component.title}
-                          title={component.title}
-                          href={component.href}
-                        >
-                          {component.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link href="/docs" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Documentation
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div> */}
           {userId ? (
             <UserButton afterSignOutUrl="/" />
           ) : (
-            <div className="flex gap-4">
+            <div className="flex gap-4 ">
               <Link
                 href="/sign-in"
-                className="p-2 hover:bg-slate-100 hover:rounded-xl"
+                className="p-2 hover:bg-slate-100 hover:rounded-xl flex items-center gap-1"
               >
+                <ArrowRightToLine size={16} />
                 Sign In
               </Link>
               <Link
                 href="/sign-up"
-                className="p-2 hover:bg-slate-100 hover:rounded-xl"
+                className="p-2 hover:bg-slate-100 hover:rounded-xl flex items-center gap-1"
               >
+                <UserRoundCog size={16} />
                 Sign Up
               </Link>
             </div>
@@ -124,7 +56,10 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       {/* //responsive menu */}
-      <button className="p-2 absolute top-2 right-1  focus:outline-none md:hidden lg:hidden">
+      <button
+        onClick={openMobileMenu}
+        className="fixed p-2  top-2 right-1  focus:outline-none md:hidden lg:hidden z-50"
+      >
         {openMenu ? (
           <RxCross1></RxCross1>
         ) : (
