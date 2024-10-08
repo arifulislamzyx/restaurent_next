@@ -63,7 +63,6 @@ const MenuItems = () => {
 
   const handleAddItems = async (items: MenuItem) => {
     setCartData(items);
-    console.log("items", items);
 
     if (userId) {
       try {
@@ -86,7 +85,6 @@ const MenuItems = () => {
             timer: 1500,
           });
         }
-        console.log("addCart", res);
       } catch (error) {
         console.error("Error adding cart item:", error);
       }
