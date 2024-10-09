@@ -1,12 +1,11 @@
 import React from "react";
 import OfferSlider from "../home/OfferSlider";
-import MenuCard from "@/sections/utils/MenuCard";
 import Link from "next/link";
 import Image from "next/image";
-import { IoBagAdd } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { productAnm, showSlideProduct } from "@/animation/varients";
 import ProductSkeliton from "@/sections/utils/ProductSkeliton";
+import { ShoppingCart } from "lucide-react";
 
 const Menus = ({
   menu,
@@ -72,7 +71,8 @@ const Menus = ({
                     onClick={() => handleAddItems(items)}
                     className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
                   >
-                    <IoBagAdd></IoBagAdd>Add
+                    <ShoppingCart size={16} />
+                    Add
                   </button>
                 </div>
               </div>

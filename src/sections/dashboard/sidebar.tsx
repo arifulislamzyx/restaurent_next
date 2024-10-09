@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { MdArrowDropDownCircle } from "react-icons/md";
 import { sidebarOptions } from "@/data/sidebarMenu";
+import { ArrowBigDown } from "lucide-react";
 
 const Sidebar: React.FC = () => {
   const [activeOptions, setActiveOptions] = useState<{
@@ -38,7 +38,8 @@ const Sidebar: React.FC = () => {
                   activeOptions[option.id] ? "bg-orange-600 text-white" : ""
                 }`}
               >
-                <MdArrowDropDownCircle
+                <ArrowBigDown
+                  size={16}
                   className={`text-xl transition-transform duration-300 ${
                     activeOptions[option.id] ? "rotate-180" : ""
                   }`}

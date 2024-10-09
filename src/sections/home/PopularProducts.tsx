@@ -1,8 +1,6 @@
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { IoBagAdd } from "react-icons/io5";
-import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import { MenuItem } from "@/types/menuItems";
@@ -10,7 +8,7 @@ import SkeletonLoader from "../utils/Skeleton/SkeletonLoader";
 import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import { useDispatch, useSelector } from "react-redux";
 import RootSate from "@/Redux/Store/Store";
-import { ThunkDispatch } from "@reduxjs/toolkit";
+import { ChevronRight, ShoppingCart } from "lucide-react";
 
 type RootSate = any;
 
@@ -89,7 +87,8 @@ const PopularProducts: React.FC = () => {
                   onClick={() => setShowProductModal(true)}
                   className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
                 >
-                  <IoBagAdd></IoBagAdd>Add
+                  <ShoppingCart size={16} />
+                  Add
                 </button>
               </div>
             </div>
@@ -99,7 +98,7 @@ const PopularProducts: React.FC = () => {
       {menu.length > 9 && (
         <div className="absolute right-0 top-5 font-bold text-base ml-20 md:text-xl lg:text-2xl hover:bg-orange-400 hover:rounded-full p-1">
           <Link href={"/menus"}>
-            <FaArrowRight></FaArrowRight>
+            <ChevronRight size={16} />
           </Link>
         </div>
       )}

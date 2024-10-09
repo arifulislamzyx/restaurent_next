@@ -1,9 +1,8 @@
 import { showSlideProduct } from "@/animation/varients";
-// import Modals from "@/sections/home/modals/Modals";
 import { motion } from "framer-motion";
+import { ShoppingBag, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useState, type FC } from "react";
-import { IoBagAdd } from "react-icons/io5";
 
 interface ProductProps {
   image: string;
@@ -54,7 +53,7 @@ const ProductCard: FC<ProductProps> = ({ image, name, price, recipe }) => {
             className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1 "
             onClick={handleModal}
           >
-            <IoBagAdd></IoBagAdd>Add
+            <ShoppingCart size={15} /> Add
           </button>
         </div>
       </div>

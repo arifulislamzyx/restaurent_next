@@ -6,7 +6,6 @@ import productSold from "../../../public/Speciality/ProductSold.svg";
 import ratings from "../../../public/Speciality/Ratings.svg";
 import Image from "next/image";
 import CountUp from "react-countup";
-import { FaStar } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
 
 const Speciality: React.FC = () => {

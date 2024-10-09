@@ -1,13 +1,12 @@
 import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { IoBagAdd } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { productAnm, showSlideProduct } from "@/animation/varients";
 import ProductSkeliton from "./ProductSkeliton";
 import RootSate from "@/Redux/Store/Store";
-import axios from "axios";
+import { ShoppingCart } from "lucide-react";
 
 type RootSate = any;
 
@@ -84,7 +83,8 @@ const MenuCard = () => {
                   // onClick={handleAddItems}
                   className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
                 >
-                  <IoBagAdd></IoBagAdd>Add
+                  <ShoppingCart size={16} />
+                  Add
                 </button>
               </div>
             </div>

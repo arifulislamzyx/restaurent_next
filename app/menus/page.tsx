@@ -9,23 +9,13 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { IoBagAdd } from "react-icons/io5";
 import ProductSkeliton from "@/sections/utils/ProductSkeliton";
 import { MenuItem } from "@/types/menuItems";
-import OfferSlider from "../../src/sections/home/OfferSlider";
 import { productAnm, showSlideProduct } from "@/animation/varients";
 import { RootState } from "@/Redux/Store/Store";
+import { ShoppingCart } from "lucide-react";
 
 type RootState = any;
-
-// export type MenuItemProps = {
-//   initialItemsShow: number;
-// showOfferSlider: boolean;
-// };
-// // {
-// //   initialItemsShow,
-// //   showOfferSlider = true,
-// // }
 
 const MenuItems = () => {
   const [cartData, setCartData] = useState<MenuItem | null>(null);
@@ -152,9 +142,9 @@ const MenuItems = () => {
                       <p className="font-bold">${items.price}</p>
                       <button
                         onClick={() => handleAddItems(items)}
-                        className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
+                        className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1 hover:text-white"
                       >
-                        <IoBagAdd /> Add
+                        <ShoppingCart size={15} /> Add
                       </button>
                     </div>
                   </div>
