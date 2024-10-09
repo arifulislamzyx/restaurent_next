@@ -4,10 +4,8 @@ import Link from "next/link";
 import foodKing from "../../../public/foodKing.png";
 import { useState } from "react";
 import Image from "next/image";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { RxCross1 } from "react-icons/rx";
 import { UserButton, useAuth } from "@clerk/nextjs";
-import { ArrowRightToLine, UserRoundCog } from "lucide-react";
+import { AlignJustify, ArrowRightToLine, UserRoundCog, X } from "lucide-react";
 
 const Navbar: React.FC = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -55,15 +53,14 @@ const Navbar: React.FC = () => {
           )}
         </div>
       </div>
-      {/* //responsive menu */}
       <button
         onClick={openMobileMenu}
         className="fixed p-2  top-2 right-1  focus:outline-none md:hidden lg:hidden z-50"
       >
         {openMenu ? (
-          <RxCross1></RxCross1>
+          <X size={20} />
         ) : (
-          <GiHamburgerMenu className="font-bold"></GiHamburgerMenu>
+          <AlignJustify size={20} className="font-bold"></AlignJustify>
         )}
       </button>
       {openMenu && (
