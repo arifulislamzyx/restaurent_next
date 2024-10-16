@@ -5,7 +5,13 @@ import foodKing from "../../../public/foodKing.png";
 import { useState } from "react";
 import Image from "next/image";
 import { UserButton, useAuth } from "@clerk/nextjs";
-import { AlignJustify, ArrowRightToLine, UserRoundCog, X } from "lucide-react";
+import {
+  AlignJustify,
+  ArrowRightToLine,
+  ShoppingCart,
+  UserRoundCog,
+  X,
+} from "lucide-react";
 
 const Navbar: React.FC = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -32,7 +38,10 @@ const Navbar: React.FC = () => {
         </Link>
         <div className=" hidden md:flex md:items-center">
           {userId ? (
-            <UserButton afterSignOutUrl="/" />
+            <div className="flex items-center gap-6">
+              <ShoppingCart size={20} />
+              <UserButton afterSignOutUrl="/" />
+            </div>
           ) : (
             <div className="flex gap-4 ">
               <Link

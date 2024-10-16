@@ -4,7 +4,7 @@ import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { useAuth } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -27,6 +27,9 @@ const MenuItems = () => {
     (state: RootState) => state.menus
   );
   const dispatch = useDispatch<any>();
+  const { user } = useUser();
+
+  const email = user?.primaryEmailAddress.emailAddress;
 
   useEffect(() => {
     dispatch(fetchMenu());
@@ -59,13 +62,14 @@ const MenuItems = () => {
         const token = await getToken();
         const res = await axios.post(
           "api/carts",
-          { userId, items },
+          { userId, items, email },
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
+
         if (res.status == 200) {
           Swal.fire({
             position: "top-end",
@@ -75,8 +79,24 @@ const MenuItems = () => {
             timer: 1500,
           });
         }
-      } catch (error) {
-        console.error("Error adding cart item:", error);
+      } catch (error: any) {
+        if (error.response && error.response.status === 409) {
+          Swal.fire({
+            position: "top-end",
+            icon: "info",
+            title: "This item is already in your cart.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Something went wrong while adding the item.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     } else {
       Swal.fire({

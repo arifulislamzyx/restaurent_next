@@ -24,7 +24,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <Head>
-        <title>Restaurent Next</title>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
       </Head>
       <body className={inter.className}>
         <ClerkProvider>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { sidebarOptions } from "@/data/sidebarMenu";
-import { ArrowBigDown } from "lucide-react";
+import { ArrowBigDown, ChevronDown } from "lucide-react";
 
 const Sidebar: React.FC = () => {
   const [activeOptions, setActiveOptions] = useState<{
@@ -10,7 +10,6 @@ const Sidebar: React.FC = () => {
 
   const handleOptions = (optionId: number) => {
     setActiveOptions((prevState) => {
-      // Reset all options except the clicked one
       const newState = Object.keys(prevState).reduce((acc, key) => {
         acc[key] = false;
         return acc;
@@ -38,7 +37,7 @@ const Sidebar: React.FC = () => {
                   activeOptions[option.id] ? "bg-orange-600 text-white" : ""
                 }`}
               >
-                <ArrowBigDown
+                <ChevronDown
                   size={16}
                   className={`text-xl transition-transform duration-300 ${
                     activeOptions[option.id] ? "rotate-180" : ""

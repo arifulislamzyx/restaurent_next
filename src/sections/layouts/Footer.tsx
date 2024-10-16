@@ -86,10 +86,13 @@ const Footer: React.FC = () => {
               ></Image>
             </div>
             <div>
-              <div className="flex items-center gap-2 mt-3 mb-3">
+              <a
+                href="mailto:info@foodking.net"
+                className="flex items-center gap-2 mt-3 mb-3"
+              >
                 <Mail size={16} />
                 info@foodking.net
-              </div>
+              </a>
               <div className="flex items-center gap-2">
                 <Phone size={16} /> +8802984757291
               </div>
