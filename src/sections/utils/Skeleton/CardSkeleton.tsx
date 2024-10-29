@@ -1,3 +1,4 @@
+import Button from "@/components/buttons/Button";
 import React from "react";
 
 const CardSkeleton = () => {
@@ -11,10 +12,10 @@ const CardSkeleton = () => {
         </div>
         <div className="flex justify-between px-3">
           <p className="font-bold h-4 bg-gray-300 rounded w-1/4"></p>
-          <button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-gray-300 hover:bg-gray-400 hover:rounded-full hover:p-1">
+          <Button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-gray-300 hover:bg-gray-400 hover:rounded-full hover:p-1">
             <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
             Add
-          </button>
+          </Button>
         </div>
       </div>
     </div>

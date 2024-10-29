@@ -6,8 +6,8 @@ import Footer from "../src/sections/layouts/Footer";
 import { Metadata } from "@/types/metadata";
 import { Provider } from "react-redux";
 import store from "@/Redux/Store/Store";
-import { ClerkProvider } from "@clerk/nextjs";
 import Head from "next/head";
+import AuthProvider from "@/Provider/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,13 +28,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="description" content={metadata.description} />
       </Head>
       <body className={inter.className}>
-        <ClerkProvider>
-          <Navbar />
-          <div className="container">
+        <Navbar />
+        <div className="container">
+          <AuthProvider>
             <Provider store={store}>{children}</Provider>
-          </div>
-          <Footer />
-        </ClerkProvider>
+          </AuthProvider>
+        </div>
+        <Footer />
       </body>
     </html>
   );

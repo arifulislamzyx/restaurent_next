@@ -4,10 +4,11 @@ import orderProcess from "../../../public/HomePageImg/OrderProcess/OrderProcess.
 import Image from "next/image";
 import { motion, easeInOut } from "framer-motion";
 import { fadeIn } from "@/animation/varients";
+import AnimatedButton from "@/utils/AnimatedButton";
 
 const HowWeWork: React.FC = () => {
   return (
-    <section className="container mx-auto items-center">
+    <section className="container hidden md:block mx-auto items-center">
       <div className="text-center items-center my-20 px-5 md:px-40 lg:md:px-40">
         <motion.div
           variants={fadeIn("down", 0.2)}
@@ -24,22 +25,22 @@ const HowWeWork: React.FC = () => {
           </p>
         </motion.div>
         <div className="text-center gap-1 py-5">
-          <motion.button
+          <AnimatedButton
             variants={fadeIn("right", 0.2)}
             initial="hidden"
             whileInView={"show"}
             className="bg-gradient-to-r from-orange-400 to-orange-600 hover:bg-gradient-to-r hover:from-orange-600 hover:to-orange-300  p-4 rounded-full mr-1 mb-4"
           >
             Order Accepted by Restaurant
-          </motion.button>
-          <motion.button
+          </AnimatedButton>
+          <AnimatedButton
             variants={fadeIn("left", 0.2)}
             initial="hidden"
             whileInView={"show"}
             className="bg-gradient-to-r from-orange-400 to-orange-600 hover:bg-gradient-to-r hover:from-orange-600 hover:to-orange-300  p-4 rounded-full ml-1"
           >
             Order Accepted by Deliveryman
-          </motion.button>
+          </AnimatedButton>
         </div>
       </div>
       <motion.div
@@ -60,7 +61,7 @@ const HowWeWork: React.FC = () => {
             <br />
             {"   "}through app or web
           </p>
-          <p className="absolute top-1 bottom-1/4 left-[980px] w-full">
+          <p className="absolute top-1 bottom-1/4 left-[960px] w-full">
             2. Restaurant accepts the <br />
             order and starts to prepare food
           </p>
@@ -77,7 +78,7 @@ const HowWeWork: React.FC = () => {
             5. Customer receives order <br />
             from deliveryman
           </p>
-          {/* customer to restaurent */}
+
           <div className="absolute top-0 bottom-1/4 left-[435px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +127,7 @@ const HowWeWork: React.FC = () => {
               </svg>
             </div>
           </div>
-          {/* restaurent to delivery man */}
+
           <div className="absolute top-40 bottom-1/4 right-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +157,7 @@ const HowWeWork: React.FC = () => {
               </svg>
             </div>
           </div>
-          {/* deliveryman to customer */}
+
           <div className="absolute top-72 left-[420px] items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"

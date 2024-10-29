@@ -1,5 +1,4 @@
-import { ICart } from "@/Hooks/cart";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { ICart } from "@/types/cart";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -36,26 +35,7 @@ export const fetchCartItems = createAsyncThunk(
 const cartSlice = createSlice({
   name: "carts",
   initialState,
-  reducers: {
-    // addItems: (state, action: PayloadAction<ICart>) => {
-    //   state.carts.push(action.payload);
-    //   console.log(`additems action ${action}`);
-    // },
-    // removeItem: (state, action: PayloadAction<string>) => {
-    //   state.carts = state.carts.filter((item) => item._id !== action.payload);
-    // },
-    // updateItem: (state, action: PayloadAction<ICart>) => {
-    //   const index = state.carts.findIndex(
-    //     (item) => item._id === action.payload._id
-    //   );
-    //   if (index != -1) {
-    //     state.carts[index] = action.payload;
-    //   }
-    // },
-    // stateClear: (state) => {
-    //   state.carts = [];
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCartItems.pending, (state) => {

@@ -19,7 +19,6 @@ const initialState: MenuProps = {
 export const fetchMenu = createAsyncThunk("menu/fetchMenu", async () => {
   try {
     const response = await axios.get<MenuItem[]>("api/menu");
-    console.log(`here is response${response}`);
     return response.data;
   } catch (error) {
     throw Error("Failed to fetch menu items");

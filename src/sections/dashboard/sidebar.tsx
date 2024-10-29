@@ -1,7 +1,9 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { sidebarOptions } from "@/data/sidebarMenu";
-import { ArrowBigDown, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { IASidebar, IASubmenu } from "@/types/sidebar";
+import Button from "@/components/buttons/Button";
 
 const Sidebar: React.FC = () => {
   const [activeOptions, setActiveOptions] = useState<{
@@ -10,10 +12,13 @@ const Sidebar: React.FC = () => {
 
   const handleOptions = (optionId: number) => {
     setActiveOptions((prevState) => {
-      const newState = Object.keys(prevState).reduce((acc, key) => {
-        acc[key] = false;
-        return acc;
-      }, {} as { [key: number]: boolean });
+      const newState = Object.keys(prevState).reduce(
+        (acc, key) => {
+          acc[key] = false;
+          return acc;
+        },
+        {} as { [key: number]: boolean }
+      );
 
       return {
         ...newState,
@@ -29,9 +34,9 @@ const Sidebar: React.FC = () => {
           <Link href={"/dashboard"}>Home</Link>
         </h2>
         <ul>
-          {sidebarOptions.map((option) => (
+          {sidebarOptions.map((option: IASidebar) => (
             <li key={option.id} className="mb-2 mx-auto">
-              <button
+              <Button
                 onClick={() => handleOptions(option.id)}
                 className={`flex justify-center items-center gap-1 text-lg font-bold px-2 py-1 mb-4 rounded-md hover:text-white hover:bg-orange-600 border-b-blue-700 border-2 ${
                   activeOptions[option.id] ? "bg-orange-600 text-white" : ""
@@ -44,14 +49,14 @@ const Sidebar: React.FC = () => {
                   }`}
                 />
                 <p>{option.title}</p>
-              </button>
+              </Button>
               <div
                 className={`transition-max-height duration-300 ease-in-out ${
                   activeOptions[option.id] ? "max-h-96" : "max-h-0"
                 } overflow-hidden`}
               >
                 <ul>
-                  {option.submenus?.map((submenu) => (
+                  {option.submenus?.map((submenu: IASubmenu) => (
                     <li
                       key={submenu.id}
                       className="transition-all duration-300"

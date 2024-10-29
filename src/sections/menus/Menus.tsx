@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { productAnm, showSlideProduct } from "@/animation/varients";
 import ProductSkeliton from "@/sections/utils/ProductSkeliton";
 import { ShoppingCart } from "lucide-react";
+import Button from "@/components/buttons/Button";
 
 const Menus = ({
   menu,
@@ -67,13 +68,13 @@ const Menus = ({
                 </div>
                 <div className="flex justify-between px-3">
                   <p className="font-bold">${items.price}</p>
-                  <button
+                  <Button
                     onClick={() => handleAddItems(items)}
                     className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
                   >
                     <ShoppingCart size={16} />
                     Add
-                  </button>
+                  </Button>
                 </div>
               </div>
             </motion.div>
@@ -83,12 +84,12 @@ const Menus = ({
         <div>
           {menu.length > 12 && (
             <div className="text-center">
-              <button
+              <Button
                 onClick={() => setShowAll(!showAll)}
                 className="bg-blue-600 m-4 sm:ml p-2 rounded-xl text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-blue-600 hover:transition-all"
               >
                 {showAll ? "Show Less" : "Show More.."}
-              </button>
+              </Button>
             </div>
           )}
         </div>

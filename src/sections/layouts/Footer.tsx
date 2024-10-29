@@ -13,6 +13,7 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
+import Button from "@/components/buttons/Button";
 
 const Footer: React.FC = () => {
   return (
@@ -34,9 +35,9 @@ const Footer: React.FC = () => {
                   type="text"
                   placeholder="Your Email Address"
                 />
-                <button className="absolute nset-y-0 right-1 bg-violet-800 hover:bg-purple-600 hover:shadow-lg  mt-1 p-2 rounded">
+                <Button className="absolute nset-y-0 right-1 bg-violet-800 hover:bg-purple-600 hover:shadow-lg  mt-1 p-2 rounded">
                   Subscribe
-                </button>
+                </Button>
               </div>
             </div>
             <div className="flex gap-5 text-violet-900 mt-4 mb-2 ">

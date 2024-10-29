@@ -1,0 +1,30 @@
+"use server";
+import { signIn, signOut } from "@/Authentication/auth";
+export const doScialLogin = async (formData) => {
+  const action = formData.get("action");
+  await signIn(action, { redirectTo: "/dashboard" });
+};
+
+export const doLogout = async () => {
+  await signOut({ redirectTo: "/" });
+};
+
+export const credenTialsSignIn = async (formData) => {
+  console.log("formData", formData);
+
+  try {
+    const res = await signIn("credentials", {
+      // email: formData.get("email"),
+      // password: formData.get("password"),
+      email: formData.email,
+      password: formData.password,
+      redirect: false,
+    });
+    console.log("res Login Server", res);
+
+    revalidatePath("/");
+    return res;
+  } catch (error) {
+    console.error("error");
+  }
+};

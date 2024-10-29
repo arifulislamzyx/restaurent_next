@@ -83,13 +83,13 @@ const PopularProducts: React.FC = () => {
               <div className="flex justify-between px-3 mt-1">
                 <p className="font-bold">${items.price}</p>
 
-                <button
+                <Button
                   onClick={() => setShowProductModal(true)}
                   className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
                 >
                   <ShoppingCart size={16} />
                   Add
-                </button>
+                </Button>
               </div>
             </div>
           </div>

@@ -1,10 +1,8 @@
 "use client";
-import Swal from "sweetalert2";
 import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { useAuth, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -14,22 +12,19 @@ import { MenuItem } from "@/types/menuItems";
 import { productAnm, showSlideProduct } from "@/animation/varients";
 import { RootState } from "@/Redux/Store/Store";
 import { ShoppingCart } from "lucide-react";
+import Button from "@/components/buttons/Button";
 
 type RootState = any;
 
 const MenuItems = () => {
   const [cartData, setCartData] = useState<MenuItem | null>(null);
   const router = useRouter();
-  const { getToken, userId } = useAuth();
   const [showAll, setShowAll] = useState(false);
   const [textLength, setTextLength] = useState(40);
   const { menu, isLoading, isError, error } = useSelector(
     (state: RootState) => state.menus
   );
   const dispatch = useDispatch<any>();
-  const { user } = useUser();
-
-  const email = user?.primaryEmailAddress.emailAddress;
 
   useEffect(() => {
     dispatch(fetchMenu());
@@ -53,67 +48,6 @@ const MenuItems = () => {
 
     handleResize();
   }, []);
-
-  const handleAddItems = async (items: MenuItem) => {
-    setCartData(items);
-
-    if (userId) {
-      try {
-        const token = await getToken();
-        const res = await axios.post(
-          "api/carts",
-          { userId, items, email },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (res.status == 200) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your Items is Added",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      } catch (error: any) {
-        if (error.response && error.response.status === 409) {
-          Swal.fire({
-            position: "top-end",
-            icon: "info",
-            title: "This item is already in your cart.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        } else {
-          Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "Something went wrong while adding the item.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      }
-    } else {
-      Swal.fire({
-        title: "Please Login to Order Products",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Login Now",
-      }).then((res) => {
-        if (res.isConfirmed) {
-          window.location.href = "/sign-in";
-        }
-      });
-    }
-  };
 
   return (
     <div>
@@ -160,12 +94,9 @@ const MenuItems = () => {
                     </div>
                     <div className="flex justify-between px-3">
                       <p className="font-bold">${items.price}</p>
-                      <button
-                        onClick={() => handleAddItems(items)}
-                        className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1 hover:text-white"
-                      >
+                      <Button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1 hover:text-white">
                         <ShoppingCart size={15} /> Add
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </motion.div>
@@ -174,12 +105,12 @@ const MenuItems = () => {
 
           {menu.length > 12 && (
             <div className="text-center">
-              <button
+              <Button
                 onClick={() => setShowAll(!showAll)}
                 className="bg-blue-600 m-4 p-2 rounded-xl text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-blue-600"
               >
                 {showAll ? "Show Less" : "Show More.."}
-              </button>
+              </Button>
             </div>
           )}
         </div>

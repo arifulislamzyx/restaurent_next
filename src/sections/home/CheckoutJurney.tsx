@@ -4,6 +4,7 @@ import foodC from "../../../public/HeaderBanner/banner1.png";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/animation/varients";
+import Button from "@/components/buttons/Button";
 
 const CheckoutJurney: React.FC = () => {
   return (
@@ -23,12 +24,9 @@ const CheckoutJurney: React.FC = () => {
             complete transactions during checkout. The checkout process is
             simple and minimized with multiple payment options.
           </p>
-          <button
-            // size="lg"
-            className="rounded-full mb-4 transition hover:transform hover:-translate-y-1 mt-5"
-          >
+          <Button className="rounded-full mb-4 transition hover:transform hover:-translate-y-1 mt-5">
             Explore
-          </button>
+          </Button>
         </motion.div>
         <motion.div
           variants={fadeIn("left", 0.2)}
