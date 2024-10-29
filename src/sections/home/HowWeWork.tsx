@@ -2,9 +2,9 @@
 import React from "react";
 import orderProcess from "../../../public/HomePageImg/OrderProcess/OrderProcess.png";
 import Image from "next/image";
-import { motion, easeInOut } from "framer-motion";
+import { motion } from "framer-motion";
 import { fadeIn } from "@/animation/varients";
-import AnimatedButton from "@/utils/AnimatedButton";
+import AnimatedButton from "@/components/buttons/AnimatedButton";
 
 const HowWeWork: React.FC = () => {
   return (

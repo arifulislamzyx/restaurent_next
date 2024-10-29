@@ -9,6 +9,7 @@ import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import { useDispatch, useSelector } from "react-redux";
 import RootSate from "@/Redux/Store/Store";
 import { ChevronRight, ShoppingCart } from "lucide-react";
+import Button from "@/components/buttons/Button";
 
 type RootSate = any;
 
