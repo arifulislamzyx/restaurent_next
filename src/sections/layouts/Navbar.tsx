@@ -8,14 +8,27 @@ import {
   AlignJustify,
   ArrowRightToLine,
   ShoppingCart,
+  User,
   UserRoundCog,
   X,
 } from "lucide-react";
 import { doLogout } from "../../../app/actions";
 import Button from "@/components/buttons/Button";
+import { useSession } from "next-auth/react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/Redux/Store/Store";
+import { fetchSession } from "@/Redux/Slice/SessionSlice";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  // const dispatch = useDispatch<AppDispatch>();
+  // const session = useSelector((state) => state.session.user);
+
+  // useEffect(() => {
+  //   dispatch(fetchSession());
+  // }, []);
+  // const session = useSession();
+  // console.log("session", session);
 
   const openMobileMenu = () => {
     setOpenMenu(!openMenu);
@@ -35,31 +48,29 @@ const Navbar = () => {
             className="relative"
           ></Image>
         </Link>
-        {/* <div className=" hidden md:flex md:items-center">
-          {userId ? (
-            <div className="flex items-center gap-6">
-              <ShoppingCart size={20} />
-              <UserButton afterSignOutUrl="/" />
-            </div>
-          ) : (
-            <div className="flex gap-4 ">
-              <Link
-                href="/sign-in"
-                className="p-2 hover:bg-slate-100 hover:rounded-xl flex items-center gap-1"
-              >
-                <ArrowRightToLine size={16} />
-                Sign In
-              </Link>
-              <Link
-                href="/sign-up"
-                className="p-2 hover:bg-slate-100 hover:rounded-xl flex items-center gap-1"
-              >
-                <UserRoundCog size={16} />
-                Sign Up
-              </Link>
-            </div>
-          )}
-        </div> */}
+        <div className=" hidden md:flex md:items-center">
+          <div className="flex items-center gap-6">
+            <ShoppingCart size={20} />
+            <User />
+          </div>
+
+          <div className="flex gap-4 ">
+            <Link
+              href="/sign-in"
+              className="p-2 hover:bg-slate-100 hover:rounded-xl flex items-center gap-1"
+            >
+              <ArrowRightToLine size={16} />
+              Sign In
+            </Link>
+            <Link
+              href="/sign-up"
+              className="p-2 hover:bg-slate-100 hover:rounded-xl flex items-center gap-1"
+            >
+              <UserRoundCog size={16} />
+              Sign Up
+            </Link>
+          </div>
+        </div>
       </div>
       <Button
         onClick={openMobileMenu}

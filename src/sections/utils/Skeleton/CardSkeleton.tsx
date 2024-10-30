@@ -3,8 +3,8 @@ import React from "react";
 
 const CardSkeleton = () => {
   return (
-    <div className="max-w-[450px] rounded-2xl shadow-xl animate-pulse">
-      <div className="h-72 bg-gray-300 rounded-t-xl"></div>
+    <div className="max-w-[550px] rounded-2xl shadow-xl animate-pulse">
+      <div className="h-60 bg-gray-300 rounded-t-xl"></div>
       <div className="py-5">
         <div className="px-3">
           <h4 className="h-6 bg-gray-300 rounded w-3/4 mb-2"></h4>

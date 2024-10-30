@@ -1,13 +1,9 @@
-"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../src/sections/layouts/Navbar";
 import Footer from "../src/sections/layouts/Footer";
 import { Metadata } from "@/types/metadata";
-import { Provider } from "react-redux";
-import store from "@/Redux/Store/Store";
-import Head from "next/head";
-import AuthProvider from "@/Provider/AuthProvider";
+import ClientProvider from "@/Provider/ClientProvide";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,16 +19,10 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-      </Head>
       <body className={inter.className}>
         <Navbar />
         <div className="container">
-          <AuthProvider>
-            <Provider store={store}>{children}</Provider>
-          </AuthProvider>
+          <ClientProvider>{children}</ClientProvider>
         </div>
         <Footer />
       </body>
