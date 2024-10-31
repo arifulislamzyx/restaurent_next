@@ -1,41 +1,40 @@
-// import connectionDb from "@/libs/db.connection";
-// import mongoose from "mongoose";
-// import { NextResponse } from "next/server";
+import connectionDb from "@/libs/db.connection";
+import mongoose from "mongoose";
+import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
+import Cart from "../../../server/models/addCart.schema";
 
-// export const GET = async (req) => {
-//   await mongoose.connect(connectionDb);
+export const GET = async (req) => {
+  await mongoose.connect(connectionDb);
 
-//   const authHeader = req.headers.get("authorization");
-//   console.log("authH", authHeader);
+  const email = req.nextUrl.searchParams.get("email");
 
-//   if (!authHeader)
-//     return NextResponse.json({ error: "No Way" }, { status: 401 });
+  if (!email) {
+    return NextResponse.json({ error: "Email is required" }, { status: 400 });
+  }
 
-//   const token = authHeader.split(" ")[1];
-//   console.log(token);
+  if (!email) {
+    return NextResponse.json(
+      { error: "Email not Found in token" },
+      { status: 401 }
+    );
+  }
 
-//   if (!token) {
-//     return NextResponse.json({ error: "Wait a Sec" }, { status: 401 });
-//   }
+  try {
+    const cartItems = await Cart.find({ email });
 
-//   try {
-//     console.log("logged before verify token");
-
-//     const clerkClient = createClerkClient({
-//       secretKey: process.env.CLERK_SECRET_KEY,
-//     });
-
-//     console.log("log after clientClark", clerkClient.verifyToken(token));
-
-//     return NextResponse.json(
-//       { message: "Token decoded successfully" },
-//       { status: 200 }
-//     );
-//   } catch (error) {
-//     console.error("Error decoding token:", error);
-//     return NextResponse.json(
-//       { error: "Failed to decode token" },
-//       { status: 401 }
-//     );
-//   }
-// };
+    if (!cartItems) {
+      return NextResponse.json(
+        { message: "No cart Items Found" },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json({ cartItems }, { status: 200 });
+  } catch (error) {
+    console.error("Error Retriving Cart Items ", error);
+    return NextResponse.json(
+      { error: " Faild to retrive cart items" },
+      { status: 500 }
+    );
+  }
+};

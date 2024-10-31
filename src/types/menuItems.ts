@@ -4,4 +4,5 @@ export interface MenuItem {
   name: string;
   recipe: string;
   price: number;
+  category: string;
 }

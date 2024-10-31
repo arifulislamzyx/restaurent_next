@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import SocialLogin from "../Login/SocialLogin";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Button from "@/components/buttons/Button";
+import SocialLogin from "../SocailLogin/SocialLogin";
 
 const Registration = () => {
   const router = useRouter();
@@ -62,10 +62,7 @@ const Registration = () => {
         <h2 className="text-2xl font-bold text-center text-gray-700">
           Welcome Back
         </h2>
-        <form
-          onSubmit={handleRegistration}
-          className="space-y-4 border-t-2 border-slate-50"
-        >
+        <form onSubmit={handleRegistration} className="space-y-4 ">
           <div>
             <label
               htmlFor="name"

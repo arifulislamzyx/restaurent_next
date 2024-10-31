@@ -6,5 +6,7 @@ export const GET = async (request: Request) => {
   await mongoose.connect(connectionDb);
   const menuItems = await Menu.find();
 
+  menuItems.find((data) => data._id === data._id);
+
   return Response.json(menuItems);
 };

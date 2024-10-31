@@ -13,29 +13,25 @@ import { productAnm, showSlideProduct } from "@/animation/varients";
 import { RootState } from "@/Redux/Store/Store";
 import { ShoppingCart } from "lucide-react";
 import Button from "@/components/buttons/Button";
-
-type RootState = any;
+import { useSession } from "next-auth/react";
+import Swal from "sweetalert2";
+import { truncateText } from "@/utils/TruncateText";
 
 const MenuItems = () => {
   const [cartData, setCartData] = useState<MenuItem | null>(null);
   const router = useRouter();
   const [showAll, setShowAll] = useState(false);
   const [textLength, setTextLength] = useState(40);
+  const { data: session, status } = useSession();
+  const email = session?.user?.email;
+
   const { menu, isLoading, isError, error } = useSelector(
     (state: RootState) => state.menus
   );
   const dispatch = useDispatch<any>();
-
   useEffect(() => {
     dispatch(fetchMenu());
   }, [dispatch]);
-
-  const truncateText = (text: string, maxLength: number) => {
-    if (text.length <= maxLength) {
-      return text;
-    }
-    return `${text.slice(0, maxLength)}...`;
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,6 +44,65 @@ const MenuItems = () => {
 
     handleResize();
   }, []);
+
+  const handleAddItems = async (items: MenuItem) => {
+    setCartData(items);
+
+    if (session?.user) {
+      try {
+        const res = await axios.post(
+          "/api/carts",
+          { items, email },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (res.status == 200) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your Items is Added",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      } catch (error: any) {
+        if (error.response && error.response.status === 409) {
+          Swal.fire({
+            position: "top-end",
+            icon: "info",
+            title: "This item is already in your cart.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Something went wrong while adding the item.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    } else {
+      Swal.fire({
+        title: "Please Login to Order Products",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Now",
+      }).then((res) => {
+        if (res.isConfirmed) {
+          window.location.href = "/sign-in";
+        }
+      });
+    }
+  };
 
   return (
     <div>
@@ -94,7 +149,10 @@ const MenuItems = () => {
                     </div>
                     <div className="flex justify-between px-3">
                       <p className="font-bold">${items.price}</p>
-                      <Button className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1 hover:text-white">
+                      <Button
+                        onClick={() => handleAddItems(items)}
+                        className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1 hover:text-white"
+                      >
                         <ShoppingCart size={15} /> Add
                       </Button>
                     </div>

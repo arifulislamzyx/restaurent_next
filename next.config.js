@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["cristianonew.ukrdevs.com", "images.remotePatterns"],
+    domains: [
+      "cristianonew.ukrdevs.com",
+      "images.remotePatterns",
+      "lh3.googleusercontent.com",
+    ],
   },
-  reactStrictMode: true,
 
   env: {
     MONGODB_URI: process.env.MONGO_URI,

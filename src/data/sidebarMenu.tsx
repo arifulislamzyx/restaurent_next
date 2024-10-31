@@ -33,8 +33,8 @@ export const sidebarOptions = [
       {
         id: 1,
         name: "View Profile",
-        slug: "/dashboard/cv-preview",
-        icons: <UserRoundCog />,
+        slug: "/dashboard",
+        icons: <UserRoundCog size={16} />,
       },
       {
         id: 2,
@@ -45,7 +45,7 @@ export const sidebarOptions = [
       {
         id: 3,
         name: "Edit Your Profile",
-        slug: "/dashboard/editProfile",
+        slug: "/dashboard",
         icons: <User size={16} />,
       },
       {
@@ -108,7 +108,7 @@ export const sidebarOptions = [
   {
     id: 4,
     title: "My Activities",
-    link: "/dashboard/messages",
+    link: "/dashboard",
     submenus: [
       {
         id: 1,
@@ -164,7 +164,7 @@ export const sidebarOptions = [
   {
     id: 6,
     title: "Employer Activities",
-    link: "/dashboard/settings",
+    link: "/dashboard",
     submenus: [
       {
         id: 1,

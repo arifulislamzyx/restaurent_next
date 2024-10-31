@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import SocialLogin from "@/Authentication/Login/SocialLogin";
-import { credenTialsSignIn } from "../actions";
+import SocialLogin from "@/Authentication/SocailLogin/SocialLogin";
 import { useRouter } from "next/navigation";
 import Button from "@/components/buttons/Button";
+import { credenTialsSignIn } from "../../actions";
 
 const Page = () => {
   const [error, setError] = useState("");
@@ -20,10 +20,8 @@ const Page = () => {
         email,
         password,
       };
-      console.log("formdata", formData);
 
       const response = await credenTialsSignIn(formData);
-      console.log("res check", response);
 
       if (!!response.error) {
         setError(response.error.message);
@@ -43,10 +41,7 @@ const Page = () => {
 
         {error && <p className="text-sm text-red-600 text-center">{error}</p>}
 
-        <form
-          onSubmit={handleSignIn}
-          className="space-y-4 border-t-2 border-slate-50"
-        >
+        <form onSubmit={handleSignIn} className="space-y-4 ">
           <div>
             <label
               htmlFor="email"
@@ -96,7 +91,7 @@ const Page = () => {
         <SocialLogin />
 
         <p className="mt-4 text-sm text-center text-gray-600">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <a href="/registration" className="text-blue-500 hover:underline">
             Register here
           </a>

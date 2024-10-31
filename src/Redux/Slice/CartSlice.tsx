@@ -18,13 +18,9 @@ const initialState: CartProps = {
 
 export const fetchCartItems = createAsyncThunk(
   "carts/fetchCartItems",
-  async (token: string) => {
+  async (email: string) => {
     try {
-      const res = await axios.get("api/getCartItems", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(`/api/getCartItems?email=${email}`);
       return res.data;
     } catch (error) {
       throw Error("Error While getting Add Carts Data");

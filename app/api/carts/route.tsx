@@ -2,23 +2,19 @@ import connectionDb from "@/libs/db.connection";
 import mongoose from "mongoose";
 import Cart from "../../../server/models/addCart.schema";
 import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
 export const POST = async (req) => {
   await mongoose.connect(connectionDb);
 
   const { items, email } = await req.json();
 
-  const authHeader = req.headers.get("authorization");
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-  if (!authHeader) {
+  if (!token.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const token = authHeader.split(" ")[1];
-
-  if (!token) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-  if (token) {
+  if (token.id) {
     try {
       const existingItem = await Cart.findOne({
         email,
@@ -27,7 +23,7 @@ export const POST = async (req) => {
 
       if (existingItem) {
         return NextResponse.json(
-          { message: "This item is Already Exist" },
+          { message: "This item is Already exist" },
           {
             status: 409,
           }
@@ -37,7 +33,7 @@ export const POST = async (req) => {
       await cartItem.save();
       return NextResponse.json(cartItem, { status: 200 });
     } catch (error) {
-      console.error("error while add to cart");
+      console.error("Error while add to cart");
     }
   }
 };

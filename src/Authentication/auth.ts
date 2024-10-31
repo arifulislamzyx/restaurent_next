@@ -14,18 +14,18 @@ export const {
   session: {
     strategy: "jwt",
   },
-  //   callbacks: {
-  //     async jwt({ token, user, account }) {
-  //       if (account) {
-  //         token.id = user.id;
-  //       }
-  //       return token;
-  //     },
-  //     async session({ session, token }) {
-  //       session.user.id = token.id;
-  //       return session;
-  //     },
-  //   },
+  callbacks: {
+    async jwt({ token, user, account }) {
+      if (account) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      return session;
+    },
+  },
   providers: [
     CredentialsProvider({
       credentials: {
