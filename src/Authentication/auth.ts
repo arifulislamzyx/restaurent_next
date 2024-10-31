@@ -41,7 +41,6 @@ export const {
           const user = await User.findOne({
             email: credentials?.email,
           });
-          console.log("user auth page", user);
 
           if (!user) {
             console.error("User not found");
@@ -55,8 +54,6 @@ export const {
             console.error("Password mismatch");
             throw new Error("Email or Password is not correct");
           }
-
-          console.log("password get", matched);
 
           return user;
         } catch (error) {

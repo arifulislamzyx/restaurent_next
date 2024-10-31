@@ -18,8 +18,6 @@ const Page = () => {
   } = useSelector((state: RootState) => state.carts);
   const { data: session, status } = useSession();
 
-  console.log("items", cartItems);
-
   const userEmail = session?.user.email;
 
   useEffect(() => {

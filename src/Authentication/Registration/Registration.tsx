@@ -23,7 +23,6 @@ const Registration = () => {
         email,
         password,
       };
-      console.log("user data", userData);
 
       const res = await axios
         .post("api/registration", userData, {
@@ -32,9 +31,7 @@ const Registration = () => {
           },
         })
         .then((res) => {
-          console.log("res sent", res);
           if (res.status === 201) {
-            console.log("User registration successful:", res.data);
             router.push("/");
           } else {
             Swal.fire({
