@@ -1,11 +1,11 @@
-import connectionDb from "@/libs/db.connection";
+import connectionDb from "@/lib/db.connection";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import { createUser } from "@/queries/users";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { User } from "../../../server/models/user.schema";
 
-export const POST = async (req) => {
+export const POST = async (req: NextRequest) => {
   await mongoose.connect(connectionDb);
   try {
     const { name, email, password } = await req.json();

@@ -1,4 +1,4 @@
-import connectionDb from "@/libs/db.connection";
+import connectionDb from "@/lib/db.connection";
 import mongoose from "mongoose";
 import Cart from "../../../server/models/addCart.schema";
 import { NextResponse } from "next/server";

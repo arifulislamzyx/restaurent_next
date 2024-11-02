@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import connectionDb from "@/libs/db.connection";
-import { NextResponse } from "next/server";
+import connectionDb from "@/lib/db.connection";
+import { NextRequest, NextResponse } from "next/server";
 import Cart from "../../../server/models/addCart.schema";
 
-export async function DELETE(req: Request) {
+export async function DELETE(req: NextRequest) {
   await mongoose.connect(connectionDb);
 
   try {

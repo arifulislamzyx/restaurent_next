@@ -1,8 +1,9 @@
 import Menu from "../../../server/models/menu.schema";
 import mongoose from "mongoose";
-import connectionDb from "@/libs/db.connection";
+import connectionDb from "@/lib/db.connection";
+import { NextRequest } from "next/server";
 
-export const GET = async (request: Request) => {
+export const GET = async (req: NextRequest) => {
   await mongoose.connect(connectionDb);
   const menuItems = await Menu.find();
 

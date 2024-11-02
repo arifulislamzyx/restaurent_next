@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
-import connectionDb from "@/libs/db.connection";
+import connectionDb from "@/lib/db.connection";
 import Menu from "../../../../server/models/menu.schema";
+import { NextRequest } from "next/server";
 
 export const GET = async (
-  request: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
   await mongoose.connect(connectionDb);

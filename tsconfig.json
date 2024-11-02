@@ -25,14 +25,18 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/components/ui/navigation-menu.jsx", "src/components/ui/navigation-menu.jsx", "server/models/menu.schema.js"  ],
+    "**/*.tsx",
+    "src/components/ui/navigation-menu.jsx",
+    "src/components/ui/navigation-menu.jsx",
+    "server/models/menu.schema.js"
+, "src/lib/db.connection.tsx"  ],
   "exclude": [
     "node_modules"
   ]

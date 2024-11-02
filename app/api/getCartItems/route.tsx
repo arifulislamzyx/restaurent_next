@@ -1,10 +1,10 @@
-import connectionDb from "@/libs/db.connection";
+import connectionDb from "@/lib/db.connection";
 import mongoose from "mongoose";
 import { getToken } from "next-auth/jwt";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Cart from "../../../server/models/addCart.schema";
 
-export const GET = async (req) => {
+export const GET = async (req: NextRequest) => {
   await mongoose.connect(connectionDb);
 
   const email = req.nextUrl.searchParams.get("email");

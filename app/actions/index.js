@@ -12,6 +12,8 @@ export const doLogout = async () => {
 export const credenTialsSignIn = async (formData) => {
   try {
     const res = await signIn("credentials", {
+      // email: formData.get("email"),
+      // password: formData.get("password"),
       email: formData.email,
       password: formData.password,
       redirect: false,
