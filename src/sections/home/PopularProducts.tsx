@@ -13,9 +13,11 @@ import Button from "@/components/buttons/Button";
 
 type RootSate = any;
 
-const PopularProducts: React.FC = () => {
-  const [showAll, setShowAll] = useState(false);
-  const [showProductModal, setShowProductModal] = useState(false);
+const PopularProducts: React.FC = ({
+  handleAddCart,
+}: {
+  handleAddCart: any;
+}) => {
   const [textLength, setTextLength] = useState(40);
 
   const { menu, isLoading, isError, error } = useSelector(
@@ -61,9 +63,9 @@ const PopularProducts: React.FC = () => {
         </span>
       </h2>
       <div className="grid grid-cols-1 mx-auto items-center gap-3 px-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8  mt-5">
-        {/* .slice(0, showAll ? menuItems.length : 6). */}
         {menu.slice(0, 9).map((items: MenuItem) => (
           <div
+            href={`/menus/${items._id}`}
             key={items._id}
             className="flex gap-2 shadow-md hover:shadow-2xl p-1 rounded-2xl"
           >
@@ -75,17 +77,17 @@ const PopularProducts: React.FC = () => {
               className="rounded-s-xl"
             ></Image>
             <div>
-              <div>
+              <Link href={`/menus/${items._id}`}>
                 <h3 className="text-sm font-bold md:text-base lg:text-lg mb-2">
                   {items.name}
                 </h3>
                 <p>{truncateText(items.recipe, textLength)}</p>
-              </div>
+              </Link>
               <div className="flex justify-between px-3 mt-1">
                 <p className="font-bold">${items.price}</p>
 
                 <Button
-                  onClick={() => setShowProductModal(true)}
+                  onClick={handleAddCart}
                   className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
                 >
                   <ShoppingCart size={16} />

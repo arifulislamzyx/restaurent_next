@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { Progress } from "@/components/ui/progress";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/Redux/Store/Store";
 import { fetchMenu } from "@/Redux/Slice/MenuSlice";
@@ -17,6 +16,7 @@ import { productAnm, showSlideProduct } from "@/animation/varients";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { truncateText } from "@/utils/TruncateText";
+import Loading from "@/components/buttons/loading";
 
 const Page = ({ params }) => {
   const { id } = params;
@@ -24,8 +24,8 @@ const Page = ({ params }) => {
   const { data: session, status } = useSession();
   const email = session?.user?.email;
   const [cartData, setCartData] = useState<MenuItem | null>(null);
-  const [progress, setProgress] = useState(0);
   const [textLength, setTextLength] = useState(40);
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch<AppDispatch>();
   const { menu, isLoading, isError } = useSelector((state) => state.menus);
@@ -35,30 +35,24 @@ const Page = ({ params }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => (prev < 90 ? prev + 10 : prev));
-    }, 300);
     axios(`/api/menu/${id}`)
       .then((res) => {
         res;
         setMenuItem(res.data);
-        clearInterval(interval);
-        setProgress(100);
       })
       .catch((err) => console.error("Error fetching product:", err));
-    clearInterval(interval);
-
-    return () => clearInterval(interval);
   }, [id]);
 
-  const handleAddItems = async (items: MenuItem) => {
+  const handleAddItems = async (items: MenuItem, itemQuantity: number) => {
+    console.log("quantity", itemQuantity);
+
     setCartData(items);
 
     if (session?.user) {
       try {
         const res = await axios.post(
           "/api/carts",
-          { items, email },
+          { items, email, quantity: itemQuantity },
           {
             headers: {
               "Content-Type": "application/json",
@@ -84,6 +78,8 @@ const Page = ({ params }) => {
             timer: 1500,
           });
         } else {
+          console.log("error here", error);
+
           Swal.fire({
             position: "top-end",
             icon: "error",
@@ -126,11 +122,18 @@ const Page = ({ params }) => {
   if (menu.length == 0 || !menuItem || filterMenu === null) {
     return (
       <div className="h-screen flex flex-col items-center justify-center">
-        <p>Loading...</p>
-        <Progress value={progress} className="w-[60%]" />
+        <Loading />
       </div>
     );
   }
+
+  const handleIncrement = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const handleDecrement = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  };
 
   return (
     <div>
@@ -146,8 +149,23 @@ const Page = ({ params }) => {
           <h1 className="text-2xl font-bold">{menuItem?.name}</h1>
           <p className="mt-4 ">{menuItem?.recipe}</p>
           <p className="mt-2 text-xl font-semibold">${menuItem?.price}</p>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleDecrement}
+              className="bg-gray-200 px-2 py-1 rounded"
+            >
+              -
+            </button>
+            <span>{quantity}</span>
+            <button
+              onClick={handleIncrement}
+              className="bg-gray-200 px-2 py-1 rounded"
+            >
+              +
+            </button>
+          </div>
           <Button
-            onClick={() => handleAddItems(menuItem?._id)}
+            onClick={() => handleAddItems(menuItem?._id, quantity)}
             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
           >
             Add to Cart

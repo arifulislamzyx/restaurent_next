@@ -18,7 +18,6 @@ export async function DELETE(req: NextRequest) {
 
     return NextResponse.json(deletedItem);
   } catch (error) {
-    console.error("Error while deletin items", error);
     return NextResponse.json(
       {
         message: "Server Error While Deleting the items",

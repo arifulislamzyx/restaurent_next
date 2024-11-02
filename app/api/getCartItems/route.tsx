@@ -31,7 +31,6 @@ export const GET = async (req: NextRequest) => {
     }
     return NextResponse.json({ cartItems }, { status: 200 });
   } catch (error) {
-    console.error("Error Retriving Cart Items ", error);
     return NextResponse.json(
       { error: " Faild to retrive cart items" },
       { status: 500 }

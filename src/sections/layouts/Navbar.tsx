@@ -15,11 +15,36 @@ import {
 import Button from "@/components/buttons/Button";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/Redux/Store/Store";
+import { fetchCartItems } from "@/Redux/Slice/CartSlice";
+import { IACartwithEmail } from "@/types/cart";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
   const { data: session, status } = useSession();
+  const dispatch = useDispatch<AppDispatch>();
+  const {
+    carts: cartItems,
+    isLoading,
+    isError,
+    error,
+  } = useSelector((state: RootState) => state.carts);
+
+  const userEmail = session?.user.email;
+
+  useEffect(() => {
+    if (userEmail) {
+      dispatch(fetchCartItems(userEmail));
+    }
+  }, [dispatch, userEmail]);
+
+  const getCartItems: any = cartItems?.cartItems?.map(
+    (item: IACartwithEmail) => item.items
+  );
+
+  console.log("getcart Items", getCartItems);
 
   const toggleProfile = (e) => {
     e.preventDefault();
@@ -52,9 +77,9 @@ const Navbar = () => {
         <div className="hidden md:flex md:items-center">
           {session?.user ? (
             <div className="flex items-center gap-6">
-              <Link href="/dashboard/cartItems">
+              <Link href="/cart">
                 <ShoppingCart size={20} />
-                {/* {carts?.cartItems?.length} */}
+                {getCartItems?.length || 0}
               </Link>
               {session?.user?.image ? (
                 <Image
@@ -104,13 +129,11 @@ const Navbar = () => {
           <div className="grid grid-cols-1 p-4">
             {session?.user ? (
               <>
-                <Link
-                  href="/dashboard/cartItems"
-                  className="py-2 hover:bg-slate-100 rounded"
-                >
+                <Link href="/cart" className="py-2 hover:bg-slate-100 rounded">
+                  {getCartItems?.length || 0}
                   <ShoppingCart size={20} />
                 </Link>
-                <div className="flex items-center gap-2">
+                <div className="text-center space-y-4 mt-4">
                   {session?.user?.image ? (
                     <div className="flex items-center gap-2">
                       <Image
@@ -126,7 +149,10 @@ const Navbar = () => {
                   ) : (
                     <User />
                   )}
-                  <Button onClick={handleLogout} className="w-full text-left">
+                  <Button
+                    onClick={handleLogout}
+                    className="w-full text-center text-white bg-orange-500 px-4 py-2 rounded-xl  "
+                  >
                     Logout
                   </Button>
                 </div>
@@ -151,10 +177,12 @@ const Navbar = () => {
         </div>
       )}
       {profileMenu && (
-        <div className="absolute top-14 right-10  grid grid-cols-1 p-5 rounded-lg shadow-2xl">
+        <div className="absolute top-14 text-center space-y-2 right-10  grid grid-cols-1 p-5 rounded-lg shadow-2xl z-10\">
           <Link href="/dashboard">Dashboard</Link>
-          <Link href="/dasboard/cartItems">Cart Items</Link>
-          <form className=" bg-gradient-to-t bg-orange-600 px-5 py-2 cursor cursor-pointer">
+          <Link href="/cart">Cart Items</Link>
+          <Link href="/dasboard/profile">Profile</Link>
+
+          <form className=" text-white bg-orange-500 px-6 py-2 rounded-xl cursor cursor-pointer">
             <Button onClick={handleLogout}>Logout</Button>
           </form>
         </div>

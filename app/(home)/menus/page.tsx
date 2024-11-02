@@ -16,6 +16,7 @@ import Button from "@/components/buttons/Button";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import { truncateText } from "@/utils/TruncateText";
+import PopularProducts from "@/sections/home/PopularProducts";
 
 const MenuItems = () => {
   const [cartData, setCartData] = useState<MenuItem | null>(null);

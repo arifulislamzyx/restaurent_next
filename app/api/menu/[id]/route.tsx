@@ -22,7 +22,6 @@ export const GET = async (
 
     return new Response(JSON.stringify(menuItems), { status: 200 });
   } catch (error) {
-    console.error("Error fetching menu item:", error);
     return new Response(JSON.stringify({ message: "Internal Server Error" }), {
       status: 500,
     });

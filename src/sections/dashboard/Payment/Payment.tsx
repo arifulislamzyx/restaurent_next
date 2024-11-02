@@ -5,13 +5,15 @@ import { Elements } from "@stripe/react-stripe-js";
 import ConvertCurrency from "@/lib/convertCurrency";
 import Checkout from "./Checkout";
 import { useSearchParams } from "next/navigation";
+import { ICart } from "@/types/cart";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_SRTIPE);
-const Payment = ({ amount }: { amount: any }) => {
+
+const Payment = () => {
+  const searchParams = useSearchParams();
+  const amount = searchParams.get("amount");
   return (
     <div>
-      <h3>Payment Page</h3>
-
       <Elements
         stripe={stripePromise}
         options={{

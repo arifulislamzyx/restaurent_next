@@ -1,6 +1,5 @@
 import Sidebar from "@/sections/dashboard/sidebar";
 import DashboardNav from "@/sections/layouts/DashboardNav";
-import Navbar from "@/sections/layouts/Navbar";
 import { ReactNode } from "react";
 
 interface LayoutProps {
@@ -10,10 +9,6 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <div className="hidden md:block">
-        <Navbar />
-      </div>
-
       <div className="block z-10 md:hidden">
         <DashboardNav />
       </div>

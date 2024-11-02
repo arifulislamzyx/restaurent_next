@@ -5,6 +5,8 @@ const protectedPatch = [
   "/api/deleteCartItem",
   "/api/fetchCartItems",
   "/dashboard",
+  "/cart",
+  "/payment-success",
 ];
 
 export async function middleware(req) {
@@ -26,5 +28,11 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/api/deleteCartItem", "/api/fetchCartItems", "/dashboard/:path*"], //
+  matcher: [
+    "/api/deleteCartItem",
+    "/api/fetchCartItems",
+    "/dashboard/:path*",
+    "/cart",
+    "/payment-success",
+  ],
 };

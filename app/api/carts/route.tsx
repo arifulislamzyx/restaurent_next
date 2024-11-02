@@ -7,7 +7,7 @@ import { getToken } from "next-auth/jwt";
 export const POST = async (req) => {
   await mongoose.connect(connectionDb);
 
-  const { items, email } = await req.json();
+  const { items, email, quantity } = await req.json();
 
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
@@ -29,11 +29,14 @@ export const POST = async (req) => {
           }
         );
       }
-      const cartItem = new Cart({ items, email });
+      const cartItem = new Cart({ items, email, quantity });
       await cartItem.save();
       return NextResponse.json(cartItem, { status: 200 });
     } catch (error) {
-      console.error("Error while add to cart");
+      return NextResponse.json(
+        { message: "Error While Adding Cart" },
+        { status: 500 }
+      );
     }
   }
 };

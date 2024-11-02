@@ -1,13 +1,20 @@
 import Menu from "../../../server/models/menu.schema";
 import mongoose from "mongoose";
 import connectionDb from "@/lib/db.connection";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
-  await mongoose.connect(connectionDb);
-  const menuItems = await Menu.find();
+  try {
+    await mongoose.connect(connectionDb);
+    const menuItems = await Menu.find();
 
-  menuItems.find((data) => data._id === data._id);
+    menuItems.find((data) => data._id === data._id);
 
-  return Response.json(menuItems);
+    return NextResponse.json(menuItems);
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error while getting menu items" },
+      { status: 500 }
+    );
+  }
 };

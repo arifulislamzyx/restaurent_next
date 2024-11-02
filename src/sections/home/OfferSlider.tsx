@@ -15,15 +15,6 @@ const OfferSlider: React.FC = () => {
     slides: { perView: 1, spacing: 10 },
   });
 
-  // const settings = {
-  //   dots: false,
-  //   autoplay: true,
-  //   infinite: true,
-  //   speed: 1000,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  // };
-
   return (
     <div className="max-w-5xl mx-5 md:mx-auto lg:mx-auto">
       <div ref={sliderRef} className="keen-slider">
