@@ -1,15 +1,14 @@
 "use client";
+import Loading from "@/components/buttons/loading";
 import { clearCart } from "@/Redux/Slice/CartSlice";
 import { AppDispatch } from "@/Redux/Store/Store";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-const PaymentSuccess = () => {
-  const searchParams = useSearchParams();
-  const amount = searchParams.get("amount");
+const PaymentSuccess = ({ amount }: { amount: number }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { data: session } = useSession();
 
@@ -39,4 +38,18 @@ const PaymentSuccess = () => {
   );
 };
 
-export default PaymentSuccess;
+const AmountFetcher = () => {
+  const searchParams = useSearchParams();
+  const amount = Number(searchParams.get("amount")) || 0;
+  return <PaymentSuccess amount={amount} />;
+};
+
+const Payment = () => {
+  return (
+    <Suspense fallback={<Loading />}>
+      <AmountFetcher />
+    </Suspense>
+  );
+};
+
+export default Payment;

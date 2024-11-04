@@ -7,7 +7,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "@/Redux/Store/Store";
+import { AppDispatch, RootState } from "@/Redux/Store/Store";
 import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import { useKeenSlider } from "keen-slider/react";
 import { motion } from "framer-motion";
@@ -20,7 +20,7 @@ import Loading from "@/components/buttons/loading";
 
 const Page = ({ params }) => {
   const { id } = params;
-  const [menuItem, setMenuItem] = useState<MenuItem | null>(null);
+  const [menuItem, setMenuItem] = useState(null);
   const { data: session, status } = useSession();
   const email = session?.user?.email;
   const [cartData, setCartData] = useState<MenuItem | null>(null);
@@ -28,7 +28,9 @@ const Page = ({ params }) => {
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch<AppDispatch>();
-  const { menu, isLoading, isError } = useSelector((state) => state.menus);
+  const { menu, isLoading, isError } = useSelector(
+    (state: RootState) => state.menus
+  );
 
   useEffect(() => {
     dispatch(fetchMenu());
@@ -43,16 +45,14 @@ const Page = ({ params }) => {
       .catch((err) => console.error("Error fetching product:", err));
   }, [id]);
 
-  const handleAddItems = async (items: MenuItem, itemQuantity: number) => {
-    console.log("quantity", itemQuantity);
-
+  const handleAddItems = async (items: MenuItem) => {
     setCartData(items);
 
     if (session?.user) {
       try {
         const res = await axios.post(
           "/api/carts",
-          { items, email, quantity: itemQuantity },
+          { items, email },
           {
             headers: {
               "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const Page = ({ params }) => {
             timer: 1500,
           });
         } else {
-          console.log("error here", error);
+          console.error("error here", error);
 
           Swal.fire({
             position: "top-end",
@@ -107,7 +107,7 @@ const Page = ({ params }) => {
   };
 
   const filterMenu = menu.filter(
-    (item) => item.category === menuItem?.category
+    (item: MenuItem) => item.category === menuItem?.category
   );
 
   const [sliderRef] = useKeenSlider({
@@ -149,23 +149,8 @@ const Page = ({ params }) => {
           <h1 className="text-2xl font-bold">{menuItem?.name}</h1>
           <p className="mt-4 ">{menuItem?.recipe}</p>
           <p className="mt-2 text-xl font-semibold">${menuItem?.price}</p>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleDecrement}
-              className="bg-gray-200 px-2 py-1 rounded"
-            >
-              -
-            </button>
-            <span>{quantity}</span>
-            <button
-              onClick={handleIncrement}
-              className="bg-gray-200 px-2 py-1 rounded"
-            >
-              +
-            </button>
-          </div>
           <Button
-            onClick={() => handleAddItems(menuItem?._id, quantity)}
+            onClick={() => handleAddItems(menuItem)}
             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
           >
             Add to Cart
@@ -185,7 +170,7 @@ const Page = ({ params }) => {
         className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 md:gap-4 lg:gap-8 mt-5 py-4  keen-slider"
         ref={sliderRef}
       >
-        {filterMenu.map((menu: MenuItem) => (
+        {filterMenu.map((menu) => (
           <div
             className=" shadow-xl hover:shadow-2xl rounded-xl  keen-slider__slide"
             key={menu._id}
@@ -216,7 +201,7 @@ const Page = ({ params }) => {
                 <div className="flex justify-between px-3">
                   <p className="font-bold">${menu.price}</p>
                   <Button
-                    onClick={() => handleAddItems(menu._id)}
+                    onClick={() => handleAddItems(menu)}
                     className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1 hover:text-white"
                   >
                     <ShoppingCart size={15} /> Add

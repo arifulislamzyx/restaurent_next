@@ -65,7 +65,6 @@ const PopularProducts: React.FC = ({
       <div className="grid grid-cols-1 mx-auto items-center gap-3 px-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8  mt-5">
         {menu.slice(0, 9).map((items: MenuItem) => (
           <div
-            href={`/menus/${items._id}`}
             key={items._id}
             className="flex gap-2 shadow-md hover:shadow-2xl p-1 rounded-2xl"
           >

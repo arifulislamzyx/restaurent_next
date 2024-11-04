@@ -1,4 +1,5 @@
 export interface ICart {
+  items: any;
   _id: { type: String; required: true };
   name: { type: String; required: true };
   recipe: { type: String };
@@ -9,12 +10,7 @@ export interface ICart {
 }
 
 export interface IACartwithEmail {
-  email: string;
-  _id: string;
-  items: ICart;
-}
-
-export interface IACartArray {
   cartItems: any;
-  items: IACartwithEmail[];
+  email: String;
+  items: ICart;
 }

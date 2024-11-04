@@ -32,5 +32,3 @@ const SocialLogin = () => {
 };
 
 export default SocialLogin;
-
-SocialLogin.js;

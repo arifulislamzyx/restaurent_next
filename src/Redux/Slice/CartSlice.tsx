@@ -1,9 +1,8 @@
-import { ICart } from "@/types/cart";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface CartProps {
-  carts: ICart[];
+  carts: any;
   isLoading: boolean;
   isError: boolean;
   error: any;

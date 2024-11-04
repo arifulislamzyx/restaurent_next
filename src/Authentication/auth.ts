@@ -84,6 +84,4 @@ export const {
       },
     }),
   ],
-  // secret: process.env.NEXTAUTH_SECRET,
-  // debug: true,
 });

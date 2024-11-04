@@ -2,17 +2,16 @@
 import Loading from "@/components/buttons/loading";
 import ConvertCurrency from "@/lib/convertCurrency";
 import { fetchCartItems } from "@/Redux/Slice/CartSlice";
-import { AppDispatch } from "@/Redux/Store/Store";
+import { AppDispatch, RootState } from "@/Redux/Store/Store";
 import { IACartwithEmail } from "@/types/cart";
 import {
-  CardElement,
   PaymentElement,
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Checkout = ({ amount }: { amount: any }) => {
@@ -23,11 +22,11 @@ const Checkout = ({ amount }: { amount: any }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const {
-    carts: cartItems,
+    carts: { cartItems },
     isLoading,
     isError,
     error,
-  } = useSelector((state) => state.carts);
+  } = useSelector((state: RootState) => state.carts);
   const { data: session, status } = useSession();
 
   const userEmail = session?.user.email;
@@ -38,36 +37,39 @@ const Checkout = ({ amount }: { amount: any }) => {
     }
   }, [dispatch, userEmail]);
 
-  const getCartItems: any = cartItems?.cartItems?.map(
-    (item: IACartwithEmail) => item.items
-  );
+  const getCartItems: any = useMemo(() => {
+    return cartItems?.map((item: IACartwithEmail) => item.items);
+  }, [cartItems]);
+
   useEffect(() => {
     if (amount > 0) {
-      axios
-        .post(
-          "/api/create-payment-intent",
-          {
-            amount: ConvertCurrency(amount, 100),
-            items: getCartItems,
-            email: userEmail,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
+      try {
+        axios
+          .post(
+            "/api/create-payment-intent",
+            {
+              amount: ConvertCurrency(amount, 100),
+              items: getCartItems,
+              email: userEmail,
             },
-          }
-        )
-        .then((res) => {
-          console.log("payment got", res);
-          setClientSecret(res.data.clientSecret);
-        })
-        .catch((err) => console.error("payment res Error", err));
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then((res) => {
+            setClientSecret(res.data.clientSecret);
+          })
+          .catch((err) => console.error("payment res Error", err));
+      } catch (error) {
+        console.error("Payment error:", error);
+      }
     }
-  }, []);
+  }, [amount, getCartItems, userEmail, setClientSecret]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("clicked");
 
     setLoading(true);
 

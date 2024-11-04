@@ -3,13 +3,9 @@ import connectionDb from "@/lib/db.connection";
 import Menu from "../../../../server/models/menu.schema";
 import { NextRequest } from "next/server";
 
-export const GET = async (
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) => {
+export const GET = async (req: NextRequest) => {
   await mongoose.connect(connectionDb);
-
-  const { id } = params;
+  const id = req.nextUrl.pathname.split("/").pop();
 
   try {
     const menuItems = await Menu.findById(id);

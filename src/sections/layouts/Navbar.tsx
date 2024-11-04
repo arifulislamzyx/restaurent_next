@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import foodKing from "../../../public/foodKing.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import {
   AlignJustify,
@@ -18,7 +18,7 @@ import { signOut } from "next-auth/react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/Redux/Store/Store";
 import { fetchCartItems } from "@/Redux/Slice/CartSlice";
-import { IACartwithEmail } from "@/types/cart";
+import { ICart } from "@/types/cart";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -26,7 +26,7 @@ const Navbar = () => {
   const { data: session, status } = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const {
-    carts: cartItems,
+    carts: { cartItems },
     isLoading,
     isError,
     error,
@@ -40,11 +40,7 @@ const Navbar = () => {
     }
   }, [dispatch, userEmail]);
 
-  const getCartItems: any = cartItems?.cartItems?.map(
-    (item: IACartwithEmail) => item.items
-  );
-
-  console.log("getcart Items", getCartItems);
+  const getCartItems = cartItems?.map((item: ICart) => item.items);
 
   const toggleProfile = (e) => {
     e.preventDefault();
@@ -61,7 +57,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
+    <nav className="border-b-2 pb-2">
       <div
         className={`container  md:flex md:justify-between md:pt-5 lg:flex lg:justify-between lg:pt-5`}
       >
@@ -76,10 +72,16 @@ const Navbar = () => {
         </Link>
         <div className="hidden md:flex md:items-center">
           {session?.user ? (
-            <div className="flex items-center gap-6">
-              <Link href="/cart">
+            <div className="relative flex items-center gap-6">
+              <Link href="/cart" className="flex">
                 <ShoppingCart size={20} />
-                {getCartItems?.length || 0}
+                <p>
+                  {getCartItems?.length > 0 && (
+                    <span className="absolute -top-2  bg-orange-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {getCartItems.length}
+                    </span>
+                  )}
+                </p>
               </Link>
               {session?.user?.image ? (
                 <Image
@@ -126,12 +128,18 @@ const Navbar = () => {
       </Button>
       {openMenu && (
         <div className="absolute top-16 right-0 bg-white border rounded shadow-md z-50 w-40">
-          <div className="grid grid-cols-1 p-4">
+          <div className="relative grid grid-cols-1 p-4">
             {session?.user ? (
-              <>
+              <div>
                 <Link href="/cart" className="py-2 hover:bg-slate-100 rounded">
-                  {getCartItems?.length || 0}
                   <ShoppingCart size={20} />
+                  <p>
+                    {getCartItems?.length > 0 && (
+                      <span className="absolute top-1  bg-orange-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        {getCartItems.length}
+                      </span>
+                    )}
+                  </p>
                 </Link>
                 <div className="text-center space-y-4 mt-4">
                   {session?.user?.image ? (
@@ -156,7 +164,7 @@ const Navbar = () => {
                     Logout
                   </Button>
                 </div>
-              </>
+              </div>
             ) : (
               <>
                 <Link

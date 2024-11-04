@@ -2,7 +2,7 @@
 import { fetchCartItems } from "@/Redux/Slice/CartSlice";
 import { AppDispatch, RootState } from "@/Redux/Store/Store";
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IACartwithEmail, ICart } from "@/types/cart";
 import Image from "next/image";
@@ -15,7 +15,7 @@ import { Trash2 } from "lucide-react";
 const Page = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
-    carts: cartItems,
+    carts: { cartItems },
     isLoading,
     isError,
     error,
@@ -32,16 +32,16 @@ const Page = () => {
     }
   }, [dispatch, userEmail]);
 
-  const getCartItems: any = cartItems?.cartItems?.map(
-    (item: IACartwithEmail) => item.items
-  );
+  const getCartItems = useMemo(() => {
+    return cartItems?.map((item: IACartwithEmail) => item.items);
+  }, [cartItems]);
 
   const total = getCartItems?.reduce(
     (acc, item) => acc + item.price * (item.quantity || 0),
     0
   );
 
-  const handleDelete = async (itemId) => {
+  const handleDelete = async (itemId: string) => {
     try {
       const response = await axios.delete("/api/deleteCartItem", {
         data: {
@@ -92,7 +92,7 @@ const Page = () => {
         </p>
 
         <div className="grid grid-cols-1 gap-4">
-          {getCartItems?.map((item: ICart) => (
+          {getCartItems?.map((item) => (
             <div key={item._id}>
               <div className="flex items-center justify-evenly gap-6  bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden p-4">
                 <Image
