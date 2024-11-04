@@ -57,7 +57,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="border-b-2 pb-2">
+    <nav>
       <div
         className={`container  md:flex md:justify-between md:pt-5 lg:flex lg:justify-between lg:pt-5`}
       >
