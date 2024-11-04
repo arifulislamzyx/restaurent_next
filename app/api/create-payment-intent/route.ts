@@ -22,7 +22,11 @@ export async function POST(req: NextRequest) {
       receipt_email: email,
     });
 
-    const paymentData = new MakePayment({ amount, email, items });
+    const paymentData = new MakePayment({
+      amount,
+      email,
+      items,
+    });
     await paymentData.save();
 
     return NextResponse.json({ clientSecret: paymentIntent.client_secret });

@@ -14,7 +14,7 @@ const OrderSchema = new mongoose.Schema({
   ],
   amount: { type: Number, require: true },
   paymentStatus: { type: String, default: "pending" },
-  stripePaymentIntentId: { type: String, require: true },
+  stripePaymentIntentId: { type: String },
   email: { type: String, require: true },
   createdAt: { type: Date, default: Date.now },
 });
@@ -24,6 +24,3 @@ mongoose.models = {};
 const MakePayment = mongoose.model("MakePayment", OrderSchema);
 
 export default MakePayment;
-
-// export default mongoose.models.MakePayment ||
-//   mongoose.model("MakePayent", OrderSchema);
