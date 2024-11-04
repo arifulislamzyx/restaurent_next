@@ -4,7 +4,7 @@ import Stripe from "stripe";
 import connectionDb from "@/lib/db.connection";
 import MakePayment from "../../../server/models/makePayment.schema";
 
-const stripe = new Stripe(process.env.Stripe_Secret_Key);
+const stripe = new Stripe(process.env.Stripe_Secret_Key || "");
 
 export async function POST(req: NextRequest) {
   await mongoose.connect(connectionDb);
