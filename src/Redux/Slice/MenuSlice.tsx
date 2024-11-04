@@ -8,6 +8,7 @@ interface MenuProps {
   isError: boolean;
   error: any;
 }
+
 const initialState: MenuProps = {
   menu: [],
   isLoading: false,
