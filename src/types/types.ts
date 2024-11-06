@@ -25,6 +25,6 @@ export interface MenuCardProps {
 }
 
 export interface ShowMoreButtonProps {
+  setShowAll: (value: boolean) => void;
   showAll: boolean;
-  onClick: () => void;
 }

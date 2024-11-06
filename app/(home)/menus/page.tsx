@@ -10,8 +10,7 @@ import { productAnm } from "@/animation/varients";
 import { RootState } from "@/Redux/Store/Store";
 import { useSession } from "next-auth/react";
 import MenuCard from "@/components/menu/MenuCard";
-import ShowMoreButton from "@/components/menu/ShowMoreButton";
-import PopularProducts from "@/sections/home/PopularProducts";
+import Button from "@/components/buttons/Button";
 
 const MenuItems = () => {
   const [cartData, setCartData] = useState<MenuItem | null>(null);
@@ -69,7 +68,12 @@ const MenuItems = () => {
 
           {menu.length > 12 && (
             <div className="text-center">
-              <ShowMoreButton showAll={showAll} onClick={() => !setShowAll} />
+              <Button
+                onClick={() => setShowAll(!showAll)}
+                className="bg-blue-600 m-4 p-2 rounded-xl text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-blue-600"
+              >
+                {showAll ? "Show Less" : "Show More.."}
+              </Button>
             </div>
           )}
         </div>

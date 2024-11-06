@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MenuItem } from "@/types/menuItems";
 import { motion } from "framer-motion";
 import { showSlideProduct } from "@/animation/varients";
 import { truncateText } from "@/utils/TruncateText";
