@@ -1,3 +1,5 @@
+import { MenuItem } from "./menuItems";
+
 export interface ModalsProps {
   isVisible: boolean;
   onClose: () => void;
@@ -8,4 +10,21 @@ export interface Component {
   title: string;
   href: string;
   description: string;
+}
+
+export interface AddToCartButtonProps {
+  item: MenuItem;
+  email?: string;
+  className: string;
+}
+
+export interface MenuCardProps {
+  item: MenuItem;
+  textLength: number;
+  email: string;
+}
+
+export interface ShowMoreButtonProps {
+  showAll: boolean;
+  onClick: () => void;
 }

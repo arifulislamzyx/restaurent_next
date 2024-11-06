@@ -9,7 +9,7 @@ import Image from "next/image";
 import axios from "axios";
 import Button from "@/components/buttons/Button";
 import { useRouter } from "next/navigation";
-import Loading from "@/components/buttons/loading";
+import Loading from "@/components/ui/loading";
 import { Trash2 } from "lucide-react";
 
 const Page = () => {

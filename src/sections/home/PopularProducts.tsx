@@ -7,52 +7,33 @@ import { MenuItem } from "@/types/menuItems";
 import SkeletonLoader from "../utils/Skeleton/SkeletonLoader";
 import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import { useDispatch, useSelector } from "react-redux";
-import RootSate from "@/Redux/Store/Store";
+import RootSate, { RootState } from "@/Redux/Store/Store";
 import { ChevronRight, ShoppingCart } from "lucide-react";
 import Button from "@/components/buttons/Button";
+import AddToCartButton from "@/components/menu/AddToCartButton";
+import PopularCartSkelliton from "@/components/ui/PopularCartSkelliton";
+import { useSession } from "next-auth/react";
+import PolularMenuCard from "@/components/popularProducts.tsx/MenuCard";
 
-type RootSate = any;
-
-const PopularProducts: React.FC = ({
-  handleAddCart,
-}: {
-  handleAddCart: any;
-}) => {
-  const [textLength, setTextLength] = useState(40);
-
+const PopularProducts: React.FC = () => {
   const { menu, isLoading, isError, error } = useSelector(
-    (state: RootSate) => state.menus
+    (state: RootState) => state.menus
   );
   const dispatch = useDispatch<any>();
+  const { data: session, status } = useSession();
+  const email = session?.user?.email;
 
   useEffect(() => {
     dispatch(fetchMenu());
   }, [dispatch]);
 
-  const truncateText = (text: string, maxLength: number) => {
-    if (text.length <= maxLength) {
-      return text;
-    }
-    return `${text.slice(0, maxLength)}...`;
-  };
-
   if (!Array.isArray(menu)) {
     return (
-      <div>
-        {isLoading && <p>Loading......</p>}
-        {isError && <p>Error: {error}</p>}
-        <div className="w-full grid grid-cols-1 mx-auto items-center gap-3 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8   mt-5">
-          <SkeletonLoader />
-          <SkeletonLoader />
-          <SkeletonLoader />
-          <SkeletonLoader />
-          <SkeletonLoader />
-          <SkeletonLoader />
-          <SkeletonLoader />
-          <SkeletonLoader />
-          <SkeletonLoader />
-        </div>
-      </div>
+      <PopularCartSkelliton
+        isLoading={isLoading}
+        isError={isError}
+        error={error}
+      />
     );
   }
   return (
@@ -63,38 +44,8 @@ const PopularProducts: React.FC = ({
         </span>
       </h2>
       <div className="grid grid-cols-1 mx-auto items-center gap-3 px-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8  mt-5">
-        {menu.slice(0, 9).map((items: MenuItem) => (
-          <div
-            key={items._id}
-            className="flex gap-2 shadow-md hover:shadow-2xl p-1 rounded-2xl"
-          >
-            <Image
-              src={items.image}
-              width={100}
-              height={50}
-              alt={items.name}
-              className="rounded-s-xl"
-            ></Image>
-            <div>
-              <Link href={`/menus/${items._id}`}>
-                <h3 className="text-sm font-bold md:text-base lg:text-lg mb-2">
-                  {items.name}
-                </h3>
-                <p>{truncateText(items.recipe, textLength)}</p>
-              </Link>
-              <div className="flex justify-between px-3 mt-1">
-                <p className="font-bold">${items.price}</p>
-
-                <Button
-                  onClick={handleAddCart}
-                  className="flex items-center gap-1 text-xs font-bold rounded-full p-1 shadow-2xl bg-slate-50 hover:bg-orange-600 hover:rounded-full hover:p-1"
-                >
-                  <ShoppingCart size={16} />
-                  Add
-                </Button>
-              </div>
-            </div>
-          </div>
+        {menu.slice(0, 9).map((item: MenuItem) => (
+          <PolularMenuCard key={item._id} item={item} email={email} />
         ))}
       </div>
       {menu.length > 9 && (
@@ -104,10 +55,6 @@ const PopularProducts: React.FC = ({
           </Link>
         </div>
       )}
-      {/* <Modals
-        isVisible={showProductModal}
-        onClose={() => setShowProductModal(false)}
-      ></Modals> */}
     </div>
   );
 };

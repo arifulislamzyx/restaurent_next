@@ -5,7 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import ConvertCurrency from "@/lib/convertCurrency";
 import Checkout from "./Checkout";
 import { useSearchParams } from "next/navigation";
-import Loading from "@/components/buttons/loading";
+import Loading from "@/components/ui/loading";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE || "");
 

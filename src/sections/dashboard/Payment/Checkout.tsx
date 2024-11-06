@@ -1,5 +1,5 @@
 "use client";
-import Loading from "@/components/buttons/loading";
+import Loading from "@/components/ui/loading";
 import ConvertCurrency from "@/lib/convertCurrency";
 import { fetchCartItems } from "@/Redux/Slice/CartSlice";
 import { AppDispatch, RootState } from "@/Redux/Store/Store";

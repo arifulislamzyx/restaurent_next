@@ -1,5 +1,5 @@
 "use client";
-import Loading from "@/components/buttons/loading";
+import Loading from "@/components/ui/loading";
 import { clearCart } from "@/Redux/Slice/CartSlice";
 import { AppDispatch } from "@/Redux/Store/Store";
 import axios from "axios";

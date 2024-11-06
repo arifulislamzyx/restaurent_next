@@ -9,11 +9,10 @@ import SocialLogin from "../SocailLogin/SocialLogin";
 const Registration = () => {
   const router = useRouter();
 
-  const handleRegistration = async (e) => {
+  const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget);
-
       const name = formData.get("name");
       const email = formData.get("email");
       const password = formData.get("password");
@@ -24,15 +23,36 @@ const Registration = () => {
         password,
       };
 
+      console.log(userData);
+
       const res = await axios
-        .post("api/registration", userData, {
+        .post("/api/registration", userData, {
           headers: {
             "Content-Type": "application/json",
           },
         })
         .then((res) => {
+          console.log(res);
+
           if (res.status === 201) {
-            router.push("/");
+            Swal.fire({
+              title: "User Created Succeffully",
+              showClass: {
+                popup: `
+                  animate__animated
+                  animate__fadeInUp
+                  animate__faster
+                `,
+              },
+              hideClass: {
+                popup: `
+                  animate__animated
+                  animate__fadeOutDown
+                  animate__faster
+                `,
+              },
+            });
+            router.push("/sign-in");
           } else {
             Swal.fire({
               title: "Please Login to Order Products",
@@ -50,7 +70,7 @@ const Registration = () => {
           }
         });
     } catch (e) {
-      console.error("find error while fetchingdata", e.message);
+      console.error("found error while fetchingdata", e.message);
     }
   };
   return (

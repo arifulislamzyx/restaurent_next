@@ -8,7 +8,8 @@ import { credenTialsSignIn } from "../../actions";
 const Page = () => {
   const [error, setError] = useState("");
   const router = useRouter();
-  const handleSignIn = async (e) => {
+
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -20,6 +21,8 @@ const Page = () => {
         email,
         password,
       };
+
+      console.log(formData);
 
       const response = await credenTialsSignIn(formData);
 
