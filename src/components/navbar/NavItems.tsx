@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { SearchInput } from "../search/input";
 
 export const NavItems = ({ session, getCartItems, toggleProfile }) => (
   <div className="hidden md:flex md:items-center">

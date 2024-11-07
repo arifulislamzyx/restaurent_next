@@ -7,6 +7,7 @@ import Image from "next/image";
 import {
   AlignJustify,
   ArrowRightToLine,
+  Search,
   ShoppingCart,
   User,
   UserRoundCog,
@@ -22,10 +23,13 @@ import { ICart } from "@/types/cart";
 import { NavItems } from "@/components/navbar/NavItems";
 import { Dropdown } from "@/components/navbar/Dropdown";
 import { MobileNav } from "@/components/navbar/MobileNav";
+import { color, motion } from "framer-motion";
+import { SearchInput } from "@/components/search/input";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
+  const [search, setSearch] = useState(false);
   const { data: session, status } = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const {
@@ -59,6 +63,10 @@ const Navbar = () => {
     signOut({ callbackUrl: "/" });
   };
 
+  const openSearch = () => {
+    setSearch(!search);
+  };
+
   return (
     <nav>
       <div
@@ -73,11 +81,16 @@ const Navbar = () => {
             className="relative"
           ></Image>
         </Link>
-        <NavItems
-          session={session}
-          getCartItems={getCartItems}
-          toggleProfile={toggleProfile}
-        />
+        <div className="flex items-center gap-6">
+          {session?.user && (
+            <SearchInput openSearch={openSearch} search={search} />
+          )}
+          <NavItems
+            session={session}
+            getCartItems={getCartItems}
+            toggleProfile={toggleProfile}
+          />
+        </div>
       </div>
       <Button
         onClick={openMobileMenu}
