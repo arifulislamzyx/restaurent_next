@@ -19,6 +19,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/Redux/Store/Store";
 import { fetchCartItems } from "@/Redux/Slice/CartSlice";
 import { ICart } from "@/types/cart";
+import { NavItems } from "@/components/navbar/NavItems";
+import { Dropdown } from "@/components/navbar/Dropdown";
+import { MobileNav } from "@/components/navbar/MobileNav";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -70,51 +73,11 @@ const Navbar = () => {
             className="relative"
           ></Image>
         </Link>
-        <div className="hidden md:flex md:items-center">
-          {session?.user ? (
-            <div className="relative flex items-center gap-6">
-              <Link href="/cart" className="flex">
-                <ShoppingCart size={20} />
-                <p>
-                  {getCartItems?.length > 0 && (
-                    <span className="absolute -top-2  bg-orange-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                      {getCartItems.length}
-                    </span>
-                  )}
-                </p>
-              </Link>
-              {session?.user?.image ? (
-                <Image
-                  src={session?.user?.image}
-                  alt="profileImage"
-                  width={40}
-                  height={40}
-                  className="relative rounded-full cursor-pointer"
-                  onClick={toggleProfile}
-                />
-              ) : (
-                <User />
-              )}
-            </div>
-          ) : (
-            <div className="flex gap-4 ">
-              <Link
-                href="/sign-in"
-                className="p-2 hover:bg-slate-100 hover:rounded-xl flex items-center gap-1"
-              >
-                <ArrowRightToLine size={16} />
-                Sign In
-              </Link>
-              <Link
-                href="/registration"
-                className="p-2 hover:bg-slate-100 hover:rounded-xl flex items-center gap-1"
-              >
-                <UserRoundCog size={16} />
-                Sign Up
-              </Link>
-            </div>
-          )}
-        </div>
+        <NavItems
+          session={session}
+          getCartItems={getCartItems}
+          toggleProfile={toggleProfile}
+        />
       </div>
       <Button
         onClick={openMobileMenu}
@@ -127,74 +90,14 @@ const Navbar = () => {
         )}
       </Button>
       {openMenu && (
-        <div className="absolute top-16 right-0 bg-white border rounded shadow-md z-50 w-40">
-          <div className="relative grid grid-cols-1 p-4">
-            {session?.user ? (
-              <div>
-                <Link href="/cart" className="py-2 hover:bg-slate-100 rounded">
-                  <ShoppingCart size={20} />
-                  <p>
-                    {getCartItems?.length > 0 && (
-                      <span className="absolute top-1  bg-orange-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                        {getCartItems.length}
-                      </span>
-                    )}
-                  </p>
-                </Link>
-                <div className="text-center space-y-4 mt-4">
-                  {session?.user?.image ? (
-                    <div className="flex items-center gap-2">
-                      <Image
-                        src={session?.user?.image}
-                        alt="profileImage"
-                        width={30}
-                        height={30}
-                        className="rounded-full"
-                        onClick={toggleProfile}
-                      />
-                      <p>{session?.user.name}</p>
-                    </div>
-                  ) : (
-                    <User />
-                  )}
-                  <Button
-                    onClick={handleLogout}
-                    className="w-full text-center text-white bg-orange-500 px-4 py-2 rounded-xl  "
-                  >
-                    Logout
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <>
-                <Link
-                  href="/sign-in"
-                  className="py-2 hover:bg-slate-100 rounded"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="/registration"
-                  className="py-2 hover:bg-slate-100 rounded"
-                >
-                  Sign Up
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
+        <MobileNav
+          getCartItems={getCartItems}
+          toggleProfile={toggleProfile}
+          handleLogout={handleLogout}
+          session={session}
+        />
       )}
-      {profileMenu && (
-        <div className="absolute top-14 text-center space-y-2 right-10  grid grid-cols-1 p-5 rounded-lg shadow-2xl z-10\">
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/cart">Cart Items</Link>
-          <Link href="/dasboard/profile">Profile</Link>
-
-          <form className=" text-white bg-orange-500 px-6 py-2 rounded-xl cursor cursor-pointer">
-            <Button onClick={handleLogout}>Logout</Button>
-          </form>
-        </div>
-      )}
+      {profileMenu && <Dropdown handleLogout={handleLogout} />}
     </nav>
   );
 };

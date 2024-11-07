@@ -2,15 +2,14 @@
 import { fetchCartItems } from "@/Redux/Slice/CartSlice";
 import { AppDispatch, RootState } from "@/Redux/Store/Store";
 import { useSession } from "next-auth/react";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IACartwithEmail, ICart } from "@/types/cart";
-import Image from "next/image";
+import { IACartwithEmail } from "@/types/cart";
 import axios from "axios";
-import Button from "@/components/buttons/Button";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/ui/loading";
-import { Trash2 } from "lucide-react";
+import { Chceckout } from "@/components/proceed-to-checkout/Checkout";
+import { Item } from "@/components/proceed-to-checkout/Item";
 
 const Page = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,7 +21,6 @@ const Page = () => {
   } = useSelector((state: RootState) => state.carts);
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [totalAmount, setTotalAmount] = useState();
 
   const userEmail = session?.user.email;
 
@@ -93,27 +91,7 @@ const Page = () => {
 
         <div className="grid grid-cols-1 gap-4">
           {getCartItems?.map((item) => (
-            <div key={item._id}>
-              <div className="flex items-center justify-evenly gap-6  bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden p-4">
-                <Image
-                  className=" object-cover rounded"
-                  src={item.image}
-                  alt={item.name}
-                  width={60}
-                  height={60}
-                />
-
-                <h2 className="text-lg w-full text-gray-800">{item.name}</h2>
-                <p className="text-gray-600 mt-1">${item.price}</p>
-
-                <Button
-                  className="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
-                  onClick={() => handleDelete(item?._id)}
-                >
-                  <Trash2 />
-                </Button>
-              </div>
-            </div>
+            <Item key={item._id} item={item} handleDelete={handleDelete} />
           ))}
         </div>
       </div>
@@ -122,27 +100,7 @@ const Page = () => {
         {total == 0 ? (
           <Loading />
         ) : (
-          <div className="bg-slate-50 shadow-2xl rounded-xl p-6 space-y-4 text-center border-2">
-            <p className="text-lg flex items-center justify-between">
-              <span>Sub Total:</span>
-              <span>{total}$</span>
-            </p>
-            <p className="text-lg flex items-center justify-between">
-              <span>Shipping</span>
-              <span>Free</span>
-            </p>
-            <p className="text-lg  flex items-center justify-between">
-              <span>Total:</span>
-              <span>{total}$</span>
-            </p>
-
-            <Button
-              onClick={handlePayment}
-              className="px-4 py-2 bg-orange-500 rounded text-white"
-            >
-              Proceed to Checkout
-            </Button>
-          </div>
+          <Chceckout total={total} handlePayment={handlePayment} />
         )}
       </div>
     </div>

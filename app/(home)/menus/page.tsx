@@ -13,8 +13,6 @@ import MenuCard from "@/components/menu/MenuCard";
 import Button from "@/components/buttons/Button";
 
 const MenuItems = () => {
-  const [cartData, setCartData] = useState<MenuItem | null>(null);
-  const router = useRouter();
   const [showAll, setShowAll] = useState(false);
   const [textLength, setTextLength] = useState(40);
   const { data: session, status } = useSession();

@@ -4,10 +4,11 @@ import Navbar from "../src/sections/layouts/Navbar";
 import Footer from "../src/sections/layouts/Footer";
 import { Metadata } from "@/types/metadata";
 import ClientProvider from "@/Provider/ClientProvide";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const metadata: Metadata = {
+export const metadata = {
   title: "Restaurent Next",
   description: "Order Your Favourite Food Online",
 };

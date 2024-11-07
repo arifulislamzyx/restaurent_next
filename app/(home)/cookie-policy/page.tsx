@@ -1,6 +1,10 @@
-"use client";
-
 import React from "react";
+
+export const metadata = {
+  title: "Cookie Policy - Restaurant Next",
+  description:
+    "Find out how Restaurant Next uses cookies to enhance your browsing experience and manage your preferences.",
+};
 
 const CookiePolicy: React.FC = () => {
   return (
