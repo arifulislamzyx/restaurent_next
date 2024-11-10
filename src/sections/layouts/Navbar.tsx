@@ -4,15 +4,7 @@ import Link from "next/link";
 import foodKing from "../../../public/foodKing.png";
 import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import {
-  AlignJustify,
-  ArrowRightToLine,
-  Search,
-  ShoppingCart,
-  User,
-  UserRoundCog,
-  X,
-} from "lucide-react";
+import { AlignJustify, X } from "lucide-react";
 import Button from "@/components/buttons/Button";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
@@ -23,7 +15,6 @@ import { ICart } from "@/types/cart";
 import { NavItems } from "@/components/navbar/NavItems";
 import { Dropdown } from "@/components/navbar/Dropdown";
 import { MobileNav } from "@/components/navbar/MobileNav";
-import { color, motion } from "framer-motion";
 import { SearchInput } from "@/components/search/input";
 
 const Navbar = () => {

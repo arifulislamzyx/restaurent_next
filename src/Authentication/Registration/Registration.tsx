@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Button from "@/components/buttons/Button";
 import SocialLogin from "../SocailLogin/SocialLogin";
+import { ShowAlert } from "@/components/alert/message";
+import Link from "next/link";
 
 const Registration = () => {
   const router = useRouter();
@@ -54,23 +56,32 @@ const Registration = () => {
             });
             router.push("/sign-in");
           } else {
-            Swal.fire({
+            ShowAlert({
               title: "Please Login to Order Products",
               text: "You won't be able to revert this!",
               icon: "warning",
               showCancelButton: true,
+              confirmButtonText: "Login Now",
               confirmButtonColor: "#3085d6",
               cancelButtonColor: "#d33",
-              confirmButtonText: "Login Now",
-            }).then((res) => {
-              if (res.isConfirmed) {
-                window.location.href = "/sign-in";
-              }
+              redirectUrl: "/sign-in",
             });
           }
         });
-    } catch (e) {
-      console.error("found error while fetchingdata", e.message);
+    } catch (error) {
+      console.error("found error while fetchingdata", error);
+      if (axios.isAxiosError(error) && error.response?.status === 409) {
+        ShowAlert({
+          title: "User Already Exists",
+          text: "Please Login",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Login Now",
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          redirectUrl: "/sign-in",
+        });
+      }
     }
   };
   return (
@@ -146,9 +157,9 @@ const Registration = () => {
 
         <p className="mt-4 text-sm text-center text-gray-600">
           Already have an account?{" "}
-          <a href="/sign-in" className="text-blue-500 hover:underline">
+          <Link href="/sign-in" className="text-blue-500 hover:underline">
             Login here
-          </a>
+          </Link>
         </p>
       </div>
     </div>

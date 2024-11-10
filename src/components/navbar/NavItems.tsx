@@ -32,7 +32,7 @@ export const NavItems = ({ session, getCartItems, toggleProfile }) => (
             onClick={toggleProfile}
           />
         ) : (
-          <User />
+          <User onClick={toggleProfile} className="cursor cursor-pointer" />
         )}
       </div>
     ) : (

@@ -14,7 +14,7 @@ const Page = ({ searchParams }) => {
       {results.length > 0 ? (
         <SearchedMenu menu={results} />
       ) : (
-        <p className="flex justify-center items-center mx-auto h-screen">
+        <p className="flex justify-center items-center mx-auto h-screen text-xl font-bold">
           No Matched product
         </p>
       )}

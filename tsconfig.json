@@ -36,7 +36,7 @@
     "src/components/ui/navigation-menu.jsx",
     "src/components/ui/navigation-menu.jsx",
     "server/models/menu.schema.js"
-, "src/lib/db.connection.tsx"  ],
+, "src/lib/db.connection.tsx", "server/models/addCart.schema.js"  ],
   "exclude": [
     "node_modules"
   ]

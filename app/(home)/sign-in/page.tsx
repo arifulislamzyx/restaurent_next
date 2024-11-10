@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SocialLogin from "@/Authentication/SocailLogin/SocialLogin";
 import { useRouter } from "next/navigation";
 import Button from "@/components/buttons/Button";
+import Link from "next/link";
 import { credenTialsSignIn } from "../../actions";
 
 const Page = () => {
@@ -13,26 +14,15 @@ const Page = () => {
     e.preventDefault();
 
     try {
-      const formdata = new FormData(e.currentTarget);
+      const response = await credenTialsSignIn(new FormData(e.currentTarget));
 
-      const email = formdata.get("email");
-      const password = formdata.get("password");
-      const formData = {
-        email,
-        password,
-      };
-
-      console.log(formData);
-
-      const response = await credenTialsSignIn(formData);
-
-      if (!!response.error) {
-        setError(response.error.message);
+      if (response == undefined) {
+        setError("User Not Found");
       } else {
-        router.push("/");
+        router.push("/dashboard");
       }
-    } catch (error) {
-      setError("Check your Credentials");
+    } catch (err) {
+      setError("Check your Credentials ");
     }
   };
   return (
@@ -95,9 +85,9 @@ const Page = () => {
 
         <p className="mt-4 text-sm text-center text-gray-600">
           Don&apos;t have an account?{" "}
-          <a href="/registration" className="text-blue-500 hover:underline">
+          <Link href="/registration" className="text-blue-500 hover:underline">
             Register here
-          </a>
+          </Link>
         </p>
       </div>
     </div>

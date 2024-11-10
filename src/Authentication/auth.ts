@@ -1,4 +1,3 @@
-import { bcrypt } from "bcrypt";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
@@ -19,10 +18,12 @@ export const {
       if (account) {
         token.id = user.id;
       }
+
       return token;
     },
     async session({ session, token }) {
       session.user.id = token.id;
+
       return session;
     },
   },
@@ -33,6 +34,9 @@ export const {
         password: {},
       },
       async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Invalid credentials provided");
+        }
         if (credentials === null) {
           return null;
         }
@@ -40,21 +44,18 @@ export const {
         try {
           const user = await User.findOne({
             email: credentials?.email,
+            password: credentials?.password,
           });
 
           if (!user) {
             console.error("User not found");
             throw new Error("User not found");
           }
-          const matched = await bcrypt.compare(
-            credentials.password,
-            user.password
-          );
-          if (!matched) {
-            console.error("Password mismatch");
-            throw new Error("Email or Password is not correct");
-          }
 
+          if (credentials.password !== user.password) {
+            console.error("Password mismatch");
+            throw new Error("Email or Password is incorrect");
+          }
           return user;
         } catch (error) {
           throw new Error("User not found");

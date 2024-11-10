@@ -1,5 +1,6 @@
 "use server";
 import { signIn, signOut } from "@/Authentication/auth";
+import { revalidatePath } from "next/cache";
 export const doScialLogin = async (formData) => {
   const action = formData.get("action");
   await signIn(action, { redirectTo: "/dashboard" });
@@ -10,18 +11,18 @@ export const doLogout = async () => {
 };
 
 export const credenTialsSignIn = async (formData) => {
-  console.log("index page", formData);
-
   try {
     const res = await signIn("credentials", {
-      email: formData.email,
-      password: formData.password,
+      email: formData.get("email"),
+      password: formData.get("password"),
       redirect: false,
     });
 
-    revalidatePath("/");
+    revalidatePath("/dashboard");
+
     return res;
   } catch (error) {
-    console.error("error");
+    console.error("Error during credentials sign-in", error);
+    throw error;
   }
 };
