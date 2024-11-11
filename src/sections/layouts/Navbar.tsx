@@ -73,9 +73,8 @@ const Navbar = () => {
           ></Image>
         </Link>
         <div className="flex items-center gap-6">
-          {session?.user && (
-            <SearchInput openSearch={openSearch} search={search} />
-          )}
+          <SearchInput openSearch={openSearch} search={search} />
+
           <NavItems
             session={session}
             getCartItems={getCartItems}

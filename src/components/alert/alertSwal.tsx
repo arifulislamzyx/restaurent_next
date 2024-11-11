@@ -1,21 +1,27 @@
 import { IAlert } from "@/types/aler";
 import Swal from "sweetalert2";
 
-export const ShowAlert = async ({
-  title = "Alert",
-  text = "",
-  icon = "warning",
-  confirmButtonText = "OK",
-  redirectUrl = "/",
+export const AlertSwal = async ({
+  title,
+  text,
+  icon,
+  confirmButtonText = "ok",
+
+  redirectUrl,
+  timer,
+  position,
 }: IAlert) => {
   const res = await Swal.fire({
     title,
     text,
     icon,
-    showCancelButton: true,
+    showCancelButton: false,
+    showConfirmButton: false,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText,
+    timer,
+    position,
   });
   if (res.isConfirmed) {
     window.location.href = redirectUrl;

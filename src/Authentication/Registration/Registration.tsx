@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Button from "@/components/buttons/Button";
 import SocialLogin from "../SocailLogin/SocialLogin";
-import { ShowAlert } from "@/components/alert/message";
 import Link from "next/link";
+import { AlertSwal } from "@/components/alert/alertSwal";
 
 const Registration = () => {
   const router = useRouter();
@@ -56,7 +56,7 @@ const Registration = () => {
             });
             router.push("/sign-in");
           } else {
-            ShowAlert({
+            AlertSwal({
               title: "Please Login to Order Products",
               text: "You won't be able to revert this!",
               icon: "warning",
@@ -71,7 +71,7 @@ const Registration = () => {
     } catch (error) {
       console.error("found error while fetchingdata", error);
       if (axios.isAxiosError(error) && error.response?.status === 409) {
-        ShowAlert({
+        AlertSwal({
           title: "User Already Exists",
           text: "Please Login",
           icon: "warning",

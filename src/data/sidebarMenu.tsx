@@ -22,19 +22,21 @@ import {
   Files,
   FileStack,
   Kanban,
+  ShoppingCart,
+  CreditCard,
+  Settings,
 } from "lucide-react";
 
 export const sidebarOptions = [
   {
     id: 2,
-    title: "Manage Profile",
-    link: "/dashboard/addtocart",
+    title: "Manage Menu",
     submenus: [
       {
         id: 1,
-        name: "View Profile",
-        slug: "/dashboard",
-        icons: <UserRoundCog size={16} />,
+        name: "Carts Menu",
+        slug: "/cart",
+        icons: <ShoppingCart size={16} />,
       },
       {
         id: 2,
@@ -70,14 +72,13 @@ export const sidebarOptions = [
   },
   {
     id: 3,
-    title: "Invitation",
-    link: "/dashboard/addProduct",
+    title: "Payment",
     submenus: [
       {
         id: 1,
-        name: "Live Interview",
-        slug: "/dashboard",
-        icons: <Radio size={16} />,
+        name: "Add Payment Method",
+        slug: "/payment",
+        icons: <CreditCard size={16} />,
       },
       {
         id: 2,
@@ -107,14 +108,13 @@ export const sidebarOptions = [
   },
   {
     id: 4,
-    title: "My Activities",
-    link: "/dashboard",
+    title: "Profile",
     submenus: [
       {
         id: 1,
-        name: "Applied Jobs",
-        slug: "/dashboard",
-        icons: <Files size={16} />,
+        name: "Settings",
+        slug: "/dashboard/profile",
+        icons: <Settings size={16} />,
       },
       {
         id: 2,

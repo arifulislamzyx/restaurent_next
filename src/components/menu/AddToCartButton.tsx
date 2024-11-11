@@ -1,10 +1,11 @@
 import React from "react";
 import { MenuItem } from "@/types/menuItems";
-import { ShoppingCart } from "lucide-react";
+import { icons, ShoppingCart } from "lucide-react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Button from "../buttons/Button";
 import { AddToCartButtonProps } from "@/types/types";
+import { AlertSwal } from "../alert/alertSwal";
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   item,
@@ -39,22 +40,23 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
           },
         }
       );
-      Swal.fire({
+      AlertSwal({
         position: "top-end",
-        icon: res.status === 200 ? "success" : "info",
         title:
           res.status === 200
             ? "Your Items is Added"
             : "This item is already in your cart.",
-        showConfirmButton: false,
+        icon: res.status === 200 ? "success" : "info",
+        showCancelButton: false,
         timer: 1500,
+        showConfirmButton: false,
       });
     } catch {
-      Swal.fire({
+      AlertSwal({
         position: "top-end",
-        icon: "error",
         title: "Something went wrong while adding the item.",
-        showConfirmButton: false,
+        icon: "error",
+        showCancelButton: false,
         timer: 1500,
       });
     }
