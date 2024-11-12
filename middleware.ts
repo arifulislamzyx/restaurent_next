@@ -1,5 +1,5 @@
 import { getToken } from "next-auth/jwt";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const protectedPatch = [
   "/api/deleteCartItem",
@@ -9,7 +9,7 @@ const protectedPatch = [
   "/payment-success",
 ];
 
-export async function middleware(req) {
+export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
 
   if (

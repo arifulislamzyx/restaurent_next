@@ -1,18 +1,14 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
+    "compilerOptions": {
+    "target": "ES2017",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
@@ -21,28 +17,25 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "target": "ES2017"
+    ]
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/ui/navigation-menu.jsx",
-    "src/components/ui/navigation-menu.jsx",
-    "server/models/menu.schema.js"
-, "src/lib/db.connection.ts", "server/models/addCart.schema.js"  ],
+    "server/models/menu.schema.ts",
+    "src/lib/db.connection.ts",
+    "server/models/addCart.schema.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
 }
-// {
-//   "compilerOptions": {
-//     "jsx": "react"
-//   }
-// }

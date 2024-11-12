@@ -5,18 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { productAnm, showSlideProduct } from "@/animation/varients";
 import ProductSkeliton from "./ProductSkeliton";
-import RootSate from "@/Redux/Store/Store";
+import RootSate, { RootState } from "@/Redux/Store/Store";
 import { ShoppingCart } from "lucide-react";
 import Button from "@/components/buttons/Button";
-
-type RootSate = any;
 
 const MenuCard = () => {
   const [showAll, setShowAll] = useState(false);
   const [textLength, setTextLength] = useState(40);
   const [showAddCartPopup, setShowAddCartPopup] = useState(false);
   const { menu, isLoading, isError, error } = useSelector(
-    (state: RootSate) => state.menus
+    (state: RootState) => state.menus
   );
   const dispatch = useDispatch<any>();
 
@@ -76,7 +74,9 @@ const MenuCard = () => {
                 <h4 className="text-sm font-bold md:text-base lg:text-lg mb-2">
                   {items.name}
                 </h4>
-                <p className="mb-2">{truncateText(items.recipe, textLength)}</p>
+                <p className="mb-2">
+                  {truncateText(items.recipe ?? "", textLength)}
+                </p>
               </div>
               <div className="flex justify-between px-3">
                 <p className="font-bold">${items.price}</p>

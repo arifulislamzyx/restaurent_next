@@ -1,7 +1,6 @@
-import Head from "next/head";
-import React from "react";
+import React, { ReactNode } from "react";
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   return <>{children}</>;
 };
 

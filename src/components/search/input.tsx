@@ -1,8 +1,9 @@
 import { Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Form from "next/form";
+import { ISearch } from "@/types/search";
 
-export const SearchInput = ({ openSearch, search }) => (
+export const SearchInput = ({ openSearch, search }: ISearch) => (
   <div className="relative">
     <Search onClick={openSearch} />
 

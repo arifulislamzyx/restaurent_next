@@ -1,8 +1,9 @@
-import NextAuth from "next-auth";
+import NextAuth, { Account } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { User } from "../../server/models/user.schema";
+import { JWT } from "next-auth/jwt";
 
 export const {
   handlers: { GET, POST },
@@ -14,7 +15,15 @@ export const {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({
+      token,
+      user,
+      account,
+    }: {
+      token: JWT;
+      user: any;
+      account: Account | null;
+    }) {
       if (account) {
         token.id = user.id;
       }
@@ -63,8 +72,8 @@ export const {
       },
     }),
     GoogleProvider({
-      clientId: process.env.NEXTAUTH_URL_GOOGLE_CLIENT,
-      clientSecret: process.env.NEXTAUTH_URL_SECRET_GOOGLE,
+      clientId: process.env.NEXTAUTH_URL_GOOGLE_CLIENT || "",
+      clientSecret: process.env.NEXTAUTH_URL_SECRET_GOOGLE || "",
       authorization: {
         params: {
           prompt: "consent",

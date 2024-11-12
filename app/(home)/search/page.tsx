@@ -2,10 +2,12 @@
 import { SearchInput } from "@/components/search/input";
 import { SearchedMenu } from "@/components/search/SearchedMenu";
 import SearchFilter from "@/components/search/SearchFilter";
-import React from "react";
+import React, { ReactNode } from "react";
 
-const Page = ({ searchParams }) => {
+const Page = ({ searchParams }: { searchParams: any }) => {
   const { query } = searchParams;
+  console.log("searchParams", searchParams);
+
   const results = SearchFilter(query);
 
   return (

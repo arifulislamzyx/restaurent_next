@@ -8,7 +8,7 @@ import Button from "@/components/buttons/Button";
 
 const Sidebar: React.FC = () => {
   const [activeOptions, setActiveOptions] = useState<{
-    [key: number]: boolean;
+    [key: string]: boolean;
   }>({});
 
   const handleOptions = (optionId: number) => {
@@ -18,7 +18,7 @@ const Sidebar: React.FC = () => {
           acc[key] = false;
           return acc;
         },
-        {} as { [key: number]: boolean }
+        {} as { [key: string]: boolean }
       );
 
       return {
@@ -63,7 +63,8 @@ const Sidebar: React.FC = () => {
                       className="transition-all duration-300"
                     >
                       <Link
-                        href={submenu.slug}
+                        href=""
+                        ref={submenu.slug}
                         className="flex items-center text-base hover:bg-purple-600 hover:text-white rounded px-1 gap-2 ml-2"
                       >
                         <p>{submenu.icons}</p>

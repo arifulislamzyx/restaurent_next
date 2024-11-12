@@ -33,7 +33,7 @@ export const POST = async (req: NextRequest) => {
     await createUser(newUser);
     return new NextResponse("User has been created", { status: 201 });
   } catch (err) {
-    return new NextResponse(err.message, {
+    return new NextResponse(`Error while user Registering ${err}`, {
       status: 500,
     });
   }

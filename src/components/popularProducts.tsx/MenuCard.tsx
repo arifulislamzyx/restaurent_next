@@ -4,10 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { showSlideProduct } from "@/animation/varients";
+import { MenuItem } from "@/types/menuItems";
 
 const textLength = 40;
 
-const PolularMenuCard = ({ item, email }) => (
+const PolularMenuCard = ({
+  item,
+  email,
+}: {
+  item: MenuItem;
+  email: string | null | undefined;
+}) => (
   <motion.div
     key={item._id}
     variants={showSlideProduct}
@@ -25,7 +32,7 @@ const PolularMenuCard = ({ item, email }) => (
         <h3 className="text-sm font-bold md:text-base lg:text-lg mb-2">
           {item.name}
         </h3>
-        <p>{truncateText(item.recipe, textLength)}</p>
+        <p>{truncateText(item.recipe ?? "", textLength)}</p>
       </Link>
       <div className="flex justify-between px-3 mt-1">
         <p className="font-bold">${item.price}</p>

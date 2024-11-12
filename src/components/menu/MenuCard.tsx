@@ -5,9 +5,17 @@ import { motion } from "framer-motion";
 import { showSlideProduct } from "@/animation/varients";
 import { truncateText } from "@/utils/TruncateText";
 import AddToCartButton from "./AddToCartButton";
-import { MenuCardProps } from "@/types/types";
+import { MenuItem } from "@/types/menuItems";
 
-const MenuCard: React.FC<MenuCardProps> = ({ item, textLength, email }) => (
+const MenuCard = ({
+  item,
+  textLength,
+  email,
+}: {
+  item: MenuItem;
+  textLength: number;
+  email: string | null | undefined;
+}) => (
   <motion.div
     key={item._id}
     variants={showSlideProduct}
@@ -26,7 +34,7 @@ const MenuCard: React.FC<MenuCardProps> = ({ item, textLength, email }) => (
           {item.name}
         </h4>
       </Link>
-      <p className="mb-2">{truncateText(item.recipe, textLength)}</p>
+      <p className="mb-2">{truncateText(item.recipe ?? "", textLength)}</p>
       <div className="flex justify-between">
         <p className="font-bold">${item.price}</p>
         <AddToCartButton

@@ -17,7 +17,7 @@ const DashboardNav = () => {
     setOpenDashboardMenu(!openDashboardMenu);
   };
 
-  const toggleProfile = (e) => {
+  const toggleProfile = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
 
     setProfileMenu(!profileMenu);

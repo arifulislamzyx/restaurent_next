@@ -1,6 +1,5 @@
 import React from "react";
-import { MenuItem } from "@/types/menuItems";
-import { icons, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Button from "../buttons/Button";

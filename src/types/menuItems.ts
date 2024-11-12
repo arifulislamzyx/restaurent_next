@@ -1,8 +1,9 @@
 export interface MenuItem {
-  _id: number;
-  image: string;
-  name: string;
-  recipe: string;
-  price: number;
-  category: string;
+  quantity?: number;
+  _id?: string;
+  image?: string;
+  name?: string | undefined;
+  recipe?: string | undefined;
+  price?: number;
+  category?: any;
 }

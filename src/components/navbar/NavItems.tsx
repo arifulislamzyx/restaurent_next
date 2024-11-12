@@ -6,9 +6,13 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { SearchInput } from "../search/input";
+import { MobileNavProps } from "@/types/MobileNav";
 
-export const NavItems = ({ session, getCartItems, toggleProfile }) => (
+export const NavItems = ({
+  session,
+  getCartItems,
+  toggleProfile,
+}: MobileNavProps) => (
   <div className="hidden md:flex md:items-center">
     {session?.user ? (
       <div className="relative flex items-center gap-6">

@@ -4,7 +4,7 @@ import SocialLogin from "@/Authentication/SocailLogin/SocialLogin";
 import { useRouter } from "next/navigation";
 import Button from "@/components/buttons/Button";
 import Link from "next/link";
-import { credenTialsSignIn } from "../../actions";
+import { credenTialsSignIn } from "../../../src/actions";
 
 const Page = () => {
   const [error, setError] = useState("");

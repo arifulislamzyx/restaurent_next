@@ -10,8 +10,9 @@ import { useRouter } from "next/navigation";
 import Loading from "@/components/ui/loading";
 import { Chceckout } from "@/components/proceed-to-checkout/Checkout";
 import { Item } from "@/components/proceed-to-checkout/Item";
+import { MenuItem } from "@/types/menuItems";
 
-const Page = () => {
+const Page: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
     carts: { cartItems },
@@ -21,8 +22,7 @@ const Page = () => {
   } = useSelector((state: RootState) => state.carts);
   const { data: session, status } = useSession();
   const router = useRouter();
-
-  const userEmail = session?.user.email;
+  const userEmail = session?.user?.email;
 
   useEffect(() => {
     if (userEmail) {
@@ -34,10 +34,11 @@ const Page = () => {
     return cartItems?.map((item: IACartwithEmail) => item.items);
   }, [cartItems]);
 
-  const total = getCartItems?.reduce(
-    (acc, item) => acc + item.price * (item.quantity || 0),
-    0
-  );
+  const total = getCartItems?.reduce((acc: number, item: MenuItem) => {
+    const itemPrice = item?.price || 0;
+    const itemQuantity = item?.quantity || 0;
+    return acc + itemPrice * itemQuantity;
+  }, 0);
 
   const handleDelete = async (itemId: string) => {
     try {
@@ -49,7 +50,9 @@ const Page = () => {
       });
 
       if (response.status === 200) {
-        dispatch(fetchCartItems(userEmail));
+        if (userEmail) {
+          dispatch(fetchCartItems(userEmail));
+        }
       } else {
         console.error("Failed to delete item:", response.data.message);
       }
@@ -90,7 +93,7 @@ const Page = () => {
         </p>
 
         <div className="grid grid-cols-1 gap-4">
-          {getCartItems?.map((item) => (
+          {getCartItems?.map((item: MenuItem) => (
             <Item key={item._id} item={item} handleDelete={handleDelete} />
           ))}
         </div>

@@ -1,15 +1,19 @@
 import connectionDb from "@/lib/db.connection";
 import mongoose from "mongoose";
 import Cart from "../../../server/models/addCart.schema";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { AuthToken } from "@/types/authToken";
 
-export const POST = async (req) => {
+export const POST = async (req: NextRequest) => {
   await mongoose.connect(connectionDb);
 
   const { items, email } = await req.json();
 
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  const token = (await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+  })) as AuthToken;
 
   if (!token.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

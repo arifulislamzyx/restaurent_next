@@ -6,7 +6,6 @@ import img3 from "../../../public/slider/offerSlider3.png";
 import Image, { StaticImageData } from "next/image";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
-import { delay } from "@reduxjs/toolkit/dist/utils";
 
 const OfferSlider: React.FC = () => {
   const slider = [img1, img2, img3];

@@ -10,15 +10,11 @@ import Loading from "@/components/ui/loading";
 import SingleMenu from "@/components/menu/singleMenu/MenuCard";
 import SimilarProducts from "@/components/menu/singleMenu/SimilarProducts";
 
-const Page = ({ params }) => {
+const Page = ({ params }: { params: any }) => {
   const { id } = params;
-  const [menuItem, setMenuItem] = useState(null);
+  const [menuItem, setMenuItem] = useState<MenuItem | null>(null);
   const { data: session, status } = useSession();
   const email = session?.user?.email;
-  const [cartData, setCartData] = useState<MenuItem | null>(null);
-  const [textLength, setTextLength] = useState(40);
-  const [quantity, setQuantity] = useState(1);
-
   const dispatch = useDispatch<AppDispatch>();
   const { menu, isLoading, isError } = useSelector(
     (state: RootState) => state.menus
@@ -37,7 +33,7 @@ const Page = ({ params }) => {
       .catch((err) => console.error("Error fetching product:", err));
   }, [id]);
 
-  const filterMenu = menu.filter(
+  const filterMenu: MenuItem[] = menu.filter(
     (item: MenuItem) => item.category === menuItem?.category
   );
 

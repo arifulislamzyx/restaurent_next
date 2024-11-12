@@ -13,15 +13,20 @@ export interface Component {
 }
 
 export interface AddToCartButtonProps {
-  item: MenuItem;
-  email?: string;
+  item?: MenuItem;
+  email?: string | null | undefined;
   className: string;
 }
 
 export interface MenuCardProps {
-  item: MenuItem;
-  textLength: number;
-  email: string;
+  item?: MenuItem[] | undefined;
+  textLength?: number | undefined;
+  email?: string | null | undefined;
+}
+
+export interface IASingleMenu {
+  menuItem?: MenuItem;
+  email?: string | null | undefined;
 }
 
 export interface ShowMoreButtonProps {

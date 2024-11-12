@@ -1,10 +1,6 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import img1 from "../../../public/HeaderBanner/banner1.png";
-import img2 from "../../../public/HeaderBanner/banner2.png";
-import img3 from "../../../public/HeaderBanner/banner3.png";
-import img4 from "../../../public/HeaderBanner/banner4.svg";
 import img5 from "../../../public/HeaderBanner/banner12.png";
 import googlePlay from "../../../public/HomePageImg/googlePlay.png";
 import appStore from "../../../public/HomePageImg/AppStore.png";

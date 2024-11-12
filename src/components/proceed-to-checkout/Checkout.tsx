@@ -1,6 +1,7 @@
+import { ICheckOutProps } from "@/types/CheckOut";
 import Button from "../buttons/Button";
 
-export const Chceckout = ({ total, handlePayment }) => (
+export const Chceckout = ({ total, handlePayment }: ICheckOutProps) => (
   <div className="bg-slate-50 shadow-2xl rounded-xl p-6 space-y-4 text-center border-2">
     <p className="text-lg flex items-center justify-between">
       <span>Sub Total:</span>

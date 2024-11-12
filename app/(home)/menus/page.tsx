@@ -2,12 +2,11 @@
 import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import ProductSkeliton from "@/sections/utils/ProductSkeliton";
 import { MenuItem } from "@/types/menuItems";
 import { productAnm } from "@/animation/varients";
-import { RootState } from "@/Redux/Store/Store";
+import { AppDispatch, RootState } from "@/Redux/Store/Store";
 import { useSession } from "next-auth/react";
 import MenuCard from "@/components/menu/MenuCard";
 import Button from "@/components/buttons/Button";
@@ -21,7 +20,7 @@ const MenuItems = () => {
   const { menu, isLoading, isError, error } = useSelector(
     (state: RootState) => state.menus
   );
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchMenu());
   }, [dispatch]);

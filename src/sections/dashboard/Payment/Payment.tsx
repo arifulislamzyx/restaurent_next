@@ -7,7 +7,7 @@ import Checkout from "./Checkout";
 import { useSearchParams } from "next/navigation";
 import Loading from "@/components/ui/loading";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE || "");
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE as string);
 
 const StripeWrapper = ({ amount }: { amount: number }) => {
   return (

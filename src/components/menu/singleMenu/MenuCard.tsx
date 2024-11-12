@@ -1,7 +1,8 @@
 import Image from "next/image";
 import AddToCartButton from "../AddToCartButton";
+import { IASingleMenu } from "@/types/types";
 
-const SingleMenu = ({ menuItem, email }) => (
+const SingleMenu = ({ menuItem, email }: IASingleMenu) => (
   <div className="container mx-auto py-10 flex items-center gap-8 border-b-2">
     <Image
       src={menuItem?.image}

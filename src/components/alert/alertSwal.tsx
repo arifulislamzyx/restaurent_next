@@ -1,4 +1,4 @@
-import { IAlert } from "@/types/aler";
+import { IAlert } from "@/types/alert";
 import Swal from "sweetalert2";
 
 export const AlertSwal = async ({
@@ -6,7 +6,6 @@ export const AlertSwal = async ({
   text,
   icon,
   confirmButtonText = "ok",
-
   redirectUrl,
   timer,
   position,
@@ -24,6 +23,6 @@ export const AlertSwal = async ({
     position,
   });
   if (res.isConfirmed) {
-    window.location.href = redirectUrl;
+    window.location.href = redirectUrl as string;
   }
 };

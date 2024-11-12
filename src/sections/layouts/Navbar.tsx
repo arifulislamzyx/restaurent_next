@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import foodKing from "../../../public/foodKing.png";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { AlignJustify, X } from "lucide-react";
 import Button from "@/components/buttons/Button";
@@ -18,9 +18,9 @@ import { MobileNav } from "@/components/navbar/MobileNav";
 import { SearchInput } from "@/components/search/input";
 
 const Navbar = () => {
-  const [openMenu, setOpenMenu] = useState(false);
-  const [profileMenu, setProfileMenu] = useState(false);
-  const [search, setSearch] = useState(false);
+  const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [profileMenu, setProfileMenu] = useState<boolean>(false);
+  const [search, setSearch] = useState<boolean>(false);
   const { data: session, status } = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const {
@@ -40,9 +40,7 @@ const Navbar = () => {
 
   const getCartItems = cartItems?.map((item: ICart) => item.items);
 
-  const toggleProfile = (e) => {
-    e.preventDefault();
-
+  const toggleProfile = () => {
     setProfileMenu(!profileMenu);
   };
 

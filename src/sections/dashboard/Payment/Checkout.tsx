@@ -80,7 +80,7 @@ const Checkout = ({ amount }: { amount: any }) => {
     const { error: submitError } = await elements.submit();
 
     if (submitError) {
-      setErrorMessage(submitError.message);
+      setErrorMessage(`Error Submitting Payment${submitError.message}`);
       setLoading(false);
 
       return;
@@ -95,7 +95,7 @@ const Checkout = ({ amount }: { amount: any }) => {
     });
 
     if (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(`Error Confirming Payment${error.message}`);
     } else {
       alert("Payment Success");
     }

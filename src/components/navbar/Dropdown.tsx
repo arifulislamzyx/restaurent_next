@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Button from "../buttons/Button";
+import { MobileNavProps } from "@/types/MobileNav";
 
-export const Dropdown = ({ handleLogout }) => (
+export const Dropdown = ({ handleLogout }: MobileNavProps) => (
   <div className="absolute top-14 text-center space-y-2 right-10  grid grid-cols-1 p-5 rounded-lg shadow-2xl z-10\">
     <Link href="/dashboard">Dashboard</Link>
     <Link href="/cart">Cart</Link>

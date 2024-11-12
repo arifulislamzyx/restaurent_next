@@ -2,7 +2,15 @@ import SkeletonLoader from "@/sections/utils/Skeleton/SkeletonLoader";
 import React from "react";
 import Loading from "./loading";
 
-const PopularCartSkelliton = ({ isLoading, isError, error }) => {
+const PopularCartSkelliton = ({
+  isLoading,
+  isError,
+  error,
+}: {
+  isLoading: boolean;
+  isError: boolean;
+  error: string;
+}) => {
   return (
     <div>
       {isLoading && (

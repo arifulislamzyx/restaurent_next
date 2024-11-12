@@ -57,13 +57,13 @@ export const sidebarOptions = [
         icons: <FileVideo2 size={16} />,
       },
       {
-        id: 4,
+        id: 5,
         name: "Customized CV",
         slug: "/dashboard",
         icons: <FileCheck2 size={16} />,
       },
       {
-        id: 5,
+        id: 6,
         name: "Emailed CV",
         slug: "/dashboard",
         icons: <MailCheck size={16} />,
