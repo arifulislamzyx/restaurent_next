@@ -1,10 +1,10 @@
-import ContactForm from "@/sections/contact-us/ContactForm";
+import OTPForm from "@/sections/otp/OTPForm";
 import React from "react";
 
 const Page = () => {
   return (
     <>
-      <ContactForm />
+      <OTPForm />
     </>
   );
 };

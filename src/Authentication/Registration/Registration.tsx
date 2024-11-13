@@ -25,8 +25,6 @@ const Registration = () => {
         password,
       };
 
-      console.log(userData);
-
       const res = await axios
         .post("/api/registration", userData, {
           headers: {
@@ -34,8 +32,6 @@ const Registration = () => {
           },
         })
         .then((res) => {
-          console.log(res);
-
           if (res.status === 201) {
             Swal.fire({
               title: "User Created Succeffully",

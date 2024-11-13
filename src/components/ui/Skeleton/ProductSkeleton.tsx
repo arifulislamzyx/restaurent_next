@@ -1,5 +1,5 @@
 import React from "react";
-import CardSkeleton from "./Skeleton/CardSkeleton";
+import CardSkeleton from "./CardSkeleton";
 
 const ProductSkeliton = () => {
   return (

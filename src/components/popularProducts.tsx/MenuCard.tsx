@@ -1,4 +1,4 @@
-import { truncateText } from "@/utils/TruncateText";
+import { truncateText } from "../../utils/TruncateText";
 import AddToCartButton from "../menu/AddToCartButton";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,10 +21,10 @@ const PolularMenuCard = ({
     className="flex gap-2 shadow-md hover:shadow-2xl p-1 rounded-2xl"
   >
     <Image
-      src={item.image}
+      src={item.image ?? ""}
       width={100}
       height={50}
-      alt={item.name}
+      alt={item.name ?? ""}
       className="rounded-s-xl"
     ></Image>
     <div>

@@ -7,7 +7,7 @@ import { fetchMenu } from "@/Redux/Slice/MenuSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/Store/Store";
 import { ChevronRight } from "lucide-react";
-import PopularCartSkelliton from "@/components/ui/PopularCartSkelliton";
+import PopularCartSkelliton from "@/components/ui/Skeleton/PopularCartSkeleton";
 import { useSession } from "next-auth/react";
 import PolularMenuCard from "@/components/popularProducts.tsx/MenuCard";
 

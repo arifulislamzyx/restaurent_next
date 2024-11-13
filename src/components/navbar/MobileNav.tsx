@@ -4,12 +4,12 @@ import Link from "next/link";
 import Button from "../buttons/Button";
 import { MobileNavProps } from "@/types/MobileNav";
 
-export const MobileNav = ({
+export const MobileNav: React.FC<MobileNavProps> = ({
   session,
   getCartItems,
   handleLogout,
   toggleProfile,
-}: MobileNavProps) => (
+}) => (
   <div className="absolute top-16 right-0 bg-white border rounded shadow-md z-50 w-40">
     <div className="relative grid grid-cols-1 p-4">
       {session?.user ? (

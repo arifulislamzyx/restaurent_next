@@ -3,13 +3,13 @@ import Button from "../buttons/Button";
 import { Trash2 } from "lucide-react";
 import { ICheckOutProps } from "@/types/CheckOut";
 
-export const Item = ({ item, handleDelete }: ICheckOutProps) => (
+export const Item: React.FC<ICheckOutProps> = ({ item, handleDelete }) => (
   <div>
     <div className="flex items-center justify-evenly gap-6  bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden p-4">
       <Image
         className=" object-cover rounded"
-        src={item?.image}
-        alt={item?.name}
+        src={item?.image ?? ""}
+        alt={item?.name ?? ""}
         width={60}
         height={60}
       />

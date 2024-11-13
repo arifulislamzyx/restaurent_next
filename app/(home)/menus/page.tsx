@@ -1,15 +1,17 @@
 "use client";
 import { fetchMenu } from "@/Redux/Slice/MenuSlice";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
-import ProductSkeliton from "@/sections/utils/ProductSkeliton";
 import { MenuItem } from "@/types/menuItems";
 import { productAnm } from "@/animation/varients";
 import { AppDispatch, RootState } from "@/Redux/Store/Store";
 import { useSession } from "next-auth/react";
 import MenuCard from "@/components/menu/MenuCard";
 import Button from "@/components/buttons/Button";
+import { Slice } from "lucide-react";
+import { MenuCardProps } from "@/types/types";
+import ProductSkeliton from "@/components/ui/Skeleton/ProductSkeleton";
 
 const MenuItems = () => {
   const [showAll, setShowAll] = useState(false);
@@ -24,6 +26,10 @@ const MenuItems = () => {
   useEffect(() => {
     dispatch(fetchMenu());
   }, [dispatch]);
+
+  const displayedMenuItems = useCallback(() => {
+    return menu.slice(0, showAll ? menu.length : 12);
+  }, [menu, showAll]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,7 +59,7 @@ const MenuItems = () => {
             animate="show"
             className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 md:gap-5 lg:gap-8 mt-5"
           >
-            {menu.slice(0, showAll ? menu.length : 12).map((item: MenuItem) => (
+            {displayedMenuItems().map((item: MenuItem) => (
               <MenuCard
                 key={item._id}
                 item={item}

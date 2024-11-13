@@ -1,7 +1,7 @@
-import Menu from "../../../server/models/menu.schema";
 import mongoose from "mongoose";
 import connectionDb from "@/lib/db.connection";
 import { NextRequest, NextResponse } from "next/server";
+import { Menu } from "../../../server/models/menu.schema";
 
 export const GET = async (req: NextRequest) => {
   try {

@@ -2,11 +2,11 @@ import Image from "next/image";
 import AddToCartButton from "../AddToCartButton";
 import { IASingleMenu } from "@/types/types";
 
-const SingleMenu = ({ menuItem, email }: IASingleMenu) => (
+const SingleMenu: React.FC<IASingleMenu> = ({ menuItem, email }) => (
   <div className="container mx-auto py-10 flex items-center gap-8 border-b-2">
     <Image
-      src={menuItem?.image}
-      alt={menuItem?.name}
+      src={menuItem?.image ?? ""}
+      alt={menuItem?.name ?? ""}
       width={400}
       height={400}
       className="rounded"

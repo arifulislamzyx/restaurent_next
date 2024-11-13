@@ -8,11 +8,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { MobileNavProps } from "@/types/MobileNav";
 
-export const NavItems = ({
+export const NavItems: React.FC<MobileNavProps> = ({
   session,
   getCartItems,
   toggleProfile,
-}: MobileNavProps) => (
+}) => (
   <div className="hidden md:flex md:items-center">
     {session?.user ? (
       <div className="relative flex items-center gap-6">

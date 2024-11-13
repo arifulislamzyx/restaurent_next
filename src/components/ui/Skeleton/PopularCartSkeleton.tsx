@@ -1,6 +1,6 @@
-import SkeletonLoader from "@/sections/utils/Skeleton/SkeletonLoader";
 import React from "react";
-import Loading from "./loading";
+import Loading from "../loading";
+import SkeletonLoader from "./SkeletonLoader";
 
 const PopularCartSkelliton = ({
   isLoading,

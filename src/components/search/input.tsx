@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Form from "next/form";
 import { ISearch } from "@/types/search";
 
-export const SearchInput = ({ openSearch, search }: ISearch) => (
+export const SearchInput: React.FC<ISearch> = ({ openSearch, search }) => (
   <div className="relative">
     <Search onClick={openSearch} />
 

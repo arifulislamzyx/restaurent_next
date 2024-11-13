@@ -6,7 +6,6 @@ import React, { ReactNode } from "react";
 
 const Page = ({ searchParams }: { searchParams: any }) => {
   const { query } = searchParams;
-  console.log("searchParams", searchParams);
 
   const results = SearchFilter(query);
 

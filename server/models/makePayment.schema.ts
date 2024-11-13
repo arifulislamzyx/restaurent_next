@@ -19,7 +19,5 @@ const OrderSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const MakePayment =
+export const MakePayment =
   mongoose.models.MakePayment || mongoose.model("MakePayment", OrderSchema);
-
-export default MakePayment;

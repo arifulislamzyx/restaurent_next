@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { showSlideProduct } from "@/animation/varients";
-import { truncateText } from "@/utils/TruncateText";
+import { truncateText } from "../../utils/TruncateText";
 import AddToCartButton from "./AddToCartButton";
 import { MenuItem } from "@/types/menuItems";
 
@@ -24,8 +24,8 @@ const MenuCard = ({
     <Image
       width={300}
       height={150}
-      src={item.image}
-      alt={item.name}
+      src={item.image ?? ""}
+      alt={item.name ?? ""}
       className="rounded-t-xl transition duration-700 ease-in-out transform hover:scale-105"
     />
     <div className="py-5 px-3">

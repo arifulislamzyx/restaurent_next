@@ -2,7 +2,7 @@
 import { loadStripe } from "@stripe/stripe-js";
 import React, { Suspense, useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
-import ConvertCurrency from "@/lib/convertCurrency";
+import ConvertCurrency from "../../../utils/convertCurrency";
 import Checkout from "./Checkout";
 import { useSearchParams } from "next/navigation";
 import Loading from "@/components/ui/loading";

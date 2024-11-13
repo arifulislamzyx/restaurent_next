@@ -1,7 +1,7 @@
 import connectionDb from "@/lib/db.connection";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
-import Cart from "../../../server/models/addCart.schema";
+import { Cart } from "../../../server/models/addCart.schema";
 
 export const GET = async (req: NextRequest) => {
   await mongoose.connect(connectionDb);

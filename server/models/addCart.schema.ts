@@ -17,6 +17,4 @@ const cartSchema = new Schema({
   email: { type: String, require: true },
 });
 
-const Cart = mongoose.models.Cart || mongoose.model("Cart", cartSchema);
-
-export default Cart;
+export const Cart = mongoose.models.Cart || mongoose.model("Cart", cartSchema);

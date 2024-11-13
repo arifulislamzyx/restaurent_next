@@ -1,6 +1,6 @@
 import connectionDb from "@/lib/db.connection";
 import mongoose from "mongoose";
-import Cart from "../../../server/models/addCart.schema";
+import { Cart } from "../../../server/models/addCart.schema";
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { AuthToken } from "@/types/authToken";

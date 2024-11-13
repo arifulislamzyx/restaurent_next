@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import connectionDb from "@/lib/db.connection";
-import MakePayment from "../../../server/models/makePayment.schema";
+import { MakePayment } from "../../../server/models/makePayment.schema";
 
 const stripe = new Stripe(process.env.Res_Stripe_Secret_Key || "");
 
