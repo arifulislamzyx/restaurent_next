@@ -3,9 +3,10 @@ import axios from "axios";
 import React, { useRef } from "react";
 import Swal from "sweetalert2";
 import { AlertSwal } from "../../components/alert/alertSwal";
+import { useRouter } from "next/navigation";
 
 const ContactForm = () => {
-  const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
   const sendContactEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -44,6 +45,7 @@ const ContactForm = () => {
                 `,
           },
         });
+        router.push("/");
       } else {
         AlertSwal({
           title: "Error Sending Email",

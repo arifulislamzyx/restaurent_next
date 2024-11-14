@@ -12,6 +12,19 @@ const userSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  otp: {
+    require: true,
+    type: String,
+  },
+  status: {
+    require: true,
+    type: String,
+    default: "Unverified",
+  },
+  otpExpiresAt: {
+    type: Date,
+    index: { expires: "10m" },
+  },
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

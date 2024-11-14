@@ -12,7 +12,7 @@ export const SendOtpEmail = async ({
 }) => {
   try {
     await resend.emails.send({
-      from: "arifulislamzyx@gmail.com",
+      from: "arifulislam@me.com",
       to: email,
       subject: "Your OTP Code",
       html: `<p>Your OTP Code is <strong>${otp}</strong> </p>`,
@@ -34,7 +34,6 @@ export const SendContactEmail = async ({
   if (!subject) {
     throw new Error("Subject is required");
   }
-  console.log("formEmail", email, subject, message);
 
   try {
     await resend.emails.send({

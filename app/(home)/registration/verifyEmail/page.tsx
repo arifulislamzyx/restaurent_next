@@ -1,4 +1,4 @@
-import OTPForm from "@/sections/otp/OTPForm";
+import OTPForm from "@/components/otp/OTPForm";
 import React from "react";
 
 const Page = () => {

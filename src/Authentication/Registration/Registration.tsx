@@ -1,15 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
 import Button from "@/components/buttons/Button";
 import SocialLogin from "../SocailLogin/SocialLogin";
 import Link from "next/link";
 import { AlertSwal } from "@/components/alert/alertSwal";
+import { IAUser } from "@/types/user";
+import Loading from "@/components/ui/loading";
+import { AlertSwal2 } from "@/components/alert/alertSwal2";
 
 const Registration = () => {
   const router = useRouter();
+  const [res, setRes] = useState<IAUser>({});
 
   const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,32 +28,27 @@ const Registration = () => {
         password,
       };
 
-      const res = await axios
+      await axios
         .post("/api/registration", userData, {
           headers: {
             "Content-Type": "application/json",
           },
         })
         .then((res) => {
+          setRes(res.data);
+
+          //please check browser log after registration you will get the OTP for verification, Resend Is required to verify own domain therefore you have to do it
+          console.log("Reggistered User", res);
+
           if (res.status === 201) {
-            Swal.fire({
-              title: "User Created Succeffully",
-              showClass: {
-                popup: `
-                  animate__animated
-                  animate__fadeInUp
-                  animate__faster
-                `,
-              },
-              hideClass: {
-                popup: `
-                  animate__animated
-                  animate__fadeOutDown
-                  animate__faster
-                `,
-              },
+            AlertSwal2({
+              title: "User Registered Successfully",
             });
-            router.push("/sign-in");
+
+            if (typeof window !== "undefined") {
+              localStorage.setItem("verify-email", res.data.email);
+            }
+            router.push("/registration/verifyEmail");
           } else {
             AlertSwal({
               title: "Please Login to Order Products",
@@ -65,7 +63,6 @@ const Registration = () => {
           }
         });
     } catch (error) {
-      console.error("found error while fetchingdata", error);
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         AlertSwal({
           title: "User Already Exists",
@@ -139,7 +136,7 @@ const Registration = () => {
             type="submit"
             className="w-full px-4 py-2 mt-4 text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:ring focus:ring-orange-300"
           >
-            Register
+            {res ? <p>Register</p> : <Loading></Loading>}
           </Button>
         </form>
 
