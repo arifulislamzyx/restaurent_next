@@ -1,7 +1,7 @@
 import React from "react";
 import { Github } from "lucide-react";
 import Button from "@/components/buttons/Button";
-import { doScialLogin } from "../../actions";
+import { doScialLogin } from "../actions";
 
 const SocialLogin = () => {
   return (

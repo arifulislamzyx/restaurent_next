@@ -11,7 +11,7 @@ import Button from "@/components/buttons/Button";
 const DashboardNav = () => {
   const [openDashboardMenu, setOpenDashboardMenu] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   const toggleDashMenu = () => {
     setOpenDashboardMenu(!openDashboardMenu);

@@ -23,11 +23,8 @@ const Checkout = ({ amount }: { amount: any }) => {
   const dispatch = useDispatch<AppDispatch>();
   const {
     carts: { cartItems },
-    isLoading,
-    isError,
-    error,
   } = useSelector((state: RootState) => state.carts);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   const userEmail = session?.user.email;
 

@@ -1,6 +1,6 @@
 "use client";
 import { loadStripe } from "@stripe/stripe-js";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import ConvertCurrency from "../../../utils/convertCurrency";
 import Checkout from "./Checkout";

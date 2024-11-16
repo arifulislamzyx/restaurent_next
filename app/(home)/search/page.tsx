@@ -2,7 +2,7 @@
 import { SearchInput } from "@/components/search/input";
 import { SearchedMenu } from "@/components/search/SearchedMenu";
 import SearchFilter from "@/components/search/SearchFilter";
-import React, { ReactNode } from "react";
+import React from "react";
 
 const Page = ({ searchParams }: { searchParams: any }) => {
   const { query } = searchParams;

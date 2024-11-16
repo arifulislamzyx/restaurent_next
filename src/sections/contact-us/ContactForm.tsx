@@ -1,9 +1,9 @@
 "use client";
 import axios from "axios";
-import React, { useRef } from "react";
-import Swal from "sweetalert2";
-import { AlertSwal } from "../../components/alert/alertSwal";
+import React from "react";
+import { ConfirmSwal } from "../../components/alert/confirmSwal";
 import { useRouter } from "next/navigation";
+import { SuccessSwal } from "@/components/alert/successSwal";
 
 const ContactForm = () => {
   const router = useRouter();
@@ -28,26 +28,12 @@ const ContactForm = () => {
       });
 
       if (res.status === 201) {
-        Swal.fire({
+        SuccessSwal({
           title: "Email Send Succeffully",
-          showClass: {
-            popup: `
-                  animate__animated
-                  animate__fadeInUp
-                  animate__faster
-                `,
-          },
-          hideClass: {
-            popup: `
-                  animate__animated
-                  animate__fadeOutDown
-                  animate__faster
-                `,
-          },
         });
         router.push("/");
       } else {
-        AlertSwal({
+        ConfirmSwal({
           title: "Error Sending Email",
           text: "You unable to send mail",
           icon: "warning",

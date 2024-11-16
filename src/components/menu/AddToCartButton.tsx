@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import Button from "../buttons/Button";
 import { AddToCartButtonProps } from "@/types/types";
-import { AlertSwal } from "../alert/alertSwal";
+import { ConfirmSwal } from "../alert/confirmSwal";
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   item,
@@ -39,7 +39,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
           },
         }
       );
-      AlertSwal({
+      ConfirmSwal({
         position: "top-end",
         title:
           res.status === 200
@@ -51,7 +51,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
         showConfirmButton: false,
       });
     } catch {
-      AlertSwal({
+      ConfirmSwal({
         position: "top-end",
         title: "Something went wrong while adding the item.",
         icon: "error",

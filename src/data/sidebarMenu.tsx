@@ -1,10 +1,8 @@
 import {
   FileVideo2,
   User,
-  UserRoundCog,
   FileCheck2,
   MailCheck,
-  Radio,
   MonitorPause,
   Laptop,
   BrainCog,
@@ -19,7 +17,6 @@ import {
   Computer,
   LayoutDashboard,
   TabletSmartphone,
-  Files,
   FileStack,
   Kanban,
   ShoppingCart,

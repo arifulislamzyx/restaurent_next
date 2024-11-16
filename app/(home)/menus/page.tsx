@@ -9,14 +9,12 @@ import { AppDispatch, RootState } from "@/Redux/Store/Store";
 import { useSession } from "next-auth/react";
 import MenuCard from "@/components/menu/MenuCard";
 import Button from "@/components/buttons/Button";
-import { Slice } from "lucide-react";
-import { MenuCardProps } from "@/types/types";
 import ProductSkeliton from "@/components/ui/Skeleton/ProductSkeleton";
 
 const MenuItems = () => {
   const [showAll, setShowAll] = useState(false);
   const [textLength, setTextLength] = useState(40);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const email = session?.user?.email;
 
   const { menu, isLoading, isError, error } = useSelector(

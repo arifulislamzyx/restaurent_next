@@ -2,7 +2,6 @@ import connectionDb from "@/lib/db.connection";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import { User } from "../../../server/models/user.schema";
-import { json } from "micro";
 import { SendOtpEmail } from "@/lib/resend";
 
 export const POST = async (req: NextRequest) => {
@@ -36,7 +35,6 @@ export const POST = async (req: NextRequest) => {
       otpExpiresAt: otpExpiry,
     };
 
-    const userCreated = await User.create(newUser);
     await SendOtpEmail({ email, otp });
     return new NextResponse(JSON.stringify(newUser), { status: 201 });
   } catch (err) {

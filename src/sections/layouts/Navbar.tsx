@@ -21,13 +21,11 @@ const Navbar = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [profileMenu, setProfileMenu] = useState<boolean>(false);
   const [search, setSearch] = useState<boolean>(false);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
+
   const dispatch = useDispatch<AppDispatch>();
   const {
     carts: { cartItems },
-    isLoading,
-    isError,
-    error,
   } = useSelector((state: RootState) => state.carts);
 
   const userEmail = session?.user.email;

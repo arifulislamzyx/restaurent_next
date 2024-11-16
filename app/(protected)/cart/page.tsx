@@ -20,7 +20,7 @@ const Page: React.FC = () => {
     isError,
     error,
   } = useSelector((state: RootState) => state.carts);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
   const userEmail = session?.user?.email;
 
@@ -74,7 +74,7 @@ const Page: React.FC = () => {
   }
 
   if (isError) {
-    return <p className="text-red-500">Error fetching cart items.</p>;
+    return <p className="text-red-500">Error fetching cart items {error}</p>;
   }
 
   if (total === 0) {

@@ -13,12 +13,10 @@ import SimilarProducts from "@/components/menu/singleMenu/SimilarProducts";
 const Page = ({ params }: { params: any }) => {
   const { id } = params;
   const [menuItem, setMenuItem] = useState<MenuItem | null>(null);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const email = session?.user?.email;
   const dispatch = useDispatch<AppDispatch>();
-  const { menu, isLoading, isError } = useSelector(
-    (state: RootState) => state.menus
-  );
+  const { menu, isError } = useSelector((state: RootState) => state.menus);
 
   useEffect(() => {
     dispatch(fetchMenu());
@@ -43,6 +41,9 @@ const Page = ({ params }: { params: any }) => {
         <Loading />
       </div>
     );
+  }
+  if (isError) {
+    return <p>Error Fetching Menus</p>;
   }
 
   return (

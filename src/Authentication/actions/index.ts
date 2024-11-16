@@ -1,6 +1,5 @@
 "use server";
 import { signIn, signOut } from "@/Authentication/auth";
-import { ILoginUser } from "@/types/loginUser";
 import { revalidatePath } from "next/cache";
 export const doScialLogin = async (formData: FormData) => {
   const action = formData.get("action") as string;

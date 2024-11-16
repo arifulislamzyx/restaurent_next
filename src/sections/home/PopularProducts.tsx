@@ -16,7 +16,7 @@ const PopularProducts: React.FC = () => {
     (state: RootState) => state.menus
   );
   const dispatch = useDispatch<any>();
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const email = session?.user?.email;
 
   useEffect(() => {

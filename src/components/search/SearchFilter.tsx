@@ -7,9 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const SearchFilter = (query: string) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { menu, isLoading, isError, error } = useSelector(
-    (state: RootState) => state.menus
-  );
+  const { menu } = useSelector((state: RootState) => state.menus);
 
   useEffect(() => {
     dispatch(fetchMenu());

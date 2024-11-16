@@ -1,7 +1,7 @@
 import { IAlert2 } from "@/types/alert";
 import Swal from "sweetalert2";
 
-export const AlertSwal2 = ({
+export const SuccessSwal = ({
   title,
   text = "",
   icon,

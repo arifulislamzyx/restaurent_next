@@ -1,14 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Button from "@/components/buttons/Button";
 import SocialLogin from "../SocailLogin/SocialLogin";
 import Link from "next/link";
-import { AlertSwal } from "@/components/alert/alertSwal";
+import { ConfirmSwal } from "@/components/alert/confirmSwal";
 import { IAUser } from "@/types/user";
 import Loading from "@/components/ui/loading";
-import { AlertSwal2 } from "@/components/alert/alertSwal2";
+import { SuccessSwal } from "@/components/alert/successSwal";
 
 const Registration = () => {
   const router = useRouter();
@@ -41,7 +41,7 @@ const Registration = () => {
           console.log("Reggistered User", res);
 
           if (res.status === 201) {
-            AlertSwal2({
+            SuccessSwal({
               title: "User Registered Successfully",
             });
 
@@ -50,7 +50,7 @@ const Registration = () => {
             }
             router.push("/registration/verifyEmail");
           } else {
-            AlertSwal({
+            ConfirmSwal({
               title: "Please Login to Order Products",
               text: "You won't be able to revert this!",
               icon: "warning",
@@ -64,7 +64,7 @@ const Registration = () => {
         });
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
-        AlertSwal({
+        ConfirmSwal({
           title: "User Already Exists",
           text: "Please Login",
           icon: "warning",

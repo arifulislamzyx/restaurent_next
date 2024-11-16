@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { AlertSwal2 } from "../alert/alertSwal2";
+import { SuccessSwal } from "../alert/successSwal";
 import { useEffect, useState } from "react";
 
 const OTPForm = () => {
@@ -34,7 +34,7 @@ const OTPForm = () => {
       };
       const res = await axios.post("/api/verifyOtp", Otp);
       if (res.status === 201) {
-        AlertSwal2({
+        SuccessSwal({
           title: "User Verified Successfully",
           text: "The user has been verified.",
           icon: "success",
@@ -42,7 +42,7 @@ const OTPForm = () => {
         localStorage.removeItem("verify-email");
         router.push("/sign-in");
       } else if (res.data.status === 400) {
-        AlertSwal2({
+        SuccessSwal({
           title: "Invalid OTP or User Not FOund",
           text: "You entered a wrong OTP",
           icon: "error",
