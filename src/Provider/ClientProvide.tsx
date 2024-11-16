@@ -26,6 +26,7 @@ export default function ClientProvider({
   }, []);
 
   const path = "/dashboard";
+
   return (
     <AuthProvider>
       <Provider store={store}>
