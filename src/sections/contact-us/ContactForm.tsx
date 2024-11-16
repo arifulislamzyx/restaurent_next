@@ -1,14 +1,18 @@
 "use client";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { ConfirmSwal } from "../../components/alert/confirmSwal";
 import { useRouter } from "next/navigation";
 import { SuccessSwal } from "@/components/alert/successSwal";
+import Loading from "@/components/ui/loading";
 
 const ContactForm = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
+
   const sendContactEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
     const subject = formData.get("subject") as string;
@@ -31,6 +35,7 @@ const ContactForm = () => {
         SuccessSwal({
           title: "Email Send Succeffully",
         });
+        (e.target as HTMLFormElement).reset();
         router.push("/");
       } else {
         ConfirmSwal({
@@ -44,6 +49,8 @@ const ContactForm = () => {
       }
     } catch (err) {
       console.error("Error Sending Email", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,7 +86,7 @@ const ContactForm = () => {
           type="submit"
           className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors"
         >
-          Submit
+          {loading ? <Loading /> : "Submit"}
         </button>
       </form>
     </div>

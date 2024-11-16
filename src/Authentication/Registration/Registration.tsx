@@ -6,16 +6,16 @@ import Button from "@/components/buttons/Button";
 import SocialLogin from "../SocailLogin/SocialLogin";
 import Link from "next/link";
 import { ConfirmSwal } from "@/components/alert/confirmSwal";
-import { IAUser } from "@/types/user";
 import Loading from "@/components/ui/loading";
 import { SuccessSwal } from "@/components/alert/successSwal";
 
 const Registration = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
-  const [res, setRes] = useState<IAUser>({});
 
   const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const formData = new FormData(e.currentTarget);
       const name = formData.get("name");
@@ -35,8 +35,6 @@ const Registration = () => {
           },
         })
         .then((res) => {
-          setRes(res.data);
-
           //please check browser log after registration you will get the OTP for verification, Resend Is required to verify own domain therefore you have to do it
           console.log("Reggistered User", res);
 
@@ -75,6 +73,8 @@ const Registration = () => {
           redirectUrl: "/sign-in",
         });
       }
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -136,7 +136,7 @@ const Registration = () => {
             type="submit"
             className="w-full px-4 py-2 mt-4 text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:ring focus:ring-orange-300"
           >
-            {res ? <p>Register</p> : <Loading></Loading>}
+            {loading ? <Loading /> : "Register"}
           </Button>
         </form>
 

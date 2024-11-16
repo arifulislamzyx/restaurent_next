@@ -5,13 +5,16 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/buttons/Button";
 import Link from "next/link";
 import { credenTialsSignIn } from "@/Authentication/actions";
+import Loading from "@/components/ui/loading";
 
 const Page = () => {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await credenTialsSignIn(new FormData(e.currentTarget));
@@ -23,6 +26,8 @@ const Page = () => {
       }
     } catch (err) {
       setError("Check your Credentials ");
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -71,7 +76,7 @@ const Page = () => {
             type="submit"
             className="w-full px-4 py-2 mt-4 text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:ring focus:ring-orange-300"
           >
-            Sign In
+            {loading ? <Loading /> : "Sign In"}
           </Button>
         </form>
 
