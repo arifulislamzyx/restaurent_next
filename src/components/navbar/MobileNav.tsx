@@ -10,8 +10,8 @@ export const MobileNav: React.FC<MobileNavProps> = ({
   handleLogout,
   toggleProfile,
 }) => (
-  <div className="absolute top-16 right-0 bg-white border rounded shadow-md z-50 w-40">
-    <div className="relative grid grid-cols-1 p-4">
+  <div className="relative top-16 right-0 bg-white border rounded shadow-md z-50 w-40">
+    <div className=" grid grid-cols-1 p-4">
       {session?.user ? (
         <div>
           <Link href="/cart" className="py-2 hover:bg-slate-100 rounded">

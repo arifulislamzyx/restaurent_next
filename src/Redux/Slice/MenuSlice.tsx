@@ -6,7 +6,7 @@ interface MenuProps {
   menu: MenuItem[];
   isLoading: boolean;
   isError: boolean;
-  error: any;
+  error: string | null | undefined;
 }
 
 const initialState: MenuProps = {

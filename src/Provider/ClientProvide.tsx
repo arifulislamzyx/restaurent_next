@@ -3,7 +3,7 @@
 import { Provider } from "react-redux";
 import store from "@/Redux/Store/Store";
 import AuthProvider from "@/Provider/AuthProvider";
-import Navbar from "@/sections/layouts/Navbar";
+import Navbar from "@/layouts/Navbar";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 

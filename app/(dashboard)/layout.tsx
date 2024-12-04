@@ -1,5 +1,5 @@
 import Sidebar from "@/sections/dashboard/sidebar";
-import DashboardNav from "@/sections/layouts/DashboardNav";
+import DashboardNav from "../../src/layouts/DashboardNav";
 import { ReactNode } from "react";
 
 interface LayoutProps {

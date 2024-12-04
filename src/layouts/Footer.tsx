@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import foodKing from "../../../public/foodKing.png";
+import foodKing from "../../public/foodKing.png";
 import Link from "next/link";
-import google from "../../../public/HomePageImg/googlePlay.png";
-import appstore from "../../../public/HomePageImg/AppStore.png";
+import google from "../../public/HomePageImg/googlePlay.png";
+import appstore from "../../public/HomePageImg/AppStore.png";
 import {
   Facebook,
   Instagram,

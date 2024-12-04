@@ -5,7 +5,7 @@ interface CartProps {
   carts: any;
   isLoading: boolean;
   isError: boolean;
-  error: any;
+  error: string | null | undefined;
 }
 
 const initialState: CartProps = {

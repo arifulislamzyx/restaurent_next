@@ -1,9 +1,9 @@
 "use client";
 import { AlignJustify, User, X } from "lucide-react";
 import React, { useState } from "react";
-import foodKing from "../../../public/foodKing.png";
+import foodKing from "../../public/foodKing.png";
 import Image from "next/image";
-import Sidebar from "../dashboard/sidebar";
+import Sidebar from "../sections/dashboard/sidebar";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Button from "@/components/buttons/Button";

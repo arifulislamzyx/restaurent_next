@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import Link from "next/link";
-import foodKing from "../../../public/foodKing.png";
+import foodKing from "../../public/foodKing.png";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { AlignJustify, X } from "lucide-react";
@@ -55,48 +55,47 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <div
-        className={`container  md:flex md:justify-between md:pt-5 lg:flex lg:justify-between lg:pt-5`}
-      >
-        <Link href={"/"}>
-          <Image
-            src={foodKing}
-            width={150}
-            height={100}
-            alt="foobking"
-            className="relative"
-          ></Image>
+    <nav className="">
+      <div className="container relative mx-auto flex justify-between items-center p-4">
+        <Link href={"/"} className="flex items-center">
+          <Image src={foodKing} width={120} height={80} alt="FoodKing" />
         </Link>
-        <div className="flex items-center gap-6">
-          <SearchInput openSearch={openSearch} search={search} />
 
+        <div className="hidden md:flex items-center gap-6">
+          <SearchInput openSearch={openSearch} search={search} />
           <NavItems
             session={session}
             getCartItems={getCartItems}
             toggleProfile={toggleProfile}
           />
         </div>
+
+        <Button
+          onClick={openMobileMenu}
+          className="md:hidden p-2 focus:outline-none z-50"
+          aria-label={openMenu ? "Close Menu" : "Open Menu"}
+        >
+          {openMenu ? <X size={24} /> : <AlignJustify size={24} />}
+        </Button>
       </div>
-      <Button
-        onClick={openMobileMenu}
-        className="fixed p-2  top-2 right-1  focus:outline-none md:hidden lg:hidden z-50"
-      >
-        {openMenu ? (
-          <X size={20} />
-        ) : (
-          <AlignJustify size={20} className="font-bold"></AlignJustify>
+      <div className="absolute right-1 top-2">
+        {openMenu && (
+          <div className="md:hidden">
+            <MobileNav
+              getCartItems={getCartItems}
+              toggleProfile={toggleProfile}
+              handleLogout={handleLogout}
+              session={session}
+            />
+          </div>
         )}
-      </Button>
-      {openMenu && (
-        <MobileNav
-          getCartItems={getCartItems}
-          toggleProfile={toggleProfile}
-          handleLogout={handleLogout}
-          session={session}
-        />
+      </div>
+
+      {profileMenu && (
+        <div className="absolute top-16 right-4 z-50">
+          <Dropdown handleLogout={handleLogout} />
+        </div>
       )}
-      {profileMenu && <Dropdown handleLogout={handleLogout} />}
     </nav>
   );
 };
